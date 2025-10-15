@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { z } from "zod";
+import logo from "@/assets/logo.png";
 
 const signUpSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
@@ -77,7 +78,7 @@ const SignUp = () => {
         <Card className="border-2 rounded-3xl shadow-elevated glass">
           <CardHeader className="space-y-3 pb-8">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent glow-primary" />
+              <img src={logo} alt="QueryBot Logo" className="w-10 h-10" />
               <span className="text-2xl font-bold">QueryBot</span>
             </div>
             <CardTitle className="text-3xl">Start your free trial</CardTitle>
