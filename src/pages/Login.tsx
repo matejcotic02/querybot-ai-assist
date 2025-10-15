@@ -144,7 +144,7 @@ const Login = () => {
         <Card className="border-2 rounded-3xl shadow-elevated glass">
           <CardHeader className="space-y-3 pb-8">
             <div className="flex items-center gap-2 mb-2">
-              <img src={logo} alt="QueryBot Logo" className="w-10 h-10" />
+              <img src={logo} alt="QueryBot Logo" className="w-10 h-10 rounded-none" />
               <span className="text-2xl font-bold">QueryBot</span>
             </div>
             <CardTitle className="text-3xl">Welcome</CardTitle>
