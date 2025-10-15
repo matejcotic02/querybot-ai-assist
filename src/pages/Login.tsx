@@ -11,10 +11,12 @@ import { toast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
+
 const loginSchema = z.object({
   email: z.string().trim().email("Invalid email address").max(255, "Email too long"),
   password: z.string().min(1, "Password is required")
 });
+
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -24,10 +26,11 @@ const Login = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [authError, setAuthError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError("");
-
+    
     // Validate form
     try {
       loginSchema.parse(formData);
@@ -35,12 +38,13 @@ const Login = () => {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
-        error.errors.forEach(err => {
+        error.errors.forEach((err) => {
           if (err.path[0]) {
             fieldErrors[err.path[0].toString()] = err.message;
           }
         });
         setErrors(fieldErrors);
+        
         const form = e.currentTarget as HTMLFormElement;
         form.classList.add('animate-shake');
         setTimeout(() => form.classList.remove('animate-shake'), 300);
@@ -51,13 +55,11 @@ const Login = () => {
     // Authenticate with Supabase
     setIsLoading(true);
     try {
-      const {
-        data,
-        error
-      } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.email,
-        password: formData.password
+        password: formData.password,
       });
+
       if (error) {
         setAuthError("Invalid email or password. Please try again.");
         const form = e.currentTarget as HTMLFormElement;
@@ -66,7 +68,7 @@ const Login = () => {
       } else if (data.user) {
         toast({
           title: "Welcome back 👋",
-          description: "You've successfully signed in."
+          description: "You've successfully signed in.",
         });
         navigate('/app');
       }
@@ -76,7 +78,9 @@ const Login = () => {
       setIsLoading(false);
     }
   };
-  return <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
       {/* Theme Toggle */}
       <div className="absolute top-8 right-8 z-20">
         <ThemeToggle />
@@ -85,11 +89,15 @@ const Login = () => {
       {/* Background */}
       <div className="absolute inset-0 gradient-hero opacity-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(var(--primary)/0.15),transparent_60%)]" />
-      
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,hsl(var(--accent)/0.1),transparent_60%)]" />
       
       <div className="w-full max-w-md relative z-10">
         {/* Back Button */}
-        <Button variant="ghost" className="mb-8 group rounded-2xl hover-glow" onClick={() => navigate('/')}>
+        <Button 
+          variant="ghost" 
+          className="mb-8 group rounded-2xl hover-glow"
+          onClick={() => navigate('/')}
+        >
           <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
           Back to home
         </Button>
@@ -108,30 +116,51 @@ const Login = () => {
           
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
-              {authError && <Alert variant="destructive" className="rounded-2xl">
+              {authError && (
+                <Alert variant="destructive" className="rounded-2xl">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>{authError}</AlertDescription>
-                </Alert>}
+                </Alert>
+              )}
               
               <div className="space-y-2">
                 <Label htmlFor="input_email">Work Email</Label>
-                <Input id="input_email" type="email" placeholder="john@company.com" value={formData.email} onChange={e => setFormData({
-                ...formData,
-                email: e.target.value
-              })} className={`rounded-2xl h-12 glass transition-all ${errors.email ? 'border-destructive animate-shake' : ''}`} required autoFocus disabled={isLoading} />
+                <Input 
+                  id="input_email"
+                  type="email"
+                  placeholder="john@company.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className={`rounded-2xl h-12 glass transition-all ${errors.email ? 'border-destructive animate-shake' : ''}`}
+                  required
+                  autoFocus
+                  disabled={isLoading}
+                />
                 {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="input_password">Password</Label>
-                <Input id="input_password" type="password" placeholder="Enter your password" value={formData.password} onChange={e => setFormData({
-                ...formData,
-                password: e.target.value
-              })} className={`rounded-2xl h-12 glass transition-all ${errors.password ? 'border-destructive animate-shake' : ''}`} required disabled={isLoading} />
+                <Input 
+                  id="input_password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={(e) => setFormData({...formData, password: e.target.value})}
+                  className={`rounded-2xl h-12 glass transition-all ${errors.password ? 'border-destructive animate-shake' : ''}`}
+                  required
+                  disabled={isLoading}
+                />
                 {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
               </div>
               
-              <Button id="btn_login" type="submit" className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow" size="lg" disabled={isLoading}>
+              <Button 
+                id="btn_login"
+                type="submit"
+                className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow"
+                size="lg"
+                disabled={isLoading}
+              >
                 {isLoading ? "Signing in..." : "Sign In to QueryBot"}
               </Button>
               
@@ -145,6 +174,8 @@ const Login = () => {
           </CardContent>
         </Card>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Login;
