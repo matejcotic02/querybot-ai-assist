@@ -12,7 +12,7 @@ export const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 lg:px-16 pt-24 pb-16">
       {/* Logo & Theme Toggle */}
       <div className="absolute top-8 left-8 z-20 flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
-        <img src={logo} alt="QueryBot Logo" className="w-10 h-10 transition-all group-hover:scale-110 drop-shadow-lg" />
+        <img src={logo} alt="QueryBot Logo" className="w-10 h-10 rounded-xl transition-all group-hover:scale-110 drop-shadow-lg" />
         <span className="text-xl font-bold hidden sm:block">QueryBot</span>
       </div>
       <div className="absolute top-8 right-8 z-20">
