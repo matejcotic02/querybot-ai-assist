@@ -9,13 +9,13 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 84% 5%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 84% 5%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 84% 5%;
+    --popover-foreground: 222 47% 11%;
 
     --primary: 220 81% 65%;
     --primary-foreground: 0 0% 100%;
@@ -23,27 +23,40 @@ All colors MUST be HSL.
     --secondary: 210 40% 96%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96%;
+    --muted: 0 0% 96%;
     --muted-foreground: 215 16% 47%;
 
     --accent: 250 100% 73%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 67%;
     --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 76% 58%;
+    --warning: 45 97% 56%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: 220 81% 65%;
 
-    --radius: 1rem;
+    --radius: 1.5rem;
     
+    /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(220 81% 65%) 0%, hsl(250 100% 73%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 81% 98%) 100%);
-    --glow-primary: 0 8px 32px hsl(220 81% 65% / 0.3);
-    --glow-accent: 0 8px 32px hsl(250 100% 73% / 0.3);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    
+    /* Shadows & Glows */
+    --glow-primary: 0 8px 32px hsl(220 81% 65% / 0.35);
+    --glow-accent: 0 8px 32px hsl(250 100% 73% / 0.35);
     --shadow-soft: 0 4px 24px hsl(220 20% 50% / 0.08);
     --shadow-elevated: 0 12px 48px hsl(220 20% 50% / 0.12);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.04);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-blur: 16px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -63,40 +76,53 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 47% 5%;
+    --background: 222 47% 4%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 7%;
+    --card: 222 47% 6%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 7%;
+    --popover: 222 47% 6%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 220 81% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 18%;
+    --secondary: 217 33% 14%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 18%;
+    --muted: 217 33% 12%;
     --muted-foreground: 215 20% 65%;
 
     --accent: 250 100% 73%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 67%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 76% 58%;
+    --warning: 45 97% 56%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
+    --border: 217 33% 16%;
+    --input: 217 33% 14%;
     --ring: 220 81% 65%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(220 81% 45%) 0%, hsl(250 100% 63%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(222 47% 7%) 0%, hsl(220 81% 12%) 100%);
-    --glow-primary: 0 8px 32px hsl(220 81% 65% / 0.4);
-    --glow-accent: 0 8px 32px hsl(250 100% 73% / 0.4);
-    --shadow-soft: 0 4px 24px hsl(220 20% 10% / 0.4);
-    --shadow-elevated: 0 12px 48px hsl(220 20% 10% / 0.5);
+    /* Dark Mode Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(220 81% 55%) 0%, hsl(250 100% 68%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 47% 6%) 0%, hsl(220 81% 10%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    
+    /* Dark Shadows & Glows */
+    --glow-primary: 0 8px 32px hsl(220 81% 65% / 0.5);
+    --glow-accent: 0 8px 32px hsl(250 100% 73% / 0.5);
+    --shadow-soft: 0 4px 24px hsl(220 20% 0% / 0.4);
+    --shadow-elevated: 0 12px 48px hsl(220 20% 0% / 0.6);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Dark Glassmorphism */
+    --glass-bg: rgba(15, 17, 20, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 16px;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -120,9 +146,31 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Typography Scale - 2025 */
+  .text-display {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+  }
+  
+  .text-h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+  
+  .text-h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight;
+  }
+  
+  .text-body {
+    @apply text-base leading-relaxed;
+  }
+  
+  .text-caption {
+    @apply text-xs tracking-wide;
+  }
 }
 
 @layer utilities {
+  /* Gradients */
   .gradient-hero {
     background: var(--gradient-hero);
   }
@@ -131,6 +179,15 @@ All colors MUST be HSL.
     background: var(--gradient-card);
   }
   
+  /* Glassmorphism */
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+  
+  /* Shadows & Glows */
   .glow-primary {
     box-shadow: var(--glow-primary);
   }
@@ -147,14 +204,36 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-elevated);
   }
   
+  .shadow-glass {
+    box-shadow: var(--shadow-glass);
+  }
+  
+  /* Animations - 2025 Style */
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   
   .animate-slide-in-left {
-    animation: slideInLeft 0.8s ease-out forwards;
+    animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   
+  .animate-scale-in {
+    animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-elevated;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 ease-out hover:glow-primary hover:scale-[1.03];
+  }
+  
+  .hover-glow-accent {
+    @apply transition-all duration-300 ease-out hover:glow-accent hover:scale-[1.03];
+  }
+  
+  /* Keyframes */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -175,5 +254,26 @@ All colors MUST be HSL.
       opacity: 1;
       transform: translateX(0);
     }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  
+  .animate-shake {
+    animation: shake 0.3s ease-in-out;
   }
 }

@@ -9,7 +9,7 @@ const footerLinks = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-muted/30 border-t border-border">
+    <footer className="glass border-t border-border/50">
       <div className="container max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}
@@ -26,14 +26,14 @@ export const Footer = () => {
             <div className="flex gap-3">
               <a 
                 href="#" 
-                className="w-9 h-9 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary transition-colors"
+                className="w-9 h-9 rounded-xl glass flex items-center justify-center hover:border-primary transition-all hover-glow"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
               <a 
                 href="#" 
-                className="w-9 h-9 rounded-lg bg-card border border-border flex items-center justify-center hover:border-primary transition-colors"
+                className="w-9 h-9 rounded-xl glass flex items-center justify-center hover:border-primary transition-all hover-glow"
                 aria-label="Twitter"
               >
                 <Twitter className="h-4 w-4" />

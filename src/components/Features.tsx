@@ -22,11 +22,11 @@ const features = [
 export const Features = () => {
   return (
     <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--accent)/0.05),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--accent)/0.08),transparent_70%)]" />
       
       <div className="container max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">
+        <div className="text-center mb-16 space-y-4 animate-fade-in-up">
+          <h2 className="text-h2">
             Everything you need to{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               automate support
@@ -41,17 +41,17 @@ export const Features = () => {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <Card 
+            <Card 
                 key={index}
-                className="border-2 rounded-3xl shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-2 group animate-fade-in-up overflow-hidden"
+                className="border-2 rounded-3xl shadow-soft hover-lift group animate-fade-in-up overflow-hidden glass"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardContent className="p-8 space-y-4">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:glow-primary transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:glow-primary transition-all duration-500 group-hover:scale-110">
                     <Icon className="h-7 w-7 text-primary-foreground" />
                   </div>
                   
-                  <h3 className="text-2xl font-semibold">{feature.title}</h3>
+                  <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors">{feature.title}</h3>
                   
                   <p className="text-muted-foreground leading-relaxed">
                     {feature.description}

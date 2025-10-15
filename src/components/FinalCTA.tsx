@@ -5,22 +5,23 @@ export const FinalCTA = () => {
   return (
     <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       {/* Gradient Background */}
-      <div className="absolute inset-0 gradient-hero opacity-90" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--accent)/0.2),transparent_50%)]" />
+      <div className="absolute inset-0 gradient-hero" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--accent)/0.3),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(var(--primary)/0.3),transparent_50%)]" />
       
-      <div className="container max-w-4xl mx-auto text-center relative z-10 space-y-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+      <div className="container max-w-4xl mx-auto text-center relative z-10 space-y-8 animate-fade-in-up">
+        <h2 className="text-display text-white drop-shadow-lg">
           Start Automating Your IT Support Today
         </h2>
         
-        <p className="text-xl text-white/90 max-w-2xl mx-auto">
+        <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
           Join thousands of IT teams using QueryBot to resolve tickets faster and delight customers
         </p>
         
         <Button 
           size="lg"
           variant="secondary"
-          className="text-lg px-10 py-7 rounded-2xl group shadow-elevated hover:scale-105 transition-all"
+          className="text-lg px-10 py-7 rounded-3xl group hover-glow shadow-elevated bg-white text-primary hover:bg-white/90"
           onClick={() => window.location.href = '/signup'}
         >
           Try QueryBot Free

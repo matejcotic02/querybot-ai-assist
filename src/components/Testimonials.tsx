@@ -29,8 +29,8 @@ export const Testimonials = () => {
   return (
     <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16">
       <div className="container max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">
+        <div className="text-center mb-16 space-y-4 animate-fade-in-up">
+          <h2 className="text-h2">
             Loved by{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               IT teams worldwide
@@ -45,7 +45,7 @@ export const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="border-2 rounded-3xl shadow-soft hover:shadow-elevated transition-all duration-300 animate-fade-in-up"
+              className="border-2 rounded-3xl shadow-soft hover-lift animate-fade-in-up glass group"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <CardContent className="p-8 space-y-6">
