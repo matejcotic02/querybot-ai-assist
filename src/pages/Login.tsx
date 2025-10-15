@@ -125,10 +125,22 @@ const Login = () => {
         <ThemeToggle />
       </div>
       
-      {/* Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 gradient-hero opacity-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(var(--primary)/0.15),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,hsl(var(--accent)/0.1),transparent_60%)]" />
+      
+      {/* Floating Animated Blobs */}
+      <div className="blob blob-primary w-96 h-96 top-10 -left-48 animate-float" />
+      <div className="blob blob-accent w-80 h-80 top-1/3 right-0 animate-float-alt" style={{ animationDelay: '2s' }} />
+      <div className="blob blob-primary w-72 h-72 bottom-20 right-1/4 animate-float" style={{ animationDelay: '4s' }} />
+      <div className="blob blob-accent w-64 h-64 bottom-10 left-10 animate-float-alt" style={{ animationDelay: '6s' }} />
+      
+      {/* Subtle Particles */}
+      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full animate-pulse-glow" />
+      <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-accent/40 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-1/3 left-1/2 w-2.5 h-2.5 bg-primary/30 rounded-full animate-pulse-glow" style={{ animationDelay: '3s' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse-glow" style={{ animationDelay: '5s' }} />
       
       <div className="w-full max-w-md relative z-10">
         {/* Back Button */}
