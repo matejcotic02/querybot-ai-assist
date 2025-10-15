@@ -22,7 +22,7 @@ export const FinalCTA = () => {
           size="lg"
           variant="secondary"
           className="text-lg px-10 py-7 rounded-3xl group hover-glow shadow-elevated bg-white text-primary hover:bg-white/90"
-          onClick={() => window.location.href = '/signup'}
+          onClick={() => window.location.href = '/login'}
         >
           Try QueryBot Free
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
