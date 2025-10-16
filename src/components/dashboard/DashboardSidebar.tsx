@@ -1,4 +1,4 @@
-import { Home, Ticket, MessageSquare, BarChart3, BookOpen, Settings, Sparkles } from "lucide-react";
+import { Home, MessageSquare, BarChart3, User, Settings } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -15,11 +15,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const menuItems = [
-  { title: "Dashboard", url: "/app", icon: Home },
-  { title: "Tickets", url: "/app/tickets", icon: Ticket },
-  { title: "AI Chat", url: "/app/chat", icon: MessageSquare },
+  { title: "Home", url: "/app", icon: Home },
+  { title: "Chats", url: "/app/chat", icon: MessageSquare },
   { title: "Analytics", url: "/app/analytics", icon: BarChart3 },
-  { title: "Knowledge Base", url: "/app/knowledge", icon: BookOpen },
+  { title: "Profile", url: "/app/profile", icon: User },
   { title: "Settings", url: "/app/settings", icon: Settings },
 ];
 
@@ -28,27 +27,26 @@ export const DashboardSidebar = () => {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar className={collapsed ? "w-14" : "w-64"} collapsible="icon">
-      <SidebarTrigger className="m-2 self-end" />
-      
-      <SidebarContent>
+    <Sidebar className={collapsed ? "w-20" : "w-20"} collapsible="icon">
+      <SidebarContent className="flex flex-col items-center py-6 gap-4">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink 
                       to={item.url} 
                       end={item.url === "/app"}
                       className={({ isActive }) =>
-                        isActive 
-                          ? "bg-accent/50 text-muted-foreground font-medium" 
-                          : "text-muted-foreground hover:text-muted-foreground hover:bg-accent/50 transition-all duration-200"
+                        `flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 ${
+                          isActive 
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30" 
+                            : "text-muted-foreground hover:text-foreground hover:bg-accent/60"
+                        }`
                       }
                     >
-                      <item.icon className="h-4 w-4 mr-2" />
-                      {!collapsed && <span>{item.title}</span>}
+                      <item.icon className="h-5 w-5" />
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -56,25 +54,6 @@ export const DashboardSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        {!collapsed && (
-          <div className="px-3 pb-4 mt-auto">
-            <Card className="glass border-primary/20 overflow-hidden">
-              <CardContent className="p-4 space-y-2">
-                <div className="flex items-center gap-2 text-primary">
-                  <Sparkles className="h-4 w-4" />
-                  <span className="font-semibold text-sm">Upgrade Pro</span>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Unlock advanced AI features and unlimited tickets
-                </p>
-                <Button size="sm" className="w-full rounded-2xl shadow-glow-sm">
-                  Upgrade Now
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        )}
       </SidebarContent>
     </Sidebar>
   );
