@@ -4,52 +4,39 @@ import { Search, Bell, MessageSquare, User, Sparkles, LogOut } from "lucide-reac
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProfileDialog } from "./ProfileDialog";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
-
 export const DashboardHeader = () => {
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
   const [profile, setProfile] = useState<any>(null);
-
   useEffect(() => {
     fetchProfile();
   }, []);
-
   const fetchProfile = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
       if (!user) return;
-
-      const { data } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-
+      const {
+        data
+      } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       if (data) setProfile(data);
     } catch (error) {
       console.error("Error fetching profile:", error);
     }
   };
-
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/");
   };
-
-  return (
-    <>
+  return <>
       <header className="sticky top-0 z-50 border-b bg-card shadow-sm">
         <div className="flex h-16 items-center gap-6 px-8">
           {/* QueryBot Logo + Name */}
@@ -62,20 +49,13 @@ export const DashboardHeader = () => {
           <div className="flex-1 flex items-center justify-center max-w-2xl mx-auto">
             <div className="relative w-full">
               <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Search for a message, contact, or task"
-                className="pl-11 h-11 bg-muted/30 border-border rounded-xl"
-              />
+              <Input placeholder="Search for a message, contact, or task" className="pl-11 h-11 bg-muted/30 border-border rounded-xl" />
             </div>
           </div>
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-3">
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="gap-2 rounded-xl bg-primary hover:bg-primary/90 shadow-md"
-            >
+            <Button variant="default" size="sm" className="gap-2 rounded-xl bg-primary hover:bg-primary/90 shadow-md">
               <Sparkles className="h-4 w-4" />
               AI Agent
             </Button>
@@ -87,9 +67,7 @@ export const DashboardHeader = () => {
               </Badge>
             </Button>
 
-            <Button variant="ghost" size="icon" className="rounded-xl hover:bg-muted/50">
-              <MessageSquare className="h-5 w-5" />
-            </Button>
+            
             
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -119,6 +97,5 @@ export const DashboardHeader = () => {
       </header>
 
       <ProfileDialog open={profileOpen} onOpenChange={setProfileOpen} />
-    </>
-  );
+    </>;
 };
