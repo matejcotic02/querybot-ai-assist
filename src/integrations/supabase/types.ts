@@ -165,6 +165,78 @@ export type Database = {
           },
         ]
       }
+      chats: {
+        Row: {
+          id: string
+          message: string
+          sender_type: string
+          timestamp: string | null
+          user_name: string
+        }
+        Insert: {
+          id?: string
+          message: string
+          sender_type: string
+          timestamp?: string | null
+          user_name: string
+        }
+        Update: {
+          id?: string
+          message?: string
+          sender_type?: string
+          timestamp?: string | null
+          user_name?: string
+        }
+        Relationships: []
+      }
+      customer_feedback: {
+        Row: {
+          agent_name: string
+          date: string | null
+          id: string
+          score: number
+        }
+        Insert: {
+          agent_name: string
+          date?: string | null
+          id?: string
+          score: number
+        }
+        Update: {
+          agent_name?: string
+          date?: string | null
+          id?: string
+          score?: number
+        }
+        Relationships: []
+      }
+      insights: {
+        Row: {
+          created_at: string | null
+          customer_churn: number
+          description: string
+          id: string
+          revenue_growth: number
+          top_product: string
+        }
+        Insert: {
+          created_at?: string | null
+          customer_churn: number
+          description: string
+          id?: string
+          revenue_growth: number
+          top_product: string
+        }
+        Update: {
+          created_at?: string | null
+          customer_churn?: number
+          description?: string
+          id?: string
+          revenue_growth?: number
+          top_product?: string
+        }
+        Relationships: []
+      }
       knowledge_base: {
         Row: {
           author_id: string | null
@@ -246,6 +318,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      revenues: {
+        Row: {
+          amount: number
+          created_at: string | null
+          growth_rate: number
+          id: string
+          period: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          growth_rate: number
+          id?: string
+          period: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          growth_rate?: number
+          id?: string
+          period?: string
+        }
+        Relationships: []
       }
       subscription_plans: {
         Row: {
