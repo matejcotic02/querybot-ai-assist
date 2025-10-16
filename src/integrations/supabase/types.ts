@@ -278,6 +278,36 @@ export type Database = {
           },
         ]
       }
+      platform_analytics: {
+        Row: {
+          created_at: string
+          customer_count: number
+          growth_rate: number | null
+          icon_name: string
+          id: string
+          platform_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_count?: number
+          growth_rate?: number | null
+          icon_name: string
+          id?: string
+          platform_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_count?: number
+          growth_rate?: number | null
+          icon_name?: string
+          id?: string
+          platform_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -287,6 +317,7 @@ export type Database = {
           id: string
           last_login: string | null
           plan_id: string | null
+          source_platform: string | null
           status: Database["public"]["Enums"]["user_status"]
         }
         Insert: {
@@ -297,6 +328,7 @@ export type Database = {
           id: string
           last_login?: string | null
           plan_id?: string | null
+          source_platform?: string | null
           status?: Database["public"]["Enums"]["user_status"]
         }
         Update: {
@@ -307,6 +339,7 @@ export type Database = {
           id?: string
           last_login?: string | null
           plan_id?: string | null
+          source_platform?: string | null
           status?: Database["public"]["Enums"]["user_status"]
         }
         Relationships: [

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LineChart, Line, BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell } from "recharts";
+import { LineChart, Line, BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
-import { TrendingUp, Users, Clock, CheckCircle2, MessageCircle, Facebook, Instagram, Send, Twitter, Linkedin, MessageSquare } from "lucide-react";
+import { TrendingUp, Users, Clock, CheckCircle2 } from "lucide-react";
 
 interface AnalyticsData {
   metric_name: string;
@@ -17,11 +17,9 @@ export default function Analytics() {
   const [aiResolutionData, setAiResolutionData] = useState<any[]>([]);
   const [satisfactionData, setSatisfactionData] = useState<any[]>([]);
   const [activeUsersData, setActiveUsersData] = useState<any[]>([]);
-  const [platformData, setPlatformData] = useState<any[]>([]);
 
   useEffect(() => {
     fetchAnalytics();
-    fetchPlatformData();
   }, []);
 
   const fetchAnalytics = async () => {
@@ -53,44 +51,6 @@ export default function Analytics() {
       setActiveUsersData(formatData("active_users"));
     }
   };
-
-  const fetchPlatformData = async () => {
-    const { data, error } = await supabase
-      .from("platform_analytics" as any)
-      .select("*")
-      .order("message_count", { ascending: false });
-
-    if (error) {
-      console.error("Error fetching platform data:", error);
-      return;
-    }
-
-    if (data) {
-      setPlatformData(data);
-    }
-  };
-
-  const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
-      MessageCircle,
-      Facebook,
-      Instagram,
-      Send,
-      Twitter,
-      Linkedin,
-      MessageSquare,
-    };
-    return icons[iconName] || MessageCircle;
-  };
-
-  const COLORS = [
-    'hsl(var(--primary))',
-    'hsl(var(--chart-1))',
-    'hsl(var(--chart-2))',
-    'hsl(var(--chart-3))',
-    'hsl(var(--chart-4))',
-    'hsl(var(--chart-5))',
-  ];
 
   const StatCard = ({ title, value, icon: Icon, subtitle }: any) => (
     <Card className="glass border-0 shadow-elegant">
@@ -307,77 +267,6 @@ export default function Analytics() {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Platform Analytics Section */}
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold mb-6">Message Sources by Platform</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Platform Distribution Chart */}
-              <Card className="glass border-0 shadow-elegant">
-                <CardHeader>
-                  <CardTitle className="text-lg">Platform Distribution</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={platformData}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ platform_name, percent }: any) => `${platform_name} ${(percent * 100).toFixed(0)}%`}
-                        outerRadius={100}
-                        fill="hsl(var(--primary))"
-                        dataKey="message_count"
-                        nameKey="platform_name"
-                      >
-                        {platformData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: 'hsl(var(--card))',
-                          border: '1px solid hsl(var(--border))',
-                          borderRadius: '12px',
-                        }}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </CardContent>
-              </Card>
-
-              {/* Platform Statistics */}
-              <Card className="glass border-0 shadow-elegant">
-                <CardHeader>
-                  <CardTitle className="text-lg">Platform Details</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {platformData.map((platform, index) => {
-                      const Icon = getIconComponent(platform.icon_name);
-                      return (
-                        <div key={platform.id} className="flex items-center justify-between p-3 rounded-lg bg-accent/50 hover:bg-accent transition-colors">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full flex items-center justify-center" style={{ backgroundColor: COLORS[index % COLORS.length] + '20' }}>
-                              <Icon className="h-5 w-5" style={{ color: COLORS[index % COLORS.length] }} />
-                            </div>
-                            <div>
-                              <p className="font-semibold">{platform.platform_name}</p>
-                              <p className="text-sm text-muted-foreground">{platform.message_count.toLocaleString()} messages</p>
-                            </div>
-                          </div>
-                          <div className={`text-sm font-medium ${platform.growth_rate >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            {platform.growth_rate >= 0 ? '+' : ''}{platform.growth_rate}%
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </div>
