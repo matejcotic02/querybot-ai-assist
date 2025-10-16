@@ -28,11 +28,9 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
+    <button
       onClick={toggleTheme}
-      className="rounded-2xl hover-glow"
+      className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity shadow-lg"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (
@@ -40,6 +38,6 @@ export const ThemeToggle = () => {
       ) : (
         <Sun className="h-5 w-5" />
       )}
-    </Button>
+    </button>
   );
 };
