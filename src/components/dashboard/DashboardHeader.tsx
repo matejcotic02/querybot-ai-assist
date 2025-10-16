@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import querybotLogo from "@/assets/querybot-logo.png";
+import querybotIcon from "@/assets/querybot-icon.png";
 
 export const DashboardHeader = () => {
   return (
@@ -19,7 +19,7 @@ export const DashboardHeader = () => {
       <div className="flex h-16 items-center gap-6 px-8">
         {/* QueryBot Logo + Name */}
         <div className="flex items-center gap-3">
-          <img src={querybotLogo} alt="QueryBot" className="h-10 w-10 rounded-full" />
+          <img src={querybotIcon} alt="QueryBot" className="h-10 w-10 rounded-lg" />
           <span className="text-xl font-bold text-foreground">QueryBot</span>
         </div>
         
