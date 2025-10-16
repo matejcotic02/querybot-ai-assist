@@ -28,9 +28,9 @@ export const DashboardSidebar = () => {
   const location = useLocation();
   
   return (
-    <div className="fixed left-0 top-0 h-screen w-20 bg-card border-r border-border flex flex-col items-center py-8 gap-4 z-50">
+    <div className="fixed left-0 top-0 h-screen w-16 bg-card border-r border-border flex flex-col items-center py-6 gap-3 z-50">
       {/* Navigation Icons */}
-      <div className="flex flex-col items-center gap-3 flex-1">
+      <div className="flex flex-col items-center gap-2 flex-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.url;
@@ -39,14 +39,14 @@ export const DashboardSidebar = () => {
             <NavLink
               key={item.url}
               to={item.url}
-              className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 ${
+              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
                 isActive
                   ? "bg-primary text-primary-foreground shadow-lg"
                   : "bg-background hover:bg-accent text-muted-foreground hover:text-foreground"
               }`}
               title={item.title}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-4 w-4" />
             </NavLink>
           );
         })}
