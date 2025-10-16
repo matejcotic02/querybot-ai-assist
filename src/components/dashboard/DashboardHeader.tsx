@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Search, Bell, MessageSquare, User, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Search, Bell, MessageSquare, User, Sparkles, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 
 export const DashboardHeader = () => {
+  const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
   const [profile, setProfile] = useState<any>(null);
 
@@ -39,6 +41,11 @@ export const DashboardHeader = () => {
     } catch (error) {
       console.error("Error fetching profile:", error);
     }
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/");
   };
 
   return (
@@ -99,6 +106,11 @@ export const DashboardHeader = () => {
                 <DropdownMenuItem className="rounded-lg" onClick={() => setProfileOpen(true)}>
                   <User className="mr-2 h-4 w-4" />
                   Profile
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="rounded-lg" onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
