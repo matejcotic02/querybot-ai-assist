@@ -52,10 +52,12 @@ export const DashboardHeader = () => {
     <>
       <header className="sticky top-0 z-50 border-b bg-card shadow-sm">
         <div className="flex h-16 items-center gap-6 px-8">
-          {/* QueryBot Logo + Name */}
-          <div className="flex items-center gap-3">
+          {/* QueryBot Logo + Name with Gradient */}
+          <div className="flex items-center gap-2">
             <img src={logo} alt="QueryBot" className="h-10 w-10 rounded-xl" />
-            <span className="text-xl font-bold text-foreground">QueryBot</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-[#6C63FF] to-[#9BE7E8] bg-clip-text text-transparent">
+              QueryBot
+            </span>
           </div>
           
           {/* Center Search Bar */}
