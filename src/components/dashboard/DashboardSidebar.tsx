@@ -42,7 +42,9 @@ export const DashboardSidebar = () => {
                       to={item.url} 
                       end={item.url === "/app"}
                       className={({ isActive }) =>
-                        isActive ? "bg-primary/10 text-primary font-medium" : "hover:bg-accent/50"
+                        isActive 
+                          ? "bg-primary/10 text-primary font-medium" 
+                          : "text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all duration-200"
                       }
                     >
                       <item.icon className="h-4 w-4 mr-2" />
