@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Bell, MessageSquare, User, Settings, Sparkles } from "lucide-react";
+import { Search, Bell, MessageSquare, User, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -99,10 +99,6 @@ export const DashboardHeader = () => {
                 <DropdownMenuItem className="rounded-lg" onClick={() => setProfileOpen(true)}>
                   <User className="mr-2 h-4 w-4" />
                   Profile
-                </DropdownMenuItem>
-                <DropdownMenuItem className="rounded-lg">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
