@@ -1,4 +1,4 @@
-import { Home, MessageSquare, BarChart3, Users, Grid3x3, Share2 } from "lucide-react";
+import { Home, MessageSquare, BarChart3, Users, Grid3x3 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -14,10 +14,6 @@ const menuItems = [{
   title: "Analytics",
   url: "/app/analytics",
   icon: BarChart3
-}, {
-  title: "Platforms",
-  url: "/app/platforms",
-  icon: Share2
 }, {
   title: "Contacts",
   url: "/app/contacts",
