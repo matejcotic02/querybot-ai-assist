@@ -7,6 +7,14 @@ const menuItems = [{
   url: "/app",
   icon: Home
 }, {
+  title: "Chats",
+  url: "/app/chats",
+  icon: MessageSquare
+}, {
+  title: "Analytics",
+  url: "/app/analytics",
+  icon: BarChart3
+}, {
   title: "Contacts",
   url: "/app/contacts",
   icon: Users
