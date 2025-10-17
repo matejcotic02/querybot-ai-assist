@@ -6,8 +6,9 @@ import { CustomerSatisfactionCard } from "@/components/dashboard/CustomerSatisfa
 import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
 import { AIInsightsPanel } from "@/components/dashboard/AIInsightsPanel";
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
+import { HelpCenter } from "@/components/dashboard/HelpCenter";
 
-type DashboardView = "dashboard" | "settings";
+type DashboardView = "dashboard" | "settings" | "help-center";
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
@@ -38,8 +39,10 @@ const Dashboard = () => {
                   </div>
                 </div>
               </>
-            ) : (
+            ) : activeView === "settings" ? (
               <SettingsSection />
+            ) : (
+              <HelpCenter />
             )}
           </main>
         </div>

@@ -1,7 +1,7 @@
-import { Home, Settings, Grid3x3 } from "lucide-react";
+import { Home, Settings, BookOpen } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-type DashboardView = "dashboard" | "settings";
+type DashboardView = "dashboard" | "settings" | "help-center";
 
 const menuItems = [{
   title: "Dashboard",
@@ -12,9 +12,9 @@ const menuItems = [{
   view: "settings" as DashboardView,
   icon: Settings
 }, {
-  title: "Apps",
-  view: "dashboard" as DashboardView,
-  icon: Grid3x3
+  title: "Help Center",
+  view: "help-center" as DashboardView,
+  icon: BookOpen
 }];
 
 interface DashboardSidebarProps {
