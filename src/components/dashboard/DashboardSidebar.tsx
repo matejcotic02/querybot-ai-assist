@@ -1,36 +1,40 @@
-import { Home, MessageSquare, BarChart3, Settings, Grid3x3 } from "lucide-react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Home, Settings, Grid3x3 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+
+type DashboardView = "dashboard" | "settings";
 
 const menuItems = [{
   title: "Dashboard",
-  url: "/app",
+  view: "dashboard" as DashboardView,
   icon: Home
 }, {
   title: "Settings",
-  url: "/app/settings",
+  view: "settings" as DashboardView,
   icon: Settings
 }, {
   title: "Apps",
-  url: "/app/apps",
+  view: "dashboard" as DashboardView,
   icon: Grid3x3
 }];
 
-export const DashboardSidebar = () => {
-  const location = useLocation();
-  
+interface DashboardSidebarProps {
+  activeView: DashboardView;
+  onViewChange: (view: DashboardView) => void;
+}
+
+export const DashboardSidebar = ({ activeView, onViewChange }: DashboardSidebarProps) => {
   return (
     <div className="fixed left-0 top-0 h-screen w-16 bg-card border-r border-border flex flex-col items-center py-6 gap-3 z-50">
       {/* Navigation Icons */}
       <div className="flex flex-col items-center gap-2 flex-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
-          const isActive = location.pathname === item.url;
+          const isActive = activeView === item.view;
           
           return (
-            <NavLink
-              key={item.url}
-              to={item.url}
+            <button
+              key={item.title}
+              onClick={() => onViewChange(item.view)}
               className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
                 isActive
                   ? "bg-primary text-primary-foreground shadow-lg"
@@ -39,7 +43,7 @@ export const DashboardSidebar = () => {
               title={item.title}
             >
               <Icon className="h-4 w-4" />
-            </NavLink>
+            </button>
           );
         })}
       </div>
