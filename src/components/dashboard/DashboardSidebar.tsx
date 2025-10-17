@@ -7,10 +7,6 @@ const menuItems = [{
   url: "/app",
   icon: Home
 }, {
-  title: "Settings",
-  url: "/app/settings",
-  icon: Settings
-}, {
   title: "Apps",
   url: "/app/apps",
   icon: Grid3x3
