@@ -79,13 +79,6 @@ export const DashboardHeader = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 rounded-xl">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="rounded-lg" onClick={() => setProfileOpen(true)}>
-                  <User className="mr-2 h-4 w-4" />
-                  Profile
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem className="rounded-lg" onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   Log out
