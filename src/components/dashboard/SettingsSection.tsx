@@ -8,7 +8,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
 export const SettingsSection = () => {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -17,31 +16,29 @@ export const SettingsSection = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const navigate = useNavigate();
-
   useEffect(() => {
     fetchProfile();
   }, []);
-
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const { data: { user } } = await supabase.auth.getUser();
-      
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
       if (!user) {
         navigate("/login");
         return;
       }
-
       setEmail(user.email || "");
-
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-
+      const {
+        data: profile
+      } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       if (profile) {
         setFullName(profile.full_name || "");
         setCompanyName(profile.company_name || "");
@@ -54,91 +51,85 @@ export const SettingsSection = () => {
       setLoading(false);
     }
   };
-
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       setUploading(true);
       const file = e.target.files?.[0];
       if (!file) return;
-
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
       if (!user) return;
-
       const fileExt = file.name.split(".").pop();
       const filePath = `${user.id}/${Math.random()}.${fileExt}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("avatars")
-        .upload(filePath, file);
-
+      const {
+        error: uploadError
+      } = await supabase.storage.from("avatars").upload(filePath, file);
       if (uploadError) throw uploadError;
-
-      const { data: { publicUrl } } = supabase.storage
-        .from("avatars")
-        .getPublicUrl(filePath);
-
-      const { error: updateError } = await supabase
-        .from("profiles")
-        .update({ avatar_url: publicUrl })
-        .eq("id", user.id);
-
+      const {
+        data: {
+          publicUrl
+        }
+      } = supabase.storage.from("avatars").getPublicUrl(filePath);
+      const {
+        error: updateError
+      } = await supabase.from("profiles").update({
+        avatar_url: publicUrl
+      }).eq("id", user.id);
       if (updateError) throw updateError;
-
       setAvatarUrl(publicUrl);
       toast({
         title: "Success",
-        description: "Avatar updated successfully",
+        description: "Avatar updated successfully"
       });
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to upload avatar",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setUploading(false);
     }
   };
-
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
       if (!user) return;
-
-      const { error } = await supabase
-        .from("profiles")
-        .update({
-          full_name: fullName,
-          company_name: companyName,
-        })
-        .eq("id", user.id);
-
+      const {
+        error
+      } = await supabase.from("profiles").update({
+        full_name: fullName,
+        company_name: companyName
+      }).eq("id", user.id);
       if (error) throw error;
-
       toast({
         title: "Success",
-        description: "Profile updated successfully",
+        description: "Profile updated successfully"
       });
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to update profile",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/login");
   };
-
-  return (
-    <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
+  return <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
       <div>
         <h1 className="text-3xl font-bold text-foreground">Settings</h1>
         <p className="text-muted-foreground mt-2">Manage your account settings and preferences</p>
@@ -158,22 +149,11 @@ export const SettingsSection = () => {
             <div>
               <Label htmlFor="avatar" className="cursor-pointer">
                 <div className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
-                  {uploading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Upload className="h-4 w-4" />
-                  )}
+                  {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
                   <span>Upload Photo</span>
                 </div>
               </Label>
-              <Input
-                id="avatar"
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarUpload}
-                disabled={uploading}
-                className="hidden"
-              />
+              <Input id="avatar" type="file" accept="image/*" onChange={handleAvatarUpload} disabled={uploading} className="hidden" />
               <p className="text-sm text-muted-foreground mt-2">JPG, PNG or GIF. Max 2MB.</p>
             </div>
           </div>
@@ -181,45 +161,20 @@ export const SettingsSection = () => {
           <form onSubmit={handleUpdateProfile} className="space-y-4">
             <div className="grid gap-2">
               <Label htmlFor="fullName">Full Name</Label>
-              <Input
-                id="fullName"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Enter your full name"
-              />
+              <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Enter your full name" />
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                disabled
-                className="bg-muted"
-              />
+              <Input id="email" type="email" value={email} disabled className="bg-muted" />
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Enter your phone number"
-              />
+              <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Enter your phone number" />
             </div>
 
-            <div className="grid gap-2">
-              <Label htmlFor="company">Company Name</Label>
-              <Input
-                id="company"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="Enter your company name"
-              />
-            </div>
+            
 
             <div className="flex gap-4 pt-4">
               <Button type="submit" disabled={loading}>
@@ -233,6 +188,5 @@ export const SettingsSection = () => {
           </form>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
