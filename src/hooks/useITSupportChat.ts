@@ -18,15 +18,21 @@ export const useITSupportChat = () => {
     try {
       let assistantContent = '';
       
-      const { data, error } = await supabase.functions.invoke('it-support-chat', {
-        body: { 
+      const response = await fetch('https://fbcysuaaazyjwucgiydm.supabase.co/functions/v1/it-support-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        },
+        body: JSON.stringify({ 
           messages: [...messages, userMsg].map(m => ({ role: m.role, content: m.content }))
-        }
+        })
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error('Failed to get response');
+      if (!response.body) throw new Error('No response body');
 
-      const reader = data.getReader();
+      const reader = response.body.getReader();
       const decoder = new TextDecoder();
 
       while (true) {
