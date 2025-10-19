@@ -4,26 +4,26 @@ import { TrendingUp, Sparkles } from "lucide-react";
 
 const insights = [
   {
-    label: "Revenue growth",
-    value: "12%",
-    detail: "vs last month",
-    progress: 60,
-    color: "hsl(249, 95%, 69%)",
-    pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(249, 95%, 69%, 0.1) 10px, hsl(249, 95%, 69%, 0.1) 20px)"
-  },
-  {
-    label: "Top-selling product",
-    value: "Summer Dress",
-    detail: "",
-    progress: 85,
+    label: "Ticket resolution rate",
+    value: "94%",
+    detail: "vs last week",
+    progress: 94,
     color: "hsl(142, 76%, 58%)",
     pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(142, 76%, 58%, 0.1) 10px, hsl(142, 76%, 58%, 0.1) 20px)"
   },
   {
-    label: "Customer churn",
-    value: "8%",
-    detail: "",
-    progress: 40,
+    label: "Avg response time",
+    value: "2.5 min",
+    detail: "15% faster",
+    progress: 85,
+    color: "hsl(249, 95%, 69%)",
+    pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(249, 95%, 69%, 0.1) 10px, hsl(249, 95%, 69%, 0.1) 20px)"
+  },
+  {
+    label: "System uptime",
+    value: "99.8%",
+    detail: "this month",
+    progress: 99,
     color: "hsl(45, 97%, 69%)",
     pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(45, 97%, 69%, 0.1) 10px, hsl(45, 97%, 69%, 0.1) 20px)"
   }
