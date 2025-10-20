@@ -2,6 +2,7 @@ import { LogoCarousel } from "./LogoCarousel";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import successHeroImage from "@/assets/success-hero.png";
+import { AnimatedIntro } from "./AnimatedIntro";
 
 export const SuccessSection = () => {
   return (
@@ -64,6 +65,9 @@ export const SuccessSection = () => {
             </div>
           </div>
         </div>
+        
+        {/* Animated Intro Section */}
+        <AnimatedIntro />
       </div>
     </section>
   );
