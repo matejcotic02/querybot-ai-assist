@@ -12,18 +12,21 @@ export const Hero = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 w-full px-4 md:px-8 py-4">
         <div className="container max-w-7xl mx-auto px-4 md:px-8 py-4 bg-white/80 dark:bg-background/80 backdrop-blur-md border border-border/50 rounded-2xl">
           <div className="flex items-center justify-between w-full">
-            {/* Logo - Left */}
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.href = '/'}>
-              <img src={logo} alt="QueryBot Logo" className="w-9 h-9 rounded-lg" />
-              <span className="text-xl font-bold">QueryBot</span>
-            </div>
-            
-            {/* Desktop Navigation - Center */}
-            <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
-              <a href="#product" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Product</a>
-              <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
-              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About</a>
-              <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Contact</a>
+            {/* Left Side: Logo + Nav Links */}
+            <div className="flex items-center gap-8">
+              {/* Logo */}
+              <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.href = '/'}>
+                <img src={logo} alt="QueryBot Logo" className="w-9 h-9 rounded-lg" />
+                <span className="text-xl font-bold">QueryBot</span>
+              </div>
+              
+              {/* Desktop Navigation Links */}
+              <div className="hidden lg:flex items-center gap-8">
+                <a href="#product" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Product</a>
+                <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
+                <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About</a>
+                <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Contact</a>
+              </div>
             </div>
             
             {/* Auth Buttons - Right */}
