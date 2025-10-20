@@ -1,111 +1,108 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
-import { useState } from "react";
-import heroDashboard from "@/assets/hero-dashboard.png";
-import { ThemeToggle } from "./ThemeToggle";
+import { ArrowRight } from "lucide-react";
+import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 import logo from "@/assets/logo.png";
 
 export const Hero = () => {
-  const [showVideo, setShowVideo] = useState(false);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 lg:px-16 pt-24 pb-16">
-      {/* Logo & Theme Toggle */}
-      <div className="absolute top-8 left-8 z-20 flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
-        <img src={logo} alt="QueryBot Logo" className="w-10 h-10 rounded-xl transition-all group-hover:scale-110 drop-shadow-lg" />
-        <span className="text-xl font-bold hidden sm:block">QueryBot</span>
-      </div>
-      <div className="absolute top-8 right-8 z-20">
-        <ThemeToggle />
-      </div>
-      
-      {/* Animated Background */}
-      <div className="absolute inset-0 gradient-hero opacity-20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(var(--primary)/0.2),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,hsl(var(--accent)/0.15),transparent_60%)]" />
-      
-      {/* Floating Animated Blobs */}
-      <div className="blob blob-primary w-96 h-96 top-20 -left-48 animate-float" />
-      <div className="blob blob-accent w-80 h-80 top-40 right-10 animate-float-alt" style={{ animationDelay: '2s' }} />
-      <div className="blob blob-primary w-72 h-72 bottom-20 right-1/3 animate-float" style={{ animationDelay: '4s' }} />
-      <div className="blob blob-accent w-64 h-64 bottom-40 left-20 animate-float-alt" style={{ animationDelay: '6s' }} />
-      
-      {/* Subtle Particles */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full animate-pulse-glow" />
-      <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-accent/40 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-1/3 left-1/2 w-2.5 h-2.5 bg-primary/30 rounded-full animate-pulse-glow" style={{ animationDelay: '3s' }} />
-      <div className="absolute bottom-1/4 right-1/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse-glow" style={{ animationDelay: '5s' }} />
-      
-      <div className="container max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="text-center lg:text-left space-y-8 animate-slide-in-left">
-            <div className="inline-block animate-scale-in">
-              <span className="px-4 py-2 rounded-full glass text-primary text-sm font-medium shadow-glass">
-                🤖 AI-Powered Support
-              </span>
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Navigation Bar */}
+      <nav className="relative z-20 w-full bg-white/80 dark:bg-background/80 backdrop-blur-md border-b border-border/50">
+        <div className="container max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.href = '/'}>
+              <img src={logo} alt="QueryBot Logo" className="w-9 h-9 rounded-lg" />
+              <span className="text-xl font-bold">QueryBot</span>
             </div>
             
-            <h1 className="text-display">{/* ... keep existing code */}
-              Instant IT Support.{" "}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Powered by AI.
-              </span>
-            </h1>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-8">
+              <a href="#product" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Product</a>
+              <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
+              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About</a>
+              <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Contact</a>
+              <a href="#demo" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Book a demo</a>
+              <a href="#affiliates" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Affiliates</a>
+            </div>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
-              QueryBot helps IT teams automate responses and resolve tickets in seconds.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-3">
               <Button 
-                size="lg" 
-                className="text-lg px-8 py-6 rounded-3xl group hover-glow transition-all shadow-elevated"
+                variant="ghost" 
+                className="hidden sm:inline-flex"
                 onClick={() => window.location.href = '/login'}
               >
-                Get Started Free
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Log in
               </Button>
-              
               <Button 
-                size="lg" 
-                variant="outline"
-                className="text-lg px-8 py-6 rounded-3xl group glass hover:border-primary/50 transition-all"
-                onClick={() => setShowVideo(true)}
+                className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white"
+                onClick={() => window.location.href = '/login'}
               >
-                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Watch Demo
+                Sign Up
               </Button>
             </div>
           </div>
+        </div>
+      </nav>
+
+      {/* Hero Background */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroTempleBg} 
+          alt="Misty Japanese temple background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-[#A37BFF]/10 to-white/60 dark:from-background/40 dark:via-[#A37BFF]/10 dark:to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-background/30 dark:via-transparent dark:to-background/30" />
+      </div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6 py-20">
+        <div className="container max-w-5xl mx-auto text-center space-y-8">
+          {/* NEW Label */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-sm border border-border/50 shadow-sm">
+            <div className="w-2 h-2 rounded-full bg-[#A37BFF] animate-pulse" />
+            <span className="text-sm font-medium">NEW! QueryBot v4 released</span>
+          </div>
           
-          {/* Right Content - Dashboard Image */}
-          <div className="relative animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            <div className="absolute inset-0 gradient-hero opacity-30 blur-3xl rounded-3xl animate-pulse" />
-            <div className="relative rounded-3xl overflow-hidden shadow-elevated glass border-2 border-border/30 hover-lift">
-              <img 
-                src={heroDashboard} 
-                alt="QueryBot AI Dashboard Interface showing ticket analytics and automated responses"
-                className="w-full h-auto"
-              />
-            </div>
+          {/* Main Heading */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            The All In One{" "}
+            <span className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] bg-clip-text text-transparent">
+              Management
+            </span>
+            {" "}Platform
+          </h1>
+          
+          {/* Subheading */}
+          <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            AI powered sales management, training, and data tracking tools built for elite sales teams
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white text-base px-8 py-6 rounded-lg shadow-lg group"
+              onClick={() => window.location.href = '/login'}
+            >
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            
+            <Button 
+              size="lg"
+              variant="secondary"
+              className="bg-[#1e293b] hover:bg-[#0f172a] text-white text-base px-8 py-6 rounded-lg shadow-lg group"
+            >
+              How QueryBot Works
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
       </div>
-      
-      {/* Video Modal */}
-      {showVideo && (
-        <div 
-          className="fixed inset-0 bg-background/90 backdrop-blur-xl z-50 flex items-center justify-center p-4 animate-fade-in-up"
-          onClick={() => setShowVideo(false)}
-        >
-          <div className="glass rounded-3xl p-6 max-w-4xl w-full shadow-elevated border-2 border-border/50">
-            <div className="aspect-video bg-muted/50 rounded-3xl flex items-center justify-center">
-              <p className="text-muted-foreground">Demo video would load here</p>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
