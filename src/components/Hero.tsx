@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 import logo from "@/assets/logo-purple.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AnimatedHeadline } from "@/components/AnimatedHeadline";
 
 export const Hero = () => {
   return (
@@ -71,11 +72,9 @@ export const Hero = () => {
           
           {/* Main Heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            The All In One{" "}
-            <span className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] bg-clip-text text-transparent">
-              Management
-            </span>
-            {" "}Platform
+            Automate Your{" "}
+            <AnimatedHeadline />
+            {" "}Today
           </h1>
           
           {/* Subheading */}
