@@ -34,48 +34,68 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: 45, label: "Increase in close rate", suffix: "%" },
-  { value: 70, label: "Amount of time saved on training & management", suffix: "%" },
-  { value: 80, label: "Faster ramp up time", suffix: "%" }
+  { value: 45, label: "More resolved tickets, faster support", suffix: "%" },
+  { value: 70, label: "Automated onboarding + workflows", suffix: "%" },
+  { value: 80, label: "Less training, quicker productivity", suffix: "%" }
 ];
 
 const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; suffix: string }) => {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          const duration = 2000;
-          const steps = 60;
-          const increment = value / steps;
-          let current = 0;
+    const handleScroll = () => {
+      if (!ref.current) return;
 
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= value) {
-              setCount(value);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(current));
-            }
-          }, duration / steps);
+      const rect = ref.current.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-          return () => clearInterval(timer);
+      if (inView && !isVisible) {
+        setIsVisible(true);
+        setCount(0);
+
+        const duration = 2000;
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
+
+        if (animationRef.current) {
+          clearInterval(animationRef.current);
         }
-      },
-      { threshold: 0.5 }
-    );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+        animationRef.current = setInterval(() => {
+          current += increment;
+          if (current >= value) {
+            setCount(value);
+            if (animationRef.current) {
+              clearInterval(animationRef.current);
+            }
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, duration / steps);
+      } else if (!inView && isVisible) {
+        setIsVisible(false);
+        if (animationRef.current) {
+          clearInterval(animationRef.current);
+        }
+      }
+    };
 
-    return () => observer.disconnect();
-  }, [value, hasAnimated]);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (animationRef.current) {
+        clearInterval(animationRef.current);
+      }
+    };
+  }, [value, isVisible]);
 
   return (
     <div ref={ref} className="text-center space-y-4">
