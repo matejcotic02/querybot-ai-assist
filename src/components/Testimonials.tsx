@@ -65,6 +65,10 @@ const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; 
           }, duration / steps);
 
           return () => clearInterval(timer);
+        } else if (!entry.isIntersecting && hasAnimated) {
+          // Reset when leaving viewport
+          setHasAnimated(false);
+          setCount(0);
         }
       },
       { threshold: 0.5 }
