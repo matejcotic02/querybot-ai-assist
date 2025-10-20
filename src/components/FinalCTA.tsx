@@ -35,10 +35,6 @@ export const FinalCTA = () => {
           Try QueryBot Free
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
-        
-        <p className="text-sm text-foreground/60">
-          No credit card required • 14-day free trial • Cancel anytime
-        </p>
       </div>
     </section>
   );
