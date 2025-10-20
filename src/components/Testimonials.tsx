@@ -138,7 +138,7 @@ export const Testimonials = () => {
                   <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-2xl mx-4 md:mx-8">
                     <CardContent className="p-8 md:p-12 space-y-8">
                       {/* Quote */}
-                      <p className="text-lg md:text-xl text-foreground leading-relaxed text-center">
+                      <p className="text-lg md:text-xl text-foreground/90 dark:text-foreground/95 leading-relaxed text-center">
                         "{testimonial.quote}"
                       </p>
                       
