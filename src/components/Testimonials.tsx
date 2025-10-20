@@ -135,10 +135,10 @@ export const Testimonials = () => {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index}>
-                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-2xl mx-4 md:mx-8">
+                  <Card className="bg-white/95 dark:bg-slate-800/90 backdrop-blur-sm border-0 rounded-3xl shadow-2xl mx-4 md:mx-8">
                     <CardContent className="p-8 md:p-12 space-y-8">
                       {/* Quote */}
-                      <p className="text-lg md:text-xl text-foreground/90 dark:text-foreground/95 leading-relaxed text-center">
+                      <p className="text-lg md:text-xl text-gray-800 dark:text-slate-200 leading-relaxed text-center">
                         "{testimonial.quote}"
                       </p>
                       
@@ -153,9 +153,9 @@ export const Testimonials = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div className="text-left">
-                          <p className="font-semibold text-foreground text-lg">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                          <p className="text-sm text-primary font-medium">{testimonial.company}</p>
+                          <p className="font-semibold text-gray-900 dark:text-white text-lg">{testimonial.name}</p>
+                          <p className="text-sm text-gray-600 dark:text-slate-300">{testimonial.role}</p>
+                          <p className="text-sm text-primary dark:text-primary/90 font-medium">{testimonial.company}</p>
                         </div>
                       </div>
                     </CardContent>
