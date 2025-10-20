@@ -116,7 +116,7 @@ export const Testimonials = () => {
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm mb-4">
             <span className="text-xl">💬</span>
-            <span className="text-sm font-medium text-gray-900">QueryBot Users</span>
+            <span className="text-sm font-medium text-foreground dark:text-gray-900">QueryBot Users</span>
           </div>
           
           <h2 className="text-h2 text-foreground">
