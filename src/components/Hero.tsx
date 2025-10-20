@@ -72,9 +72,7 @@ export const Hero = () => {
           
           {/* Main Heading */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-            Automate Your{" "}
-            <AnimatedHeadline />
-            {" "}Today
+            Automate Your <AnimatedHeadline /> Today
           </h1>
           
           {/* Subheading */}
