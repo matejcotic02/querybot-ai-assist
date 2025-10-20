@@ -16,8 +16,7 @@ export const TagScroll = () => {
                   {tags.map((tag, tagIndex) => (
                     <span
                       key={`${setIndex}-${tagIndex}`}
-                      className="px-6 py-3 text-base font-normal whitespace-nowrap"
-                      style={{ color: '#1D1D1F' }}
+                      className="px-6 py-3 text-base font-normal whitespace-nowrap text-foreground/70 dark:text-foreground/95"
                     >
                       {tag}
                     </span>
