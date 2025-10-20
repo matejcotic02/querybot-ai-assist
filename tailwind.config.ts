@@ -111,6 +111,14 @@ export default {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "wipe-forward": {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "wipe-reverse": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -119,6 +127,8 @@ export default {
         "slide-in-left": "slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         "scale-in": "scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         "scroll-left": "scroll-left 25s linear infinite",
+        "wipe-forward": "wipe-forward 0.4s ease-in-out",
+        "wipe-reverse": "wipe-reverse 0.4s ease-in-out",
       },
     },
   },
