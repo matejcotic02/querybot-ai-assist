@@ -24,8 +24,6 @@ export const Hero = () => {
               <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
               <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About</a>
               <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Contact</a>
-              <a href="#demo" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Book a demo</a>
-              <a href="#affiliates" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Affiliates</a>
             </div>
             
             {/* Auth Buttons */}
