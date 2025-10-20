@@ -59,7 +59,7 @@ export const Hero = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6 py-20">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-32 md:pt-40 pb-20">
         <div className="container max-w-5xl mx-auto text-center space-y-8">
           {/* NEW Label */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-sm border border-border/50 shadow-sm">
