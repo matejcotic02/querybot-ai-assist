@@ -69,14 +69,14 @@ export const FeaturesThatMatter = () => {
           {/* Badges */}
           <div className="flex flex-wrap items-center justify-center gap-3 mt-8">
             {badges.map((badge, index) => (
-              <Badge 
-                key={index}
-                variant="outline"
-                className="px-4 py-2 text-sm font-medium bg-background/50 backdrop-blur-sm hover:bg-accent/10 transition-colors"
-              >
-                <span className="mr-2">{badge.emoji}</span>
-                {badge.text}
-              </Badge>
+            <Badge 
+              key={index}
+              variant="outline"
+              className="px-3 py-1.5 text-sm font-medium bg-background/50 backdrop-blur-sm hover:bg-accent/10 transition-colors"
+            >
+              <span className="mr-1.5">{badge.emoji}</span>
+              {badge.text}
+            </Badge>
             ))}
           </div>
         </div>
