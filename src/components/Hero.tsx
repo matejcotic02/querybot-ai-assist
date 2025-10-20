@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 import logo from "@/assets/logo-purple.png";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Hero = () => {
   return (
@@ -35,6 +36,7 @@ export const Hero = () => {
               >
                 Log in
               </Button>
+              <ThemeToggle />
               <Button 
                 className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white"
                 onClick={() => window.location.href = '/login'}
