@@ -349,4 +349,22 @@ All colors MUST be HSL.
   .blob-accent {
     background: radial-gradient(circle, hsl(var(--accent)) 0%, hsl(var(--accent) / 0) 70%);
   }
+  
+  /* Tag scroll animation */
+  @keyframes scroll-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+  
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+  }
+  
+  .pause-animation:hover {
+    animation-play-state: paused;
+  }
 }
