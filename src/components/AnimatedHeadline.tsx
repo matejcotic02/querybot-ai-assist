@@ -5,51 +5,46 @@ const words = ["Tickets", "Requests", "Incidents", "Automations"];
 export const AnimatedHeadline = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
-  const [isWiping, setIsWiping] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
     
-    const typeSpeed = 100; // Speed for typing each character
+    const typeSpeed = isDeleting ? 50 : 100; // Faster deletion, slower typing
     const pauseAfterWord = 1500; // Pause after typing complete word
-    const wipeSpeed = 400; // Duration of black line wipe animation
-    const pauseAfterWipe = 100; // Brief pause after wipe before typing
+    const pauseAfterDelete = 500; // Brief pause after deletion before next word
 
-    // Typing phase
-    if (displayText.length < currentWord.length && !isWiping) {
-      const timer = setTimeout(() => {
-        setDisplayText(currentWord.slice(0, displayText.length + 1));
-      }, typeSpeed);
-      return () => clearTimeout(timer);
-    }
-    
-    // Word complete, wait then start wipe
-    if (displayText.length === currentWord.length && !isWiping) {
-      const timer = setTimeout(() => {
-        setIsWiping(true);
-        
-        // After wipe animation completes, reset and move to next word
-        setTimeout(() => {
-          setIsWiping(false);
-          setDisplayText("");
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-        }, wipeSpeed + pauseAfterWipe);
-      }, pauseAfterWord);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [displayText, isWiping, currentWordIndex]);
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing phase
+        if (displayText.length < currentWord.length) {
+          setDisplayText(currentWord.slice(0, displayText.length + 1));
+        } else {
+          // Word is complete, wait then start deleting
+          setTimeout(() => setIsDeleting(true), pauseAfterWord);
+        }
+      } else {
+        // Deleting phase
+        if (displayText.length > 0) {
+          setDisplayText(currentWord.slice(0, displayText.length - 1));
+        } else {
+          // Deletion complete, move to next word
+          setIsDeleting(false);
+          setTimeout(() => {
+            setCurrentWordIndex((prev) => (prev + 1) % words.length);
+          }, pauseAfterDelete);
+        }
+      }
+    }, typeSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentWordIndex]);
 
   return (
     <span className="inline-block relative" style={{ minWidth: "340px" }}>
-      <span className="inline-block bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] bg-clip-text text-transparent relative">
+      <span className="inline-block bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] bg-clip-text text-transparent">
         {displayText}
-        {!isWiping && <span className="animate-pulse">|</span>}
-        
-        {/* Black wipe line */}
-        {isWiping && (
-          <span className="absolute top-0 left-0 h-full bg-black animate-wipe-across" style={{ width: '100%' }} />
-        )}
+        <span className="animate-pulse">|</span>
       </span>
     </span>
   );
