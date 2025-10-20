@@ -1,74 +1,184 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { useEffect, useRef, useState } from "react";
+import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 
 const testimonials = [
   {
-    quote: "QueryBot reduced our average ticket resolution time from 2 hours to just 15 minutes. Our team can finally focus on complex issues.",
+    quote: "Not only has my team's production started to increase but they are becoming more confident on the phones and getting quicker at overcoming the objections",
     name: "Sarah Johnson",
     role: "IT Director",
     company: "TechCorp",
-    rating: 5
+    initials: "SJ",
+    avatar: ""
   },
   {
-    quote: "The AI accuracy is incredible. It handles 80% of our routine tickets without any human intervention. Game changer for our support team.",
+    quote: "QueryBot reduced our average ticket resolution time from 2 hours to just 15 minutes. Our team can finally focus on complex issues that matter.",
     name: "Michael Chen",
     role: "Support Lead",
     company: "CloudScale",
-    rating: 5
+    initials: "MC",
+    avatar: ""
   },
   {
-    quote: "Implementation was seamless and our customer satisfaction scores increased by 35% in the first month. Highly recommended!",
+    quote: "Implementation was seamless and our customer satisfaction scores increased by 35% in the first month. Game changer for our entire organization!",
     name: "Emily Rodriguez",
     role: "Operations Manager",
     company: "DataFlow",
-    rating: 5
+    initials: "ER",
+    avatar: ""
   }
 ];
 
-export const Testimonials = () => {
+const stats = [
+  { value: 45, label: "Increase in close rate", suffix: "%" },
+  { value: 70, label: "Amount of time saved on training & management", suffix: "%" },
+  { value: 80, label: "Faster ramp up time", suffix: "%" }
+];
+
+const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; suffix: string }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 2000;
+          const steps = 60;
+          const increment = value / steps;
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= value) {
+              setCount(value);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
   return (
-    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16">
-      <div className="container max-w-7xl mx-auto">
+    <div ref={ref} className="text-center space-y-4">
+      <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">
+        {count}{suffix}
+      </div>
+      <p className="text-base md:text-lg text-foreground/80 max-w-xs mx-auto">
+        {label}
+      </p>
+    </div>
+  );
+};
+
+export const Testimonials = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  );
+
+  return (
+    <section 
+      className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${heroTempleBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Purple Mist Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-300/60 via-purple-200/50 to-purple-300/60 z-0" />
+      
+      <div className="container max-w-7xl mx-auto relative z-10">
+        {/* Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-          <h2 className="text-h2">
-            Loved by{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              IT teams worldwide
-            </span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm mb-4">
+            <span className="text-xl">💬</span>
+            <span className="text-sm font-medium text-foreground">QueryBot Users</span>
+          </div>
+          
+          <h2 className="text-h2 text-foreground">
+            What Our Customers Are Saying
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            See what our customers have to say about QueryBot
-          </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card 
+        {/* Carousel */}
+        <div className="max-w-4xl mx-auto mb-20">
+          <Carousel
+            plugins={[plugin.current]}
+            className="w-full"
+            onMouseEnter={() => plugin.current.stop()}
+            onMouseLeave={() => plugin.current.play()}
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index}>
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-2xl mx-4 md:mx-8">
+                    <CardContent className="p-8 md:p-12 space-y-8">
+                      {/* Quote */}
+                      <p className="text-lg md:text-xl text-foreground leading-relaxed text-center">
+                        "{testimonial.quote}"
+                      </p>
+                      
+                      {/* Author */}
+                      <div className="flex items-center justify-center gap-4 pt-6">
+                        <Avatar className="h-16 w-16 border-2 border-primary/20">
+                          {testimonial.avatar ? (
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          ) : null}
+                          <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-white text-lg font-semibold">
+                            {testimonial.initials}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="text-left">
+                          <p className="font-semibold text-foreground text-lg">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                          <p className="text-sm text-primary font-medium">{testimonial.company}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            
+            {/* Navigation Arrows */}
+            <CarouselPrevious className="left-0 -translate-x-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-2 border-purple-200 shadow-lg">
+              <ChevronLeft className="h-6 w-6" />
+            </CarouselPrevious>
+            <CarouselNext className="right-0 translate-x-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-2 border-purple-200 shadow-lg">
+              <ChevronRight className="h-6 w-6" />
+            </CarouselNext>
+          </Carousel>
+        </div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
+          {stats.map((stat, index) => (
+            <AnimatedStat 
               key={index}
-              className="border-2 rounded-3xl shadow-soft hover-lift animate-fade-in-up glass group"
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              <CardContent className="p-8 space-y-6">
-                {/* Stars */}
-                <div className="flex gap-1">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-primary text-primary" />
-                  ))}
-                </div>
-                
-                {/* Quote */}
-                <p className="text-muted-foreground leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                
-                {/* Author */}
-                <div className="pt-4 border-t border-border">
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  <p className="text-sm text-primary font-medium mt-1">{testimonial.company}</p>
-                </div>
-              </CardContent>
-            </Card>
+              value={stat.value}
+              label={stat.label}
+              suffix={stat.suffix}
+            />
           ))}
         </div>
       </div>
