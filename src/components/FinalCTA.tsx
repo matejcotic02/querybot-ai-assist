@@ -18,11 +18,11 @@ export const FinalCTA = () => {
       </div>
       
       <div className="container max-w-4xl mx-auto text-center relative z-10 space-y-8 animate-fade-in-up">
-        <h2 className="text-display text-white drop-shadow-lg">
+        <h2 className="text-display text-foreground">
           Start Automating Your IT Support Today
         </h2>
         
-        <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow">
+        <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
           Join thousands of IT teams using QueryBot to resolve tickets faster and delight customers
         </p>
         
@@ -36,7 +36,7 @@ export const FinalCTA = () => {
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
         
-        <p className="text-sm text-white/70">
+        <p className="text-sm text-foreground/60">
           No credit card required • 14-day free trial • Cancel anytime
         </p>
       </div>
