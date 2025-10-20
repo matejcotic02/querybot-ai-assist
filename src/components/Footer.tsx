@@ -1,5 +1,5 @@
 import { Linkedin, Twitter } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-purple.png";
 
 const footerLinks = {
   Product: ["Features", "Pricing", "Security", "Roadmap"],
