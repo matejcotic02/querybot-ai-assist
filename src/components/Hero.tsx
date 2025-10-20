@@ -78,7 +78,7 @@ export const Hero = () => {
           
           {/* Subheading */}
           <p className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            AI powered sales management, training, and data tracking tools built for elite sales teams
+            AI powered IT support, ticket automation, and help desk tools built for modern IT teams
           </p>
           
           {/* CTA Buttons */}
