@@ -78,6 +78,7 @@ const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; 
         }, duration / steps);
       } else if (!inView && isVisible) {
         setIsVisible(false);
+        setCount(0);
         if (animationRef.current) {
           clearInterval(animationRef.current);
         }
