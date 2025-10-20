@@ -9,8 +9,8 @@ export const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 w-full px-6 md:px-12 lg:px-16 py-4">
-        <div className="container max-w-7xl mx-auto px-6 py-4 bg-white/80 dark:bg-background/80 backdrop-blur-md border border-border/50 rounded-2xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 w-full px-4 md:px-8 py-4">
+        <div className="container max-w-7xl mx-auto px-4 md:px-8 py-4 bg-white/80 dark:bg-background/80 backdrop-blur-md border border-border/50 rounded-2xl">
           <div className="flex items-center justify-between w-full">
             {/* Logo - Left */}
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.href = '/'}>
