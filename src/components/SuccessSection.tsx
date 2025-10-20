@@ -44,7 +44,7 @@ export const SuccessSection = () => {
               {/* Image */}
               <img
                 src={successHeroImage}
-                alt="Japanese temple and samurai meditation garden representing discipline and success"
+                alt="Kendo practitioners training in a misty Japanese temple courtyard representing discipline and excellence"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
             </div>
