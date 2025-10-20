@@ -10,7 +10,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-purple.png";
 
 const signInSchema = z.object({
   email: z.string().trim().email("Invalid email address"),
