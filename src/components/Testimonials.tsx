@@ -34,9 +34,9 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: 45, label: "Increase in close rate", suffix: "%" },
-  { value: 70, label: "Amount of time saved on training & management", suffix: "%" },
-  { value: 80, label: "Faster ramp up time", suffix: "%" }
+  { value: 45, label: "More resolved tickets, faster support", suffix: "%" },
+  { value: 70, label: "Automated onboarding + workflows", suffix: "%" },
+  { value: 80, label: "Less training, quicker productivity", suffix: "%" }
 ];
 
 const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; suffix: string }) => {
