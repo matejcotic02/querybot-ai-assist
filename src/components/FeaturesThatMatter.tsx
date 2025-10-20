@@ -92,7 +92,7 @@ export const FeaturesThatMatter = () => {
               <CardContent className="p-6 space-y-4">
                 {/* Gradient Icon Background */}
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-2xl">{feature.emoji}</span>
+                  <span className="text-2xl opacity-90 bg-gradient-to-br from-[#A37BFF] to-[#7D5CFF] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(163,123,255,0.3)]">{feature.emoji}</span>
                 </div>
                 
                 {/* Bold Title */}
