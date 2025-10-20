@@ -20,10 +20,10 @@ export const Hero = () => {
             
             {/* Desktop Navigation - Center */}
             <div className="hidden lg:flex items-center gap-12 flex-1 justify-center">
-              <a href="#product" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Product</a>
-              <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
-              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">About</a>
-              <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">Contact</a>
+              <a href="#product" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Product</a>
+              <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Pricing</a>
+              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">About</a>
+              <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Contact</a>
             </div>
             
             {/* Auth Buttons - Right */}
