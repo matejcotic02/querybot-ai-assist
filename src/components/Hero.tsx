@@ -7,7 +7,7 @@ export const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Navigation Bar */}
-      <nav className="relative z-20 w-full bg-white/80 dark:bg-background/80 backdrop-blur-md border-b border-border/50">
+      <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 dark:bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
