@@ -74,7 +74,7 @@ export const FeaturesThatMatter = () => {
               variant="outline"
               className="px-3 py-1.5 text-sm font-medium bg-background/50 backdrop-blur-sm hover:bg-accent/10 transition-colors"
             >
-              <span className="mr-1.5">{badge.emoji}</span>
+              <span className="mr-1.5 opacity-90 bg-gradient-to-br from-[#A37BFF] to-[#7D5CFF] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(163,123,255,0.3)]">{badge.emoji}</span>
               {badge.text}
             </Badge>
             ))}
