@@ -39,7 +39,7 @@ export const SuccessSection = () => {
           <div className="lg:col-span-2 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
             <div className="relative rounded-2xl overflow-hidden shadow-elevated hover:shadow-glow transition-all duration-500 group">
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 z-10 opacity-30 group-hover:opacity-20 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-b from-rose-200/40 via-purple-200/30 to-pink-100/40 z-10 opacity-50 group-hover:opacity-40 transition-opacity duration-500" />
               
               {/* Image */}
               <img
