@@ -34,69 +34,48 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: 45, label: "More resolved tickets, faster support", suffix: "%" },
-  { value: 70, label: "Automated onboarding + workflows", suffix: "%" },
-  { value: 80, label: "Less training, quicker productivity", suffix: "%" }
+  { value: 45, label: "Increase in close rate", suffix: "%" },
+  { value: 70, label: "Amount of time saved on training & management", suffix: "%" },
+  { value: 80, label: "Faster ramp up time", suffix: "%" }
 ];
 
 const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; suffix: string }) => {
   const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!ref.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const duration = 2000;
+          const steps = 60;
+          const increment = value / steps;
+          let current = 0;
 
-      const rect = ref.current.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (inView && !isVisible) {
-        setIsVisible(true);
-        setCount(0);
-
-        const duration = 2000;
-        const steps = 60;
-        const increment = value / steps;
-        let current = 0;
-
-        if (animationRef.current) {
-          clearInterval(animationRef.current);
-        }
-
-        animationRef.current = setInterval(() => {
-          current += increment;
-          if (current >= value) {
-            setCount(value);
-            if (animationRef.current) {
-              clearInterval(animationRef.current);
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= value) {
+              setCount(value);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
             }
-          } else {
-            setCount(Math.floor(current));
-          }
-        }, duration / steps);
-      } else if (!inView && isVisible) {
-        setIsVisible(false);
-        setCount(0);
-        if (animationRef.current) {
-          clearInterval(animationRef.current);
+          }, duration / steps);
+
+          return () => clearInterval(timer);
         }
-      }
-    };
+      },
+      { threshold: 0.5 }
+    );
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      if (animationRef.current) {
-        clearInterval(animationRef.current);
-      }
-    };
-  }, [value, isVisible]);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
 
   return (
     <div ref={ref} className="text-center space-y-4">
