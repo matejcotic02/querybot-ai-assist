@@ -28,7 +28,7 @@ export const Features = () => {
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
           <h2 className="text-h2">
             Everything you need to{" "}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-purple-400 font-semibold">
               automate support
             </span>
           </h2>
