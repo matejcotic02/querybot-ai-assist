@@ -17,10 +17,6 @@ export const FAQ = () => {
       answer: "Yes, with role-based access for teams."
     },
     {
-      question: "Is there a free trial?",
-      answer: "We offer a 14-day free trial—no credit card needed."
-    },
-    {
       question: "How does QueryBot integrate with existing systems?",
       answer: "QueryBot seamlessly integrates with your existing IT infrastructure through our flexible API and pre-built connectors for popular platforms."
     }
