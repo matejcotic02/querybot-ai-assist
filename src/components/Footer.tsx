@@ -16,7 +16,7 @@ export const Footer = () => {
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="QueryBot Logo" className="w-8 h-8" />
+              <img src={logo} alt="QueryBot Logo" className="w-9 h-9 rounded-full" />
               <span className="text-xl font-bold">QueryBot</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
