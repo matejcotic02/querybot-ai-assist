@@ -1,64 +1,64 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { supabase } from "@/integrations/supabase/client";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Cpu, Network, Database, Brain } from "lucide-react";
+import { Cpu, Wifi, HardDrive, Box } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface SystemComponent {
   component: string;
   status: "healthy" | "warning" | "critical";
   uptime_percentage: number;
   response_time_ms: number;
-  metrics: any;
+  trend: number[];
 }
 
+const MOCK_COMPONENTS: SystemComponent[] = [
+  {
+    component: "network",
+    status: "healthy",
+    uptime_percentage: 99.8,
+    response_time_ms: 12,
+    trend: [98.5, 99.1, 99.3, 99.6, 99.8, 99.7, 99.8],
+  },
+  {
+    component: "servers",
+    status: "healthy",
+    uptime_percentage: 99.95,
+    response_time_ms: 8,
+    trend: [99.8, 99.85, 99.9, 99.92, 99.95, 99.93, 99.95],
+  },
+  {
+    component: "devices",
+    status: "warning",
+    uptime_percentage: 97.2,
+    response_time_ms: 45,
+    trend: [98.1, 97.8, 97.5, 97.3, 97.0, 97.2, 97.2],
+  },
+  {
+    component: "software",
+    status: "healthy",
+    uptime_percentage: 99.5,
+    response_time_ms: 15,
+    trend: [99.2, 99.3, 99.4, 99.5, 99.6, 99.5, 99.5],
+  },
+];
+
 const componentIcons = {
-  server: Cpu,
-  network: Network,
-  database: Database,
-  ai_engine: Brain,
+  network: Wifi,
+  servers: Cpu,
+  devices: HardDrive,
+  software: Box,
 };
 
 const componentLabels = {
-  server: "Server",
   network: "Network",
-  database: "Database",
-  ai_engine: "AI Engine",
+  servers: "Servers",
+  devices: "Devices",
+  software: "Software",
 };
 
 export const SystemHealth = () => {
-  const [components, setComponents] = useState<SystemComponent[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSystemHealth = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("system_health")
-          .select("*")
-          .order("last_check", { ascending: false });
-
-        if (error) throw error;
-
-        // Get latest status for each component
-        const latestByComponent: Record<string, SystemComponent> = {};
-        data?.forEach((item: any) => {
-          if (!latestByComponent[item.component]) {
-            latestByComponent[item.component] = item;
-          }
-        });
-
-        setComponents(Object.values(latestByComponent));
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching system health:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchSystemHealth();
-  }, []);
+  const [components] = useState<SystemComponent[]>(MOCK_COMPONENTS);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -73,83 +73,88 @@ export const SystemHealth = () => {
     }
   };
 
-  const generateSparklineData = (uptime: number) => {
-    return Array.from({ length: 10 }, (_, i) => ({
-      value: uptime - Math.random() * 5 + i * 0.3,
-    }));
+  const getStatusBadgeVariant = (status: string): "default" | "secondary" | "destructive" => {
+    switch (status) {
+      case "healthy":
+        return "default";
+      case "warning":
+        return "secondary";
+      case "critical":
+        return "destructive";
+      default:
+        return "default";
+    }
   };
 
   return (
-    <Card className="bg-[#0C0C1A] border-white/10 shadow-lg animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+    <Card className="bg-[#0C0C1A] border-white/10 shadow-lg animate-fade-in-up transition-all duration-[600ms] ease-in-out" style={{ animationDelay: "0.4s" }}>
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-white">System Health Overview</CardTitle>
       </CardHeader>
       <CardContent>
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-[150px] bg-white/5" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {["server", "network", "database", "ai_engine"].map((comp, index) => {
-              const component = components.find((c) => c.component === comp);
-              const Icon = componentIcons[comp as keyof typeof componentIcons];
-              const sparklineData = component ? generateSparklineData(component.uptime_percentage) : [];
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {components.map((component, index) => {
+            const Icon = componentIcons[component.component as keyof typeof componentIcons];
+            const label = componentLabels[component.component as keyof typeof componentLabels];
+            const sparklineData = component.trend.map(value => ({ value }));
 
-              return (
-                <div
-                  key={comp}
-                  className="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-2xl border border-white/10 hover:from-white/10 hover:to-white/15 transition-all animate-fade-in-up"
-                  style={{ animationDelay: `${0.5 + index * 0.1}s` }}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <Icon className="w-6 h-6 text-[#A37BFF]" />
-                    <div
-                      className="w-2 h-2 rounded-full"
-                      style={{
-                        backgroundColor: component ? getStatusColor(component.status) : "#A37BFF",
-                      }}
-                    />
-                  </div>
-
-                  <div className="text-lg font-semibold text-white mb-1">
-                    {componentLabels[comp as keyof typeof componentLabels]}
-                  </div>
-
-                  {component ? (
-                    <>
-                      <div className="text-2xl font-bold text-[#A37BFF] mb-2">
-                        {component.uptime_percentage.toFixed(1)}%
-                      </div>
-                      <div className="text-xs text-white/60 mb-2">
-                        {component.response_time_ms?.toFixed(0)}ms response
-                      </div>
-
-                      {/* Sparkline Chart */}
-                      <ResponsiveContainer width="100%" height={40}>
-                        <LineChart data={sparklineData}>
-                          <Line
-                            type="monotone"
-                            dataKey="value"
-                            stroke="#A37BFF"
-                            strokeWidth={2}
-                            dot={false}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-
-                      <div className="text-xs text-white/50 capitalize mt-2">{component.status}</div>
-                    </>
-                  ) : (
-                    <div className="text-sm text-white/50">No data available</div>
-                  )}
+            return (
+              <div
+                key={component.component}
+                className="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-2xl border border-white/10 hover:from-white/10 hover:to-white/15 hover:scale-105 transition-all duration-[600ms] ease-in-out animate-fade-in"
+                style={{ 
+                  animationDelay: `${0.5 + index * 0.1}s`,
+                  animation: "fade-in 600ms ease-in-out forwards"
+                }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <Icon className="w-6 h-6 text-[#A37BFF]" />
+                  <Badge 
+                    variant={getStatusBadgeVariant(component.status)}
+                    className="text-xs"
+                    style={{
+                      backgroundColor: getStatusColor(component.status) + "20",
+                      color: getStatusColor(component.status),
+                      borderColor: getStatusColor(component.status),
+                    }}
+                  >
+                    {component.status}
+                  </Badge>
                 </div>
-              );
-            })}
-          </div>
-        )}
+
+                <div className="text-lg font-semibold text-white mb-1">
+                  {label}
+                </div>
+
+                <div className="text-2xl font-bold text-[#A37BFF] mb-2">
+                  {component.uptime_percentage.toFixed(1)}%
+                </div>
+                <div className="text-xs text-white/60 mb-2">
+                  Uptime
+                </div>
+
+                {/* Mini Line Chart */}
+                <ResponsiveContainer width="100%" height={40}>
+                  <LineChart data={sparklineData}>
+                    <Line
+                      type="monotone"
+                      dataKey="value"
+                      stroke={getStatusColor(component.status)}
+                      strokeWidth={2}
+                      dot={false}
+                      animationDuration={600}
+                      animationEasing="ease-in-out"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+
+                <div className="text-xs text-white/50 mt-2">
+                  {component.response_time_ms}ms response
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </CardContent>
     </Card>
   );
