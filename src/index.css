@@ -82,6 +82,7 @@ All colors MUST be HSL.
     --section-card-border: 0 0% 88%;
     --section-card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
     --section-card-hover-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
+    --section-card-border-glow: none;
     
     /* Glassmorphism */
     --glass-bg: hsl(0 0% 100% / 0.8);
@@ -166,10 +167,11 @@ All colors MUST be HSL.
     --chart-tooltip-text: 0 0% 100%;
     
     /* Section Card Styles - Dark Mode */
-    --section-card-bg: 258 60% 10% / 0.8;
-    --section-card-border: 249 95% 69% / 0.25;
+    --section-card-bg: 240 11% 8%;
+    --section-card-border: 249 95% 69% / 0.4;
     --section-card-shadow: 0px 0px 24px rgba(163, 123, 255, 0.2);
-    --section-card-hover-shadow: 0px 0px 28px rgba(163, 123, 255, 0.35);
+    --section-card-hover-shadow: 0px 0px 32px rgba(163, 123, 255, 0.45);
+    --section-card-border-glow: 0 0 20px rgba(163, 123, 255, 0.6), 0 0 40px rgba(163, 123, 255, 0.3);
     
     /* Dark Glassmorphism */
     --glass-bg: hsl(224 15% 10% / 0.7);

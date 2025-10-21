@@ -71,14 +71,13 @@ export const RecentChatPanel = () => {
       className="border overflow-hidden h-[500px] transition-all duration-[400ms] ease-in-out hover:-translate-y-1"
       style={{
         backgroundColor: 'hsl(var(--section-card-bg))',
-        border: '1px solid hsl(var(--section-card-border))',
-        boxShadow: 'var(--section-card-shadow)',
-        backdropFilter: 'blur(16px)',
+        border: '2px solid hsl(var(--section-card-border))',
+        boxShadow: 'var(--section-card-border-glow), var(--section-card-shadow)',
         borderRadius: '20px',
         padding: '24px'
       }}
-      onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-hover-shadow)'}
-      onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-shadow)'}
+      onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-border-glow), var(--section-card-hover-shadow)'}
+      onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-border-glow), var(--section-card-shadow)'}
     >
       <CardHeader className="flex flex-row items-center justify-between pb-4 px-0"
         style={{ color: 'hsl(var(--dashboard-card-text))' }}
