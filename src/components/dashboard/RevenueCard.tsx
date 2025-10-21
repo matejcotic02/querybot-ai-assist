@@ -19,24 +19,17 @@ export const RevenueCard = () => {
 
   return (
     <Card 
-      className="border overflow-hidden flex flex-col h-[600px] transition-all duration-[400ms] ease-in-out hover:-translate-y-0.5"
+      className="border overflow-hidden flex flex-col h-[600px] transition-all duration-[400ms] ease-in-out hover:-translate-y-1"
       style={{
-        background: 'var(--section-card-gradient), hsl(var(--section-card-bg))',
-        border: '2px solid hsl(var(--section-card-border))',
-        boxShadow: 'var(--section-card-border-glow), var(--section-card-shadow), var(--section-card-inner-shadow)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
+        backgroundColor: 'hsl(var(--section-card-bg))',
+        border: '1px solid hsl(var(--section-card-border))',
+        boxShadow: 'var(--section-card-shadow)',
+        backdropFilter: 'blur(16px)',
         borderRadius: '20px',
         padding: '24px'
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--section-card-border-glow), var(--section-card-hover-shadow), var(--section-card-inner-shadow)';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = 'var(--section-card-border-glow), var(--section-card-shadow), var(--section-card-inner-shadow)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
+      onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-hover-shadow)'}
+      onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-shadow)'}
     >
       <CardHeader className="border-b px-0"
         style={{ color: 'hsl(var(--dashboard-card-text))' }}
