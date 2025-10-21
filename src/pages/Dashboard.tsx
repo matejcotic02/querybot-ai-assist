@@ -7,11 +7,17 @@ import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
 import { AIInsightsPanel } from "@/components/dashboard/AIInsightsPanel";
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
 import { HelpCenter } from "@/components/dashboard/HelpCenter";
+import { IncidentMonitor } from "@/components/dashboard/IncidentMonitor";
+import { AIDiagnostics } from "@/components/dashboard/AIDiagnostics";
+import { TechnicianPerformance } from "@/components/dashboard/TechnicianPerformance";
+import { SystemHealth } from "@/components/dashboard/SystemHealth";
+import { DashboardFilters } from "@/components/dashboard/DashboardFilters";
 
 type DashboardView = "dashboard" | "settings" | "help-center";
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
+  const [filterPeriod, setFilterPeriod] = useState<"today" | "week" | "month">("week");
 
   return (
     <div className="min-h-screen flex w-full bg-background">
@@ -23,6 +29,12 @@ const Dashboard = () => {
           <main className="flex-1 p-8 space-y-6">
             {activeView === "dashboard" ? (
               <>
+                {/* Filters */}
+                <DashboardFilters 
+                  filterPeriod={filterPeriod} 
+                  onFilterChange={setFilterPeriod} 
+                />
+                
                 {/* Top Cards Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in">
                   <RevenueCard />
@@ -36,6 +48,17 @@ const Dashboard = () => {
                   </div>
                   <div className="lg:col-span-1">
                     <AIInsightsPanel />
+                  </div>
+                </div>
+
+                {/* New Advanced Dashboard Sections */}
+                <div className="space-y-6 mt-8">
+                  <IncidentMonitor />
+                  <AIDiagnostics />
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <TechnicianPerformance />
+                    <SystemHealth />
                   </div>
                 </div>
               </>

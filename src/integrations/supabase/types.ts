@@ -210,6 +210,80 @@ export type Database = {
         }
         Relationships: []
       }
+      diagnostics: {
+        Row: {
+          ai_suggestion: string
+          applied: boolean | null
+          category: string | null
+          confidence_score: number | null
+          created_at: string
+          id: string
+          incident_id: string | null
+          summary: string
+        }
+        Insert: {
+          ai_suggestion: string
+          applied?: boolean | null
+          category?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          id?: string
+          incident_id?: string | null
+          summary: string
+        }
+        Update: {
+          ai_suggestion?: string
+          applied?: boolean | null
+          category?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          id?: string
+          incident_id?: string | null
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "diagnostics_incident_id_fkey"
+            columns: ["incident_id"]
+            isOneToOne: false
+            referencedRelation: "incidents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      incidents: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          description: string | null
+          id: string
+          resolved_at: string | null
+          severity: string
+          status: string
+          title: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          resolved_at?: string | null
+          severity: string
+          status: string
+          title: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          resolved_at?: string | null
+          severity?: string
+          status?: string
+          title?: string
+        }
+        Relationships: []
+      }
       insights: {
         Row: {
           created_at: string | null
@@ -278,6 +352,36 @@ export type Database = {
           },
         ]
       }
+      platform_analytics: {
+        Row: {
+          created_at: string
+          customer_count: number
+          growth_rate: number | null
+          icon_name: string
+          id: string
+          platform_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_count?: number
+          growth_rate?: number | null
+          icon_name: string
+          id?: string
+          platform_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_count?: number
+          growth_rate?: number | null
+          icon_name?: string
+          id?: string
+          platform_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -287,6 +391,7 @@ export type Database = {
           id: string
           last_login: string | null
           plan_id: string | null
+          source_platform: string | null
           status: Database["public"]["Enums"]["user_status"]
         }
         Insert: {
@@ -297,6 +402,7 @@ export type Database = {
           id: string
           last_login?: string | null
           plan_id?: string | null
+          source_platform?: string | null
           status?: Database["public"]["Enums"]["user_status"]
         }
         Update: {
@@ -307,6 +413,7 @@ export type Database = {
           id?: string
           last_login?: string | null
           plan_id?: string | null
+          source_platform?: string | null
           status?: Database["public"]["Enums"]["user_status"]
         }
         Relationships: [
@@ -367,6 +474,78 @@ export type Database = {
           max_tickets?: number
           monthly_price?: number
           plan_name?: string
+        }
+        Relationships: []
+      }
+      system_health: {
+        Row: {
+          component: string
+          created_at: string
+          id: string
+          last_check: string
+          metrics: Json | null
+          response_time_ms: number | null
+          status: string
+          uptime_percentage: number | null
+        }
+        Insert: {
+          component: string
+          created_at?: string
+          id?: string
+          last_check?: string
+          metrics?: Json | null
+          response_time_ms?: number | null
+          status: string
+          uptime_percentage?: number | null
+        }
+        Update: {
+          component?: string
+          created_at?: string
+          id?: string
+          last_check?: string
+          metrics?: Json | null
+          response_time_ms?: number | null
+          status?: string
+          uptime_percentage?: number | null
+        }
+        Relationships: []
+      }
+      technicians: {
+        Row: {
+          avatar_url: string | null
+          avg_resolution_time_hours: number | null
+          created_at: string
+          id: string
+          name: string
+          rating: number | null
+          tickets_open: number | null
+          tickets_resolved: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          avg_resolution_time_hours?: number | null
+          created_at?: string
+          id?: string
+          name: string
+          rating?: number | null
+          tickets_open?: number | null
+          tickets_resolved?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          avg_resolution_time_hours?: number | null
+          created_at?: string
+          id?: string
+          name?: string
+          rating?: number | null
+          tickets_open?: number | null
+          tickets_resolved?: number | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

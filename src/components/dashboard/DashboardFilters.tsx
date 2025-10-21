@@ -1,49 +1,77 @@
-import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Calendar, Moon, Sun } from "lucide-react";
+import { useState } from "react";
 
 interface DashboardFiltersProps {
-  dateRange: string;
-  setDateRange: (value: string) => void;
-  department: string;
-  setDepartment: (value: string) => void;
+  filterPeriod: "today" | "week" | "month";
+  onFilterChange: (period: "today" | "week" | "month") => void;
 }
 
-export const DashboardFilters = ({ dateRange, setDateRange, department, setDepartment }: DashboardFiltersProps) => {
+export const DashboardFilters = ({ filterPeriod, onFilterChange }: DashboardFiltersProps) => {
+  const [dimMode, setDimMode] = useState(false);
+
+  const toggleDimMode = () => {
+    setDimMode(!dimMode);
+    if (!dimMode) {
+      document.documentElement.style.setProperty("--background", "210 100% 5%");
+    } else {
+      document.documentElement.style.setProperty("--background", "210 100% 10%");
+    }
+  };
+
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <Select value={dateRange} onValueChange={setDateRange}>
-        <SelectTrigger className="w-[180px] rounded-2xl">
-          <SelectValue placeholder="Select date range" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="7days">Last 7 days</SelectItem>
-          <SelectItem value="30days">Last 30 days</SelectItem>
-          <SelectItem value="custom">Custom</SelectItem>
-        </SelectContent>
-      </Select>
+    <div className="flex items-center justify-between bg-[#0C0C1A]/50 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+      <div className="flex items-center gap-2">
+        <Calendar className="w-4 h-4 text-white/50" />
+        <span className="text-sm text-white/70 mr-2">Quick Filters:</span>
+        <div className="flex gap-2">
+          <Button
+            size="sm"
+            variant={filterPeriod === "today" ? "default" : "outline"}
+            onClick={() => onFilterChange("today")}
+            className={
+              filterPeriod === "today"
+                ? "bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] text-white border-0"
+                : "border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
+            }
+          >
+            Today
+          </Button>
+          <Button
+            size="sm"
+            variant={filterPeriod === "week" ? "default" : "outline"}
+            onClick={() => onFilterChange("week")}
+            className={
+              filterPeriod === "week"
+                ? "bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] text-white border-0"
+                : "border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
+            }
+          >
+            This Week
+          </Button>
+          <Button
+            size="sm"
+            variant={filterPeriod === "month" ? "default" : "outline"}
+            onClick={() => onFilterChange("month")}
+            className={
+              filterPeriod === "month"
+                ? "bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] text-white border-0"
+                : "border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
+            }
+          >
+            This Month
+          </Button>
+        </div>
+      </div>
 
-      <Select value={department} onValueChange={setDepartment}>
-        <SelectTrigger className="w-[180px] rounded-2xl">
-          <SelectValue placeholder="Department" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All Departments</SelectItem>
-          <SelectItem value="it">IT</SelectItem>
-          <SelectItem value="network">Network</SelectItem>
-          <SelectItem value="security">Security</SelectItem>
-          <SelectItem value="hr">HR</SelectItem>
-        </SelectContent>
-      </Select>
-
-      <Button variant="outline" size="icon" className="rounded-2xl">
-        <RefreshCw className="h-4 w-4" />
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={toggleDimMode}
+        className="border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
+      >
+        {dimMode ? <Sun className="w-4 h-4 mr-2" /> : <Moon className="w-4 h-4 mr-2" />}
+        {dimMode ? "Light Mode" : "Dim Mode"}
       </Button>
     </div>
   );
