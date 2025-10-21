@@ -8,27 +8,27 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Clebo-inspired Modern SaaS Palette */
-    --background: 220 17% 97%;
-    --foreground: 0 0% 12%;
+    /* Refined Light Mode Palette */
+    --background: 240 20% 98%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 12%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 12%;
+    --popover-foreground: 0 0% 10%;
 
     --primary: 249 95% 69%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 174 58% 74%;
-    --secondary-foreground: 0 0% 12%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 220 17% 95%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 240 20% 96%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 220 17% 95%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 240 20% 96%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -36,11 +36,11 @@ All colors MUST be HSL.
     --success: 142 76% 58%;
     --warning: 45 97% 69%;
 
-    --border: 220 17% 90%;
-    --input: 220 17% 90%;
+    --border: 240 15% 92%;
+    --input: 240 15% 92%;
     --ring: 249 95% 69%;
 
-    --radius: 1.25rem;
+    --radius: 1rem;
     
     /* QueryBot Brand Colors */
     --querybot-primary: 249 95% 69%;
@@ -143,14 +143,30 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    transition: border-color 0.3s ease-in-out;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   }
   
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* Smooth theme transitions for all elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+  
+  /* Prevent transition on mount */
+  .no-transition * {
+    transition: none !important;
   }
   
   /* Typography Scale - 2025 */
