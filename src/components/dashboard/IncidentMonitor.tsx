@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recha
 import { toast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Activity } from "lucide-react";
 import {
   Tooltip as TooltipUI,
   TooltipContent,
@@ -163,9 +164,17 @@ export const IncidentMonitor = () => {
   };
 
   return (
-    <Card className="bg-[#0E0E18] border-white/10 shadow-lg rounded-[16px] animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+    <Card 
+      className="rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out" 
+      style={{ 
+        animationDelay: "0.1s",
+        backgroundColor: "hsl(var(--dashboard-card-bg))",
+        color: "hsl(var(--dashboard-card-text))",
+        boxShadow: "var(--dashboard-card-shadow)"
+      }}
+    >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-[#FFFFFF] flex items-center gap-2">
+        <CardTitle className="text-xl font-semibold flex items-center gap-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
           <TooltipProvider>
             <TooltipUI>
               <TooltipTrigger>
@@ -182,22 +191,22 @@ export const IncidentMonitor = () => {
       <CardContent className="space-y-6">
         {loading ? (
           <div className="space-y-4">
-            <Skeleton className="h-[200px] w-full bg-white/5" />
-            <Skeleton className="h-[120px] w-full bg-white/5" />
+            <Skeleton className="h-[200px] w-full bg-muted" />
+            <Skeleton className="h-[120px] w-full bg-muted" />
           </div>
         ) : (
           <>
             <div className="animate-fade-in" style={{ animation: "fade-in 600ms ease-in-out" }}>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData} layout="vertical">
-                  <XAxis type="number" stroke="#fff" opacity={0.5} />
-                  <YAxis type="category" dataKey="name" stroke="#fff" opacity={0.7} width={100} />
+                  <XAxis type="number" stroke="currentColor" opacity={0.5} />
+                  <YAxis type="category" dataKey="name" stroke="currentColor" opacity={0.7} width={100} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#1a1a2e",
-                      border: "1px solid rgba(255,255,255,0.1)",
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))",
                       borderRadius: "8px",
-                      color: "#fff",
+                      color: "hsl(var(--dashboard-card-text))",
                     }}
                   />
                   <Bar 
@@ -212,18 +221,18 @@ export const IncidentMonitor = () => {
 
             {/* Recent Incidents List */}
             <div className="space-y-3 animate-fade-in" style={{ animation: "fade-in 600ms ease-in-out 200ms backwards" }}>
-              <h4 className="text-sm font-semibold text-[#FFFFFF] opacity-70">Recent Incidents</h4>
+              <h4 className="text-sm font-semibold opacity-70" style={{ color: "hsl(var(--dashboard-card-text))" }}>Recent Incidents</h4>
               {incidents.map((incident, index) => (
                 <div
                   key={incident.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+                  className="flex items-center justify-between p-3 rounded-lg bg-muted/50 border border-border hover:bg-muted transition-all duration-[600ms] ease-in-out"
                   style={{ 
                     animation: `fade-in 600ms ease-in-out ${300 + index * 100}ms backwards`,
                   }}
                 >
                   <div className="flex-1">
-                    <p className="text-[#FFFFFF] text-sm font-medium">{incident.title}</p>
-                    <p className="text-[#FFFFFF]/50 text-xs mt-1">{incident.id}</p>
+                    <p className="text-sm font-medium" style={{ color: "hsl(var(--dashboard-card-text))" }}>{incident.title}</p>
+                    <p className="text-xs opacity-50 mt-1" style={{ color: "hsl(var(--dashboard-card-text))" }}>{incident.id}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge 

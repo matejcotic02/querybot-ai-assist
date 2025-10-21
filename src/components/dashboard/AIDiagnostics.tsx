@@ -66,57 +66,62 @@ export const AIDiagnostics = () => {
 
   return (
     <Card 
-      className={`bg-[#0C0C1A] border-white/10 shadow-lg animate-fade-in-up transition-all duration-[600ms] ease-in-out ${
-        diagnostics.length > 0 ? "ring-2 ring-[#A37BFF] shadow-[0_0_20px_rgba(163,123,255,0.3)]" : ""
+      className={`rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out ${
+        diagnostics.length > 0 ? "ring-2 ring-primary dark:shadow-[0_0_20px_rgba(163,123,255,0.3)]" : ""
       }`} 
-      style={{ animationDelay: "0.2s" }}
+      style={{ 
+        animationDelay: "0.2s",
+        backgroundColor: "hsl(var(--dashboard-card-bg))",
+        color: "hsl(var(--dashboard-card-text))",
+        boxShadow: "var(--dashboard-card-shadow)"
+      }}
     >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-white flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-[#A37BFF] animate-pulse" />
+        <CardTitle className="text-xl font-semibold flex items-center gap-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
+          <Sparkles className="w-5 h-5 text-primary animate-pulse" />
           AI Diagnostics & Suggestions
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Summary Card */}
-          <div className="bg-gradient-to-br from-[#A37BFF]/20 to-[#7D5CFF]/20 p-6 rounded-2xl border border-white/10">
-            <div className="text-5xl font-bold text-white mb-2">{diagnostics.length}</div>
-            <div className="text-sm text-white/70 mb-4">Active Suggestions</div>
+          <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-6 rounded-2xl border border-border">
+            <div className="text-5xl font-bold mb-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>{diagnostics.length}</div>
+            <div className="text-sm opacity-70 mb-4" style={{ color: "hsl(var(--dashboard-card-text))" }}>Active Suggestions</div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs text-white/60">Avg Confidence</span>
-                <span className="text-lg font-semibold text-[#A37BFF]">{avgConfidence}%</span>
+                <span className="text-xs opacity-60" style={{ color: "hsl(var(--dashboard-card-text))" }}>Avg Confidence</span>
+                <span className="text-lg font-semibold text-primary">{avgConfidence}%</span>
               </div>
               <Progress 
                 key={progressKey}
                 value={avgConfidence} 
-                className="h-2 bg-white/10 animate-fade-in" 
+                className="h-2 bg-muted animate-fade-in" 
               />
             </div>
           </div>
 
           {/* Scrollable AI Tips */}
-          <ScrollArea className="lg:col-span-2 h-[200px] bg-white/5 rounded-2xl p-4">
+          <ScrollArea className="lg:col-span-2 h-[200px] bg-muted/30 rounded-2xl p-4">
             <div className="space-y-3">
               {diagnostics.length === 0 ? (
-                <p className="text-white/50 text-sm">No active suggestions at the moment</p>
+                <p className="opacity-50 text-sm" style={{ color: "hsl(var(--dashboard-card-text))" }}>No active suggestions at the moment</p>
               ) : (
                 diagnostics.slice(0, 3).map((diagnostic, index) => (
                   <div
                     key={diagnostic.id}
-                    className="bg-white/5 p-3 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-[600ms] ease-in-out animate-fade-in"
+                    className="bg-muted/50 p-3 rounded-xl border border-border hover:bg-muted transition-all duration-[600ms] ease-in-out animate-fade-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
-                        <div className="text-sm font-medium text-white mb-1">{diagnostic.summary}</div>
-                        <div className="text-xs text-white/60 mb-2">{diagnostic.ai_suggestion}</div>
+                        <div className="text-sm font-medium mb-1" style={{ color: "hsl(var(--dashboard-card-text))" }}>{diagnostic.summary}</div>
+                        <div className="text-xs opacity-60 mb-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>{diagnostic.ai_suggestion}</div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs px-2 py-1 bg-[#A37BFF]/20 text-[#A37BFF] rounded">
+                          <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded">
                             {diagnostic.category}
                           </span>
-                          <span className="text-xs text-white/50">
+                          <span className="text-xs opacity-50" style={{ color: "hsl(var(--dashboard-card-text))" }}>
                             {diagnostic.confidence_score}% confidence
                           </span>
                         </div>
@@ -124,7 +129,7 @@ export const AIDiagnostics = () => {
                       <Button
                         size="sm"
                         onClick={() => applyFix(diagnostic.id)}
-                        className="bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] hover:from-[#7D5CFF] hover:to-[#A37BFF] text-white border-0 shrink-0 transition-all duration-[600ms] ease-in-out"
+                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white border-0 shrink-0 transition-all duration-[600ms] ease-in-out"
                       >
                         Apply Fix <ArrowRight className="w-3 h-3 ml-1" />
                       </Button>

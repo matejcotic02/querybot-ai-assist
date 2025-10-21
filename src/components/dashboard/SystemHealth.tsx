@@ -87,9 +87,17 @@ export const SystemHealth = () => {
   };
 
   return (
-    <Card className="bg-[#0C0C1A] border-white/10 shadow-lg animate-fade-in-up transition-all duration-[600ms] ease-in-out" style={{ animationDelay: "0.4s" }}>
+    <Card 
+      className="rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out" 
+      style={{ 
+        animationDelay: "0.4s",
+        backgroundColor: "hsl(var(--dashboard-card-bg))",
+        color: "hsl(var(--dashboard-card-text))",
+        boxShadow: "var(--dashboard-card-shadow)"
+      }}
+    >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-white">System Health Overview</CardTitle>
+        <CardTitle className="text-xl font-semibold" style={{ color: "hsl(var(--dashboard-card-text))" }}>System Health Overview</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -101,14 +109,14 @@ export const SystemHealth = () => {
             return (
               <div
                 key={component.component}
-                className="bg-gradient-to-br from-white/5 to-white/10 p-4 rounded-2xl border border-white/10 hover:from-white/10 hover:to-white/15 hover:scale-105 transition-all duration-[600ms] ease-in-out animate-fade-in"
+                className="bg-gradient-to-br from-muted/30 to-muted/50 p-4 rounded-2xl border border-border hover:from-muted/50 hover:to-muted/70 hover:scale-105 transition-all duration-[600ms] ease-in-out animate-fade-in"
                 style={{ 
                   animationDelay: `${0.5 + index * 0.1}s`,
                   animation: "fade-in 600ms ease-in-out forwards"
                 }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <Icon className="w-6 h-6 text-[#A37BFF]" />
+                  <Icon className="w-6 h-6 text-primary" />
                   <Badge 
                     variant={getStatusBadgeVariant(component.status)}
                     className="text-xs"
@@ -122,14 +130,14 @@ export const SystemHealth = () => {
                   </Badge>
                 </div>
 
-                <div className="text-lg font-semibold text-white mb-1">
+                <div className="text-lg font-semibold mb-1" style={{ color: "hsl(var(--dashboard-card-text))" }}>
                   {label}
                 </div>
 
-                <div className="text-2xl font-bold text-[#A37BFF] mb-2">
+                <div className="text-2xl font-bold text-primary mb-2">
                   {component.uptime_percentage.toFixed(1)}%
                 </div>
-                <div className="text-xs text-white/60 mb-2">
+                <div className="text-xs opacity-60 mb-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
                   Uptime
                 </div>
 
@@ -148,7 +156,7 @@ export const SystemHealth = () => {
                   </LineChart>
                 </ResponsiveContainer>
 
-                <div className="text-xs text-white/50 mt-2">
+                <div className="text-xs opacity-50 mt-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
                   {component.response_time_ms}ms response
                 </div>
               </div>

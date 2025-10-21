@@ -86,9 +86,17 @@ export const TechnicianPerformance = () => {
   );
 
   return (
-    <Card className="bg-[#0C0C1A] border-white/10 shadow-lg animate-fade-in-up transition-all duration-[600ms] ease-in-out" style={{ animationDelay: "0.3s" }}>
+    <Card 
+      className="rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out" 
+      style={{ 
+        animationDelay: "0.3s",
+        backgroundColor: "hsl(var(--dashboard-card-bg))",
+        color: "hsl(var(--dashboard-card-text))",
+        boxShadow: "var(--dashboard-card-shadow)"
+      }}
+    >
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-white">Technician Performance Board</CardTitle>
+        <CardTitle className="text-xl font-semibold" style={{ color: "hsl(var(--dashboard-card-text))" }}>Technician Performance Board</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -100,25 +108,19 @@ export const TechnicianPerformance = () => {
                   <stop offset="100%" stopColor="#7D5CFF" />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="name" stroke="#fff" opacity={0.7} />
-              <YAxis stroke="#fff" opacity={0.5} />
+              <XAxis dataKey="name" stroke="currentColor" opacity={0.7} />
+              <YAxis stroke="currentColor" opacity={0.5} />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: "#1a1a2e",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  borderRadius: "8px",
-                  color: "#fff",
-                }}
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="bg-[#1a1a2e] p-3 rounded-lg border border-white/10 transition-all duration-[600ms] ease-in-out">
-                        <p className="font-semibold text-white mb-2">{data.fullName}</p>
-                        <p className="text-sm text-[#A37BFF]">Tickets Closed: {data.resolved}</p>
-                        <p className="text-sm text-[#00D1FF]">Open: {data.open}</p>
-                        <p className="text-sm text-white/70">Avg Response: {data.avgTime?.toFixed(1)}h</p>
-                        <p className="text-sm text-white/70">Rating: {data.rating?.toFixed(1)}/10</p>
+                      <div className="bg-card p-3 rounded-lg border border-border transition-all duration-[600ms] ease-in-out" style={{ color: "hsl(var(--dashboard-card-text))" }}>
+                        <p className="font-semibold mb-2">{data.fullName}</p>
+                        <p className="text-sm text-primary">Tickets Closed: {data.resolved}</p>
+                        <p className="text-sm text-secondary">Open: {data.open}</p>
+                        <p className="text-sm opacity-70">Avg Response: {data.avgTime?.toFixed(1)}h</p>
+                        <p className="text-sm opacity-70">Rating: {data.rating?.toFixed(1)}/10</p>
                       </div>
                     );
                   }
@@ -148,22 +150,22 @@ export const TechnicianPerformance = () => {
                 <TooltipUI key={tech.id}>
                   <TooltipTrigger>
                     <div className="flex flex-col items-center gap-2 group">
-                      <Avatar className="w-12 h-12 border-2 border-[#A37BFF] hover:scale-110 transition-all duration-[600ms] ease-in-out">
+                      <Avatar className="w-12 h-12 border-2 border-primary hover:scale-110 transition-all duration-[600ms] ease-in-out">
                         <AvatarImage src={tech.avatar_url || undefined} />
-                        <AvatarFallback className={`text-white ${index === 0 ? "bg-gradient-to-br from-[#A37BFF] to-[#7D5CFF]" : "bg-[#00D1FF]"}`}>
+                        <AvatarFallback className={`text-white ${index === 0 ? "bg-gradient-to-br from-primary to-primary/80" : "bg-secondary"}`}>
                           {tech.name.split(" ").map((n) => n[0]).join("")}
                         </AvatarFallback>
                       </Avatar>
                       <div className="text-center">
-                        <p className="text-xs text-white/70">{tech.avg_resolution_time_hours.toFixed(1)}h avg</p>
-                        <p className="text-xs text-[#A37BFF] font-semibold">{tech.rating.toFixed(1)}/10</p>
+                        <p className="text-xs opacity-70" style={{ color: "hsl(var(--dashboard-card-text))" }}>{tech.avg_resolution_time_hours.toFixed(1)}h avg</p>
+                        <p className="text-xs text-primary font-semibold">{tech.rating.toFixed(1)}/10</p>
                       </div>
                     </div>
                   </TooltipTrigger>
                   <TooltipContent>
                     <div className="text-sm">
                       <p className="font-semibold">{tech.name}</p>
-                      <p className="text-white/70">{tech.tickets_resolved} tickets closed</p>
+                      <p className="opacity-70">{tech.tickets_resolved} tickets closed</p>
                     </div>
                   </TooltipContent>
                 </TooltipUI>
