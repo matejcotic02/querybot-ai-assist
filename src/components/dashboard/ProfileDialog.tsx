@@ -199,7 +199,7 @@ export const ProfileDialog = ({ open, onOpenChange }: ProfileDialogProps) => {
               </Avatar>
               <label
                 htmlFor="avatar-upload"
-                className="absolute bottom-0 right-0 bg-primary text-primary-foreground rounded-full p-2 cursor-pointer hover:bg-primary/90 transition-colors"
+                className="absolute bottom-0 right-0 bg-gradient-to-r from-[hsl(249,95%,69%)] to-[hsl(280,90%,60%)] text-primary-foreground rounded-full p-2 cursor-pointer hover:shadow-[0_8px_16px_rgba(163,123,255,0.4)] hover:scale-[1.05] transition-all duration-300"
               >
                 {uploading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
