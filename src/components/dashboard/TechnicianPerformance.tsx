@@ -100,48 +100,69 @@ export const TechnicianPerformance = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={chartData}>
-              <defs>
-                <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#A37BFF" />
-                  <stop offset="100%" stopColor="#7D5CFF" />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="name" stroke="currentColor" opacity={0.7} />
-              <YAxis stroke="currentColor" opacity={0.5} />
-              <Tooltip
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    const data = payload[0].payload;
-                    return (
-                      <div className="bg-card p-3 rounded-lg border border-border transition-all duration-[600ms] ease-in-out" style={{ color: "hsl(var(--dashboard-card-text))" }}>
-                        <p className="font-semibold mb-2">{data.fullName}</p>
-                        <p className="text-sm text-primary">Tickets Closed: {data.resolved}</p>
-                        <p className="text-sm text-secondary">Open: {data.open}</p>
-                        <p className="text-sm opacity-70">Avg Response: {data.avgTime?.toFixed(1)}h</p>
-                        <p className="text-sm opacity-70">Rating: {data.rating?.toFixed(1)}/10</p>
-                      </div>
-                    );
-                  }
-                  return null;
-                }}
-              />
-              <Bar 
-                dataKey="resolved" 
-                radius={[8, 8, 0, 0]}
-                className="transition-all duration-[600ms] ease-in-out"
-              >
-                {chartData.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={colors[index]} 
-                    className="hover:opacity-80 transition-opacity duration-[600ms] ease-in-out cursor-pointer"
-                  />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div 
+            className="rounded-[16px] p-4 transition-all duration-[400ms] ease-in-out"
+            style={{
+              backgroundColor: 'hsl(var(--chart-container-bg))',
+              border: '1px solid hsl(var(--chart-container-border))',
+              boxShadow: 'var(--chart-container-shadow)',
+              backdropFilter: 'blur(18px)'
+            }}
+          >
+            <ResponsiveContainer width="100%" height={200}>
+              <BarChart data={chartData}>
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#A37BFF" />
+                    <stop offset="100%" stopColor="#7D5CFF" />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" stroke="hsl(var(--chart-text))" fontSize={12} />
+                <YAxis stroke="hsl(var(--chart-text))" fontSize={12} />
+                <Tooltip
+                  content={({ active, payload }) => {
+                    if (active && payload && payload.length) {
+                      const data = payload[0].payload;
+                      return (
+                        <div 
+                          className="p-3 rounded-lg transition-all duration-[600ms] ease-in-out" 
+                          style={{ 
+                            backgroundColor: 'hsl(var(--chart-tooltip-bg))',
+                            border: '1px solid hsl(var(--chart-tooltip-border))',
+                            color: 'hsl(var(--chart-tooltip-text))',
+                            backdropFilter: 'blur(8px)'
+                          }}
+                        >
+                          <p className="font-semibold mb-2">{data.fullName}</p>
+                          <p className="text-sm">Tickets Closed: {data.resolved}</p>
+                          <p className="text-sm">Open: {data.open}</p>
+                          <p className="text-sm opacity-70">Avg Response: {data.avgTime?.toFixed(1)}h</p>
+                          <p className="text-sm opacity-70">Rating: {data.rating?.toFixed(1)}/10</p>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+                <Bar 
+                  dataKey="resolved" 
+                  radius={[8, 8, 0, 0]}
+                  className="transition-all duration-[600ms] ease-in-out"
+                  animationDuration={800}
+                  animationEasing="ease-in-out"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={colors[index]} 
+                      className="hover:opacity-80 transition-opacity duration-[600ms] ease-in-out cursor-pointer"
+                      style={{ filter: index === 0 ? 'drop-shadow(0 0 8px rgba(163, 123, 255, 0.5))' : 'none' }}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
 
           {/* Avatars with Stats */}
           <div className="flex items-center justify-around pt-2">

@@ -57,37 +57,58 @@ export const CustomerSatisfactionCard = () => {
           <span className="text-sm text-secondary font-medium ml-auto">+3 this week</span>
         </div>
         
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-            <XAxis 
-              dataKey="agent" 
-              stroke="hsl(var(--muted-foreground))" 
-              fontSize={11}
-              tickLine={false}
-              axisLine={false}
-            />
-            <YAxis 
-              stroke="hsl(var(--muted-foreground))" 
-              fontSize={11}
-              tickLine={false}
-              axisLine={false}
-            />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-                borderRadius: "12px",
-                boxShadow: "var(--shadow-soft)"
-              }}
-            />
-            <Bar dataKey="rating" radius={[8, 8, 0, 0]}>
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        <div 
+          className="rounded-[16px] p-4 transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
+          style={{
+            backgroundColor: 'hsl(var(--chart-container-bg))',
+            border: '1px solid hsl(var(--chart-container-border))',
+            boxShadow: 'var(--chart-container-shadow)',
+            backdropFilter: 'blur(18px)',
+            animation: 'fade-in 800ms ease-in-out'
+          }}
+        >
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--chart-grid))" vertical={false} />
+              <XAxis 
+                dataKey="agent" 
+                stroke="hsl(var(--chart-text))" 
+                fontSize={11}
+                tickLine={false}
+                axisLine={false}
+              />
+              <YAxis 
+                stroke="hsl(var(--chart-text))" 
+                fontSize={11}
+                tickLine={false}
+                axisLine={false}
+              />
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: "hsl(var(--chart-tooltip-bg))",
+                  border: "1px solid hsl(var(--chart-tooltip-border))",
+                  borderRadius: "12px",
+                  color: "hsl(var(--chart-tooltip-text))",
+                  backdropFilter: 'blur(8px)'
+                }}
+              />
+              <Bar 
+                dataKey="rating" 
+                radius={[8, 8, 0, 0]}
+                animationDuration={800}
+                animationEasing="ease-in-out"
+              >
+                {data.map((entry, index) => (
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={entry.color}
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(163, 123, 255, 0.3))' }}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </CardContent>
     </Card>
   );

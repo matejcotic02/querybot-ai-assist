@@ -142,19 +142,29 @@ export const SystemHealth = () => {
                 </div>
 
                 {/* Mini Line Chart */}
-                <ResponsiveContainer width="100%" height={40}>
-                  <LineChart data={sparklineData}>
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke={getStatusColor(component.status)}
-                      strokeWidth={2}
-                      dot={false}
-                      animationDuration={600}
-                      animationEasing="ease-in-out"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+                <div 
+                  className="rounded-lg p-2 transition-all duration-[400ms] ease-in-out"
+                  style={{
+                    backgroundColor: 'hsl(var(--chart-container-bg))',
+                    border: '1px solid hsl(var(--chart-container-border))',
+                    backdropFilter: 'blur(18px)'
+                  }}
+                >
+                  <ResponsiveContainer width="100%" height={60}>
+                    <LineChart data={sparklineData}>
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        stroke="hsl(var(--chart-line-stroke))"
+                        strokeWidth={2}
+                        dot={false}
+                        animationDuration={800}
+                        animationEasing="ease-in-out"
+                        style={{ filter: 'drop-shadow(0 0 8px hsl(var(--chart-line-stroke) / 0.5))' }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
 
                 <div className="text-xs opacity-50 mt-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
                   {component.response_time_ms}ms response

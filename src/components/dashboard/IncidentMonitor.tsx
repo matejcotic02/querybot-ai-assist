@@ -196,24 +196,35 @@ export const IncidentMonitor = () => {
           </div>
         ) : (
           <>
-            <div className="animate-fade-in" style={{ animation: "fade-in 600ms ease-in-out" }}>
+            <div 
+              className="animate-fade-in rounded-[16px] p-4 transition-all duration-[400ms] ease-in-out" 
+              style={{ 
+                animation: "fade-in 800ms ease-in-out",
+                backgroundColor: 'hsl(var(--chart-container-bg))',
+                border: '1px solid hsl(var(--chart-container-border))',
+                boxShadow: 'var(--chart-container-shadow)',
+                backdropFilter: 'blur(18px)'
+              }}
+            >
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData} layout="vertical">
-                  <XAxis type="number" stroke="currentColor" opacity={0.5} />
-                  <YAxis type="category" dataKey="name" stroke="currentColor" opacity={0.7} width={100} />
+                  <XAxis type="number" stroke="hsl(var(--chart-text))" fontSize={12} />
+                  <YAxis type="category" dataKey="name" stroke="hsl(var(--chart-text))" fontSize={12} width={100} />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
-                      border: "1px solid hsl(var(--border))",
+                      backgroundColor: "hsl(var(--chart-tooltip-bg))",
+                      border: "1px solid hsl(var(--chart-tooltip-border))",
                       borderRadius: "8px",
-                      color: "hsl(var(--dashboard-card-text))",
+                      color: "hsl(var(--chart-tooltip-text))",
+                      backdropFilter: 'blur(8px)'
                     }}
                   />
                   <Bar 
                     dataKey="value" 
                     radius={[0, 8, 8, 0]}
-                    animationDuration={600}
+                    animationDuration={800}
                     animationEasing="ease-in-out"
+                    style={{ filter: 'drop-shadow(0 0 8px hsl(var(--chart-line-stroke) / 0.5))' }}
                   />
                 </BarChart>
               </ResponsiveContainer>

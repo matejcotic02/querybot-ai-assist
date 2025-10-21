@@ -24,56 +24,84 @@ const ratingData = [
 export const PerformanceCharts = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <Card className="glass border-0 shadow-elegant">
+      <Card 
+        className="border-0 rounded-[16px] animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
+        style={{
+          backgroundColor: 'hsl(var(--chart-container-bg))',
+          border: '1px solid hsl(var(--chart-container-border))',
+          boxShadow: 'var(--chart-container-shadow)',
+          backdropFilter: 'blur(18px)',
+          animation: 'fade-in 800ms ease-in-out'
+        }}
+      >
         <CardHeader>
-          <CardTitle className="text-lg">Tickets Handled Per Day</CardTitle>
+          <CardTitle className="text-lg" style={{ color: 'hsl(var(--dashboard-card-text))' }}>Tickets Handled Per Day</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={ticketData}>
-              <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-              <XAxis dataKey="day" className="text-xs" />
-              <YAxis className="text-xs" />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--chart-grid))" />
+              <XAxis dataKey="day" stroke="hsl(var(--chart-text))" fontSize={12} />
+              <YAxis stroke="hsl(var(--chart-text))" fontSize={12} />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '12px'
+                  backgroundColor: 'hsl(var(--chart-tooltip-bg))',
+                  border: '1px solid hsl(var(--chart-tooltip-border))',
+                  borderRadius: '12px',
+                  color: 'hsl(var(--chart-tooltip-text))',
+                  backdropFilter: 'blur(8px)'
                 }}
               />
               <Line 
                 type="monotone" 
                 dataKey="tickets" 
-                stroke="hsl(var(--primary))" 
+                stroke="hsl(var(--chart-line-stroke))" 
                 strokeWidth={3}
-                dot={{ fill: 'hsl(var(--primary))', r: 4 }}
+                dot={{ fill: 'hsl(var(--chart-line-stroke))', r: 4 }}
+                style={{ filter: 'drop-shadow(0 0 8px hsl(var(--chart-line-stroke) / 0.5))' }}
+                animationDuration={800}
+                animationEasing="ease-in-out"
               />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
-      <Card className="glass border-0 shadow-elegant">
+      <Card 
+        className="border-0 rounded-[16px] animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
+        style={{
+          backgroundColor: 'hsl(var(--chart-container-bg))',
+          border: '1px solid hsl(var(--chart-container-border))',
+          boxShadow: 'var(--chart-container-shadow)',
+          backdropFilter: 'blur(18px)',
+          animation: 'fade-in 800ms ease-in-out 200ms backwards'
+        }}
+      >
         <CardHeader>
-          <CardTitle className="text-lg">Customer Ratings Trend</CardTitle>
+          <CardTitle className="text-lg" style={{ color: 'hsl(var(--dashboard-card-text))' }}>Customer Ratings Trend</CardTitle>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={ratingData}>
-              <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-              <XAxis dataKey="day" className="text-xs" />
-              <YAxis className="text-xs" domain={[0, 10]} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--chart-grid))" />
+              <XAxis dataKey="day" stroke="hsl(var(--chart-text))" fontSize={12} />
+              <YAxis domain={[0, 10]} stroke="hsl(var(--chart-text))" fontSize={12} />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '12px'
+                  backgroundColor: 'hsl(var(--chart-tooltip-bg))',
+                  border: '1px solid hsl(var(--chart-tooltip-border))',
+                  borderRadius: '12px',
+                  color: 'hsl(var(--chart-tooltip-text))',
+                  backdropFilter: 'blur(8px)'
                 }}
               />
               <Bar 
                 dataKey="rating" 
-                fill="hsl(var(--primary))" 
+                fill="hsl(var(--chart-fill))" 
                 radius={[8, 8, 0, 0]}
+                style={{ filter: 'drop-shadow(0 0 8px hsl(var(--chart-line-stroke) / 0.5))' }}
+                animationDuration={800}
+                animationEasing="ease-in-out"
               />
             </BarChart>
           </ResponsiveContainer>
