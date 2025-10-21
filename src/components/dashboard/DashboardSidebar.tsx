@@ -35,9 +35,9 @@ export const DashboardSidebar = ({ activeView, onViewChange }: DashboardSidebarP
             <button
               key={item.title}
               onClick={() => onViewChange(item.view)}
-              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
+              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                 isActive
-                  ? "bg-primary text-primary-foreground shadow-lg"
+                  ? "bg-gradient-to-r from-[hsl(249,95%,69%)] to-[hsl(280,90%,60%)] text-primary-foreground shadow-[0_8px_16px_rgba(163,123,255,0.4)] scale-105"
                   : "bg-background hover:bg-accent text-muted-foreground hover:text-foreground"
               }`}
               title={item.title}
