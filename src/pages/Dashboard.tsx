@@ -12,28 +12,20 @@ import { AIDiagnostics } from "@/components/dashboard/AIDiagnostics";
 import { TechnicianPerformance } from "@/components/dashboard/TechnicianPerformance";
 import { SystemHealth } from "@/components/dashboard/SystemHealth";
 import { DashboardFilters } from "@/components/dashboard/DashboardFilters";
-
 type DashboardView = "dashboard" | "settings" | "help-center";
-
 const Dashboard = () => {
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
   const [filterPeriod, setFilterPeriod] = useState<"today" | "week" | "month">("week");
-
-  return (
-    <div className="min-h-screen flex w-full bg-background">
+  return <div className="min-h-screen flex w-full bg-background">
       <DashboardSidebar activeView={activeView} onViewChange={setActiveView} />
       
       <div className="flex-1 flex flex-col min-h-screen ml-16">
         <DashboardHeader />
           
           <main className="flex-1 p-8 space-y-6">
-            {activeView === "dashboard" ? (
-              <>
+            {activeView === "dashboard" ? <>
                 {/* Filters */}
-                <DashboardFilters 
-                  filterPeriod={filterPeriod} 
-                  onFilterChange={setFilterPeriod} 
-                />
+                
                 
                 {/* Top Cards Row */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in">
@@ -61,16 +53,9 @@ const Dashboard = () => {
                     <SystemHealth />
                   </div>
                 </div>
-              </>
-            ) : activeView === "settings" ? (
-              <SettingsSection />
-            ) : (
-              <HelpCenter />
-            )}
+              </> : activeView === "settings" ? <SettingsSection /> : <HelpCenter />}
           </main>
         </div>
-      </div>
-  );
+      </div>;
 };
-
 export default Dashboard;
