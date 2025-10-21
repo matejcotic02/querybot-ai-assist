@@ -18,22 +18,8 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card 
-      className="border overflow-hidden flex flex-col h-[600px] transition-all duration-[400ms] ease-in-out hover:-translate-y-1"
-      style={{
-        backgroundColor: 'hsl(var(--section-card-bg))',
-        border: '1px solid hsl(var(--section-card-border))',
-        boxShadow: 'var(--section-card-shadow)',
-        backdropFilter: 'blur(16px)',
-        borderRadius: '20px',
-        padding: '24px'
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-hover-shadow)'}
-      onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-shadow)'}
-    >
-      <CardHeader className="border-b px-0"
-        style={{ color: 'hsl(var(--dashboard-card-text))' }}
-      >
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px]">
+      <CardHeader className="border-b">
         <CardTitle className="flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
           IT Support Assistant
