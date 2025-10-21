@@ -67,8 +67,22 @@ export const RecentChatPanel = () => {
   const [selectedChat, setSelectedChat] = useState(conversations[0]);
   
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px]">
-      <CardHeader className="flex flex-row items-center justify-between pb-4">
+    <Card 
+      className="border overflow-hidden h-[500px] transition-all duration-[400ms] ease-in-out hover:-translate-y-1"
+      style={{
+        backgroundColor: 'hsl(var(--section-card-bg))',
+        border: '1px solid hsl(var(--section-card-border))',
+        boxShadow: 'var(--section-card-shadow)',
+        backdropFilter: 'blur(16px)',
+        borderRadius: '20px',
+        padding: '24px'
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-hover-shadow)'}
+      onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'var(--section-card-shadow)'}
+    >
+      <CardHeader className="flex flex-row items-center justify-between pb-4 px-0"
+        style={{ color: 'hsl(var(--dashboard-card-text))' }}
+      >
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
             <MessageSquare className="h-5 w-5 text-primary" />
