@@ -1,16 +1,8 @@
 export const GlowOverlay = () => {
   return (
     <div 
-      className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl"
+      className="glow-overlay absolute top-0 left-0 w-full h-full pointer-events-none rounded-3xl bg-[radial-gradient(circle,_rgba(192,104,255,0.25)_0%,_transparent_70%)] blur-[40px]"
       style={{ zIndex: -1 }}
-    >
-      <div 
-        className="absolute -top-20 -left-20 w-64 h-64"
-        style={{
-          background: 'radial-gradient(circle, rgba(192,104,255,0.25) 0%, transparent 70%)',
-          filter: 'blur(30px)',
-        }}
-      />
-    </div>
+    />
   );
 };

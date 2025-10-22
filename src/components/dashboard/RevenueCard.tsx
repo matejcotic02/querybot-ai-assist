@@ -19,7 +19,7 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px] relative" style={{ backgroundColor: '#121217' }}>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-visible flex flex-col h-[600px] relative" style={{ backgroundColor: '#121217' }}>
       <GlowOverlay />
       <CardHeader className="border-b">
         <CardTitle className="flex items-center gap-2">

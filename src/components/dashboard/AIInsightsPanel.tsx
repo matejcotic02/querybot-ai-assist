@@ -32,7 +32,7 @@ const insights = [
 
 export const AIInsightsPanel = () => {
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px] flex flex-col relative" style={{ backgroundColor: '#121217' }}>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-visible h-[500px] flex flex-col relative" style={{ backgroundColor: '#121217' }}>
       <GlowOverlay />
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3">
