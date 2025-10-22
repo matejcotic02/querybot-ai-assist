@@ -7,11 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProfileDialog } from "./ProfileDialog";
+import { AICommandCenterPanel } from "./AICommandCenterPanel";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo-purple.png";
 export const DashboardHeader = () => {
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
+  const [aiPanelOpen, setAiPanelOpen] = useState(false);
   const [profile, setProfile] = useState<any>(null);
   useEffect(() => {
     fetchProfile();
@@ -55,7 +57,12 @@ export const DashboardHeader = () => {
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-3">
-            <Button variant="default" size="sm" className="gap-2 rounded-xl bg-primary hover:bg-primary/90 shadow-md">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="gap-2 rounded-xl bg-primary hover:bg-primary/90 shadow-md"
+              onClick={() => setAiPanelOpen(true)}
+            >
               <Sparkles className="h-4 w-4" />
               AI Agent
             </Button>
@@ -90,5 +97,6 @@ export const DashboardHeader = () => {
       </header>
 
       <ProfileDialog open={profileOpen} onOpenChange={setProfileOpen} />
+      <AICommandCenterPanel open={aiPanelOpen} onOpenChange={setAiPanelOpen} />
     </>;
 };
