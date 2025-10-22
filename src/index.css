@@ -151,7 +151,7 @@ All colors MUST be HSL.
     --dashboard-card-shadow: 0px 0px 12px rgba(163, 123, 255, 0.15);
     
     /* Chart Card Background */
-    --chart-card-bg: 224 16% 11%;
+    --chart-card-bg: 227 16% 11%;
     
     /* Chart Styles - Dark Mode */
     --chart-container-bg: 248 53% 12% / 0.75;
