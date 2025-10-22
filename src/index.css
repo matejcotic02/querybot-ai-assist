@@ -65,6 +65,9 @@ All colors MUST be HSL.
     --dashboard-card-text: 240 11% 13%;
     --dashboard-card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
     
+    /* Chart Card Background */
+    --chart-card-bg: 0 0% 100%;
+    
     /* Chart Styles - Light Mode */
     --chart-container-bg: 0 0% 100%;
     --chart-container-border: 0 0% 88%;
@@ -146,6 +149,9 @@ All colors MUST be HSL.
     --dashboard-card-bg: 240 11% 8%;
     --dashboard-card-text: 0 0% 100%;
     --dashboard-card-shadow: 0px 0px 12px rgba(163, 123, 255, 0.15);
+    
+    /* Chart Card Background */
+    --chart-card-bg: 224 16% 11%;
     
     /* Chart Styles - Dark Mode */
     --chart-container-bg: 248 53% 12% / 0.75;
