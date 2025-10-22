@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, MoreHorizontal, ExternalLink, CheckCheck, Lock } from "lucide-react";
 import { useState } from "react";
+import { GlowOverlay } from "@/components/ui/glow-overlay";
 
 const conversations = [
   {
@@ -67,7 +68,8 @@ export const RecentChatPanel = () => {
   const [selectedChat, setSelectedChat] = useState(conversations[0]);
   
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px]" style={{ backgroundColor: '#121217' }}>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px] relative" style={{ backgroundColor: '#121217' }}>
+      <GlowOverlay />
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">

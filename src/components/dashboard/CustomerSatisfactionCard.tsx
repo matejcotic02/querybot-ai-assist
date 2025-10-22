@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import { ChevronDown, MoreHorizontal, Smile } from "lucide-react";
 import { useState } from "react";
+import { GlowOverlay } from "@/components/ui/glow-overlay";
 
 const data = [
   { agent: "AS", rating: 7, color: "hsl(45, 97%, 69%)" },
@@ -21,7 +22,8 @@ export const CustomerSatisfactionCard = () => {
   const [view, setView] = useState("Weekly");
   
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden" style={{ backgroundColor: '#121217' }}>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden relative" style={{ backgroundColor: '#121217' }}>
+      <GlowOverlay />
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">

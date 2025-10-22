@@ -5,6 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Bot, Send, User } from "lucide-react";
 import { useITSupportChat } from "@/hooks/useITSupportChat";
 import { useState } from "react";
+import { GlowOverlay } from "@/components/ui/glow-overlay";
 
 export const RevenueCard = () => {
   const { messages, sendMessage, isLoading } = useITSupportChat();
@@ -18,7 +19,8 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px]" style={{ backgroundColor: '#121217' }}>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px] relative" style={{ backgroundColor: '#121217' }}>
+      <GlowOverlay />
       <CardHeader className="border-b">
         <CardTitle className="flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
