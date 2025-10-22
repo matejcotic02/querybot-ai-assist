@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Sparkles } from "lucide-react";
-import { GlowOverlay } from "@/components/ui/glow-overlay";
 
 const insights = [
   {
@@ -32,8 +31,7 @@ const insights = [
 
 export const AIInsightsPanel = () => {
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-visible h-[500px] flex flex-col relative" style={{ backgroundColor: '#121217' }}>
-      <GlowOverlay />
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px] flex flex-col" style={{ backgroundColor: '#121217' }}>
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
