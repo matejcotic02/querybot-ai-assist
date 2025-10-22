@@ -21,7 +21,7 @@ export const CustomerSatisfactionCard = () => {
   const [view, setView] = useState("Weekly");
   
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden">
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden" style={{ backgroundColor: '#121217' }}>
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
