@@ -22,13 +22,14 @@ export const CustomerSatisfactionCard = () => {
   
   return (
     <Card 
-      className="border-0 rounded-3xl overflow-hidden animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
+      className="chart-card-glow border-0 rounded-3xl animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
       style={{
         backgroundColor: 'hsl(var(--chart-container-bg))',
         border: '1px solid hsl(var(--chart-container-border))',
         boxShadow: 'var(--chart-container-shadow)',
         backdropFilter: 'blur(18px)',
-        animation: 'fade-in 800ms ease-in-out'
+        animation: 'fade-in 800ms ease-in-out',
+        overflow: 'hidden'
       }}
     >
       <CardHeader className="flex flex-row items-center justify-between pb-4">

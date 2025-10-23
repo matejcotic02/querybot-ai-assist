@@ -423,4 +423,36 @@ All colors MUST be HSL.
   .pause-animation:hover {
     animation-play-state: paused;
   }
+  
+  /* Chart Card External Glow - Dark Mode Only */
+  .chart-card-glow {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+  }
+  
+  .dark .chart-card-glow::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: -18px;
+    right: -18px;
+    bottom: -18px;
+    z-index: -1;
+    background: radial-gradient(
+      circle at center,
+      rgba(163, 123, 255, 0.35) 0%,
+      rgba(125, 92, 255, 0.15) 40%,
+      transparent 70%
+    );
+    filter: blur(48px);
+    opacity: 0.85;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .dark .chart-card-glow:hover::before {
+    opacity: 1;
+    filter: blur(60px);
+  }
 }
