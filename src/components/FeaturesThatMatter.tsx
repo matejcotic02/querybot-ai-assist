@@ -42,7 +42,7 @@ const badges = [
 
 export const FeaturesThatMatter = () => {
   return (
-    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+    <section id="about" className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       {/* Soft white-purple gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.05),transparent_70%)]" />

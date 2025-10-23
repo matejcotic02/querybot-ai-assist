@@ -10,7 +10,7 @@ const footerLinks = {
 
 export const Footer = () => {
   return (
-    <footer className="glass border-t border-border/50">
+    <footer id="contact" className="glass border-t border-border/50">
       <div className="container max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Logo & Description */}

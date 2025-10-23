@@ -12,8 +12,8 @@ export const Hero = () => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-80px 0px -60% 0px",
-      threshold: 0.1,
+      rootMargin: "-80px 0px -75% 0px",
+      threshold: 0.25,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -22,6 +22,8 @@ export const Hero = () => {
           const id = entry.target.id;
           if (id === "testimonials") setActiveNav("Testimonials");
           else if (id === "pricing") setActiveNav("Questions");
+          else if (id === "about") setActiveNav("About");
+          else if (id === "contact") setActiveNav("Contact");
         }
       });
     };
@@ -30,13 +32,19 @@ export const Hero = () => {
 
     const testimonialsSection = document.getElementById("testimonials");
     const questionsSection = document.getElementById("pricing");
+    const aboutSection = document.getElementById("about");
+    const contactSection = document.getElementById("contact");
 
     if (testimonialsSection) observer.observe(testimonialsSection);
     if (questionsSection) observer.observe(questionsSection);
+    if (aboutSection) observer.observe(aboutSection);
+    if (contactSection) observer.observe(contactSection);
 
     return () => {
       if (testimonialsSection) observer.unobserve(testimonialsSection);
       if (questionsSection) observer.unobserve(questionsSection);
+      if (aboutSection) observer.unobserve(aboutSection);
+      if (contactSection) observer.unobserve(contactSection);
     };
   }, []);
 
@@ -46,10 +54,30 @@ export const Hero = () => {
     if (target) {
       const offset = -80;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY + offset;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
+      
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      const duration = 850; // 800-900ms
+      let startTime: number | null = null;
+
+      const easeInOutCubic = (t: number): number => {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+
+      const animation = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * ease);
+        
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      };
+
+      requestAnimationFrame(animation);
     }
   };
   return (
@@ -88,8 +116,28 @@ export const Hero = () => {
               >
                 Questions
               </a>
-              <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">About</a>
-              <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Contact</a>
+              <a 
+                href="#about" 
+                onClick={(e) => handleSmoothScroll(e, "about")}
+                className={`text-sm font-medium transition-all duration-300 ${
+                  activeNav === "About" 
+                    ? "text-[#A37BFF] border-b-2 border-[#A37BFF]" 
+                    : "text-foreground/80 hover:text-[#A37BFF]"
+                }`}
+              >
+                About
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => handleSmoothScroll(e, "contact")}
+                className={`text-sm font-medium transition-all duration-300 ${
+                  activeNav === "Contact" 
+                    ? "text-[#A37BFF] border-b-2 border-[#A37BFF]" 
+                    : "text-foreground/80 hover:text-[#A37BFF]"
+                }`}
+              >
+                Contact
+              </a>
             </div>
             
             {/* Auth Buttons - Right */}
