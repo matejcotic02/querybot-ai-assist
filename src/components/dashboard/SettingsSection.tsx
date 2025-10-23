@@ -26,20 +26,49 @@ export const SettingsSection = () => {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const {
-        data: {
-          user
-        }
-      } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
+      
       if (!user) {
         navigate("/login");
         return;
       }
+      
       setEmail(user.email || "");
-      const {
-        data: profile
-      } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      if (profile) {
+      
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+      
+      if (profileError) {
+        // If profile doesn't exist, create it
+        if (profileError.code === 'PGRST116') {
+          const { error: insertError } = await supabase
+            .from("profiles")
+            .insert({
+              id: user.id,
+              full_name: user.user_metadata?.full_name || "",
+              company_name: user.user_metadata?.company_name || "",
+              avatar_url: user.user_metadata?.avatar_url || ""
+            });
+          
+          if (!insertError) {
+            // Fetch the newly created profile
+            const { data: newProfile } = await supabase
+              .from("profiles")
+              .select("*")
+              .eq("id", user.id)
+              .single();
+            
+            if (newProfile) {
+              setFullName(newProfile.full_name || "");
+              setCompanyName(newProfile.company_name || "");
+              setAvatarUrl(newProfile.avatar_url || "");
+            }
+          }
+        }
+      } else if (profile) {
         setFullName(profile.full_name || "");
         setCompanyName(profile.company_name || "");
         setAvatarUrl(profile.avatar_url || "");
@@ -47,6 +76,11 @@ export const SettingsSection = () => {
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
+      toast({
+        title: "Error",
+        description: "Failed to load profile data",
+        variant: "destructive"
+      });
     } finally {
       setLoading(false);
     }

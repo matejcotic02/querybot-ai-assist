@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { RevenueCard } from "@/components/dashboard/RevenueCard";
@@ -14,8 +16,42 @@ import { SystemHealth } from "@/components/dashboard/SystemHealth";
 import { DashboardFilters } from "@/components/dashboard/DashboardFilters";
 type DashboardView = "dashboard" | "settings" | "help-center";
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
   const [filterPeriod, setFilterPeriod] = useState<"today" | "week" | "month">("week");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Check authentication on mount
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate("/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+    };
+
+    checkAuth();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  if (isAuthenticated === null) {
+    return <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>;
+  }
+
   return <div className="min-h-screen flex w-full bg-background">
       <DashboardSidebar activeView={activeView} onViewChange={setActiveView} />
       
