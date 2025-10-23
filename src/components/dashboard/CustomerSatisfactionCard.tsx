@@ -21,17 +21,7 @@ export const CustomerSatisfactionCard = () => {
   const [view, setView] = useState("Weekly");
   
   return (
-    <Card 
-      className="chart-card-glow border-0 rounded-3xl animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
-      style={{
-        backgroundColor: 'hsl(var(--chart-card-bg))',
-        border: '1px solid hsl(var(--chart-container-border))',
-        boxShadow: 'var(--chart-container-shadow)',
-        backdropFilter: 'blur(18px)',
-        animation: 'fade-in 800ms ease-in-out',
-        overflow: 'hidden'
-      }}
-    >
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden bg-[hsl(var(--chart-card-bg))]">
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
