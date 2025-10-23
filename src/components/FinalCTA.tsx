@@ -29,7 +29,7 @@ export const FinalCTA = () => {
         <Button 
           size="lg"
           variant="secondary"
-          className="text-lg px-10 py-7 rounded-3xl group hover-glow shadow-elevated bg-white text-primary hover:bg-white/90"
+          className="text-lg px-10 py-7 rounded-3xl group hover-glow shadow-elevated bg-white text-white hover:bg-white/90"
           onClick={() => window.location.href = '/login'}
         >
           Try QueryBot Free
