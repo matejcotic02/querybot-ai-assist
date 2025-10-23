@@ -106,7 +106,6 @@ export const TechnicianPerformance = () => {
               backgroundColor: 'hsl(var(--chart-container-bg))',
               border: '1px solid hsl(var(--chart-container-border))',
               boxShadow: 'var(--chart-container-shadow)',
-              backdropFilter: 'blur(18px)'
             }}
           >
             <ResponsiveContainer width="100%" height={200}>
@@ -130,7 +129,6 @@ export const TechnicianPerformance = () => {
                             backgroundColor: 'hsl(var(--chart-tooltip-bg))',
                             border: '1px solid hsl(var(--chart-tooltip-border))',
                             color: 'hsl(var(--chart-tooltip-text))',
-                            backdropFilter: 'blur(8px)'
                           }}
                         >
                           <p className="font-semibold mb-2">{data.fullName}</p>

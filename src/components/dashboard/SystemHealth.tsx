@@ -147,7 +147,6 @@ export const SystemHealth = () => {
                   style={{
                     backgroundColor: 'hsl(var(--chart-container-bg))',
                     border: '1px solid hsl(var(--chart-container-border))',
-                    backdropFilter: 'blur(18px)'
                   }}
                 >
                   <ResponsiveContainer width="100%" height={60}>

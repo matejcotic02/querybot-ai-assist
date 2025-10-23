@@ -8,7 +8,7 @@ export const DashboardFilters = ({
   filterPeriod,
   onFilterChange
 }: DashboardFiltersProps) => {
-  return <div className="flex items-center gap-2 bg-[#0C0C1A]/50 backdrop-blur-sm p-4 rounded-2xl border border-white/10">
+  return <div className="flex items-center gap-2 bg-[#0C0C1A]/50 p-4 rounded-2xl border border-white/10">
       <Calendar className="w-4 h-4 text-white/50" />
       
       <div className="flex gap-2">

@@ -63,7 +63,6 @@ export const CustomerSatisfactionCard = () => {
             backgroundColor: 'hsl(var(--chart-container-bg))',
             border: '1px solid hsl(var(--chart-container-border))',
             boxShadow: 'var(--chart-container-shadow)',
-            backdropFilter: 'blur(18px)',
             animation: 'fade-in 800ms ease-in-out'
           }}
         >
@@ -89,7 +88,6 @@ export const CustomerSatisfactionCard = () => {
                   border: "1px solid hsl(var(--chart-tooltip-border))",
                   borderRadius: "12px",
                   color: "hsl(var(--chart-tooltip-text))",
-                  backdropFilter: 'blur(8px)'
                 }}
               />
               <Bar 

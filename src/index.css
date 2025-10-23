@@ -371,11 +371,9 @@ All colors MUST be HSL.
   @keyframes pulse-glow {
     0%, 100% {
       opacity: 0.3;
-      filter: blur(40px);
     }
     50% {
       opacity: 0.6;
-      filter: blur(60px);
     }
   }
   
@@ -394,7 +392,6 @@ All colors MUST be HSL.
   /* Animated Background Blobs */
   .blob {
     @apply absolute rounded-full;
-    filter: blur(60px);
     opacity: 0.4;
   }
   

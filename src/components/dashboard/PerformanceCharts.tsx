@@ -30,7 +30,6 @@ export const PerformanceCharts = () => {
           backgroundColor: 'hsl(var(--chart-container-bg))',
           border: '1px solid hsl(var(--chart-container-border))',
           boxShadow: 'var(--chart-container-shadow)',
-          backdropFilter: 'blur(18px)',
           animation: 'fade-in 800ms ease-in-out'
         }}
       >
@@ -49,7 +48,6 @@ export const PerformanceCharts = () => {
                   border: '1px solid hsl(var(--chart-tooltip-border))',
                   borderRadius: '12px',
                   color: 'hsl(var(--chart-tooltip-text))',
-                  backdropFilter: 'blur(8px)'
                 }}
               />
               <Line 
@@ -73,7 +71,6 @@ export const PerformanceCharts = () => {
           backgroundColor: 'hsl(var(--chart-container-bg))',
           border: '1px solid hsl(var(--chart-container-border))',
           boxShadow: 'var(--chart-container-shadow)',
-          backdropFilter: 'blur(18px)',
           animation: 'fade-in 800ms ease-in-out 200ms backwards'
         }}
       >
@@ -92,7 +89,6 @@ export const PerformanceCharts = () => {
                   border: '1px solid hsl(var(--chart-tooltip-border))',
                   borderRadius: '12px',
                   color: 'hsl(var(--chart-tooltip-text))',
-                  backdropFilter: 'blur(8px)'
                 }}
               />
               <Bar 

@@ -203,7 +203,6 @@ export const IncidentMonitor = () => {
                 backgroundColor: 'hsl(var(--chart-container-bg))',
                 border: '1px solid hsl(var(--chart-container-border))',
                 boxShadow: 'var(--chart-container-shadow)',
-                backdropFilter: 'blur(18px)'
               }}
             >
               <ResponsiveContainer width="100%" height={200}>
@@ -211,12 +210,11 @@ export const IncidentMonitor = () => {
                   <XAxis type="number" stroke="hsl(var(--chart-text))" fontSize={12} />
                   <YAxis type="category" dataKey="name" stroke="hsl(var(--chart-text))" fontSize={12} width={100} />
                   <Tooltip
-                    contentStyle={{
+                  contentStyle={{
                       backgroundColor: "hsl(var(--chart-tooltip-bg))",
                       border: "1px solid hsl(var(--chart-tooltip-border))",
                       borderRadius: "8px",
                       color: "hsl(var(--chart-tooltip-text))",
-                      backdropFilter: 'blur(8px)'
                     }}
                   />
                   <Bar 

@@ -51,7 +51,7 @@ export const AICommandCenterPanel = ({
     sendMessage(prompt);
   };
   return <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full sm:max-w-[480px] p-0 border-l border-border/50 bg-gradient-to-br from-background/95 via-background/98 to-background backdrop-blur-xl">
+      <SheetContent side="right" className="w-full sm:max-w-[480px] p-0 border-l border-border/50 bg-gradient-to-br from-background/95 via-background/98 to-background">
         <div className="flex flex-col h-full">
           {/* Header */}
           <SheetHeader className="px-6 py-4 border-b border-border/50 bg-card/30">
