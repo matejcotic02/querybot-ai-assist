@@ -23,7 +23,7 @@ export const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 md:py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+    <section id="pricing" className="py-20 md:py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
       

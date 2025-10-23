@@ -4,8 +4,54 @@ import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 import logo from "@/assets/logo-purple.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";
+import { useState, useEffect } from "react";
 
 export const Hero = () => {
+  const [activeNav, setActiveNav] = useState<string>("none");
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-80px 0px -60% 0px",
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          if (id === "testimonials") setActiveNav("Testimonials");
+          else if (id === "pricing") setActiveNav("Questions");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const testimonialsSection = document.getElementById("testimonials");
+    const questionsSection = document.getElementById("pricing");
+
+    if (testimonialsSection) observer.observe(testimonialsSection);
+    if (questionsSection) observer.observe(questionsSection);
+
+    return () => {
+      if (testimonialsSection) observer.unobserve(testimonialsSection);
+      if (questionsSection) observer.unobserve(questionsSection);
+    };
+  }, []);
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) {
+      const offset = -80;
+      const targetPosition = target.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Navigation Bar */}
@@ -20,8 +66,28 @@ export const Hero = () => {
             
             {/* Desktop Navigation - Center */}
             <div className="hidden lg:flex items-center gap-12 flex-1 justify-center">
-              <a href="#testimonials" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Testimonials</a>
-              <a href="#pricing" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Questions</a>
+              <a 
+                href="#testimonials" 
+                onClick={(e) => handleSmoothScroll(e, "testimonials")}
+                className={`text-sm font-medium transition-all duration-300 ${
+                  activeNav === "Testimonials" 
+                    ? "text-[#A37BFF] border-b-2 border-[#A37BFF]" 
+                    : "text-foreground/80 hover:text-[#A37BFF]"
+                }`}
+              >
+                Testimonials
+              </a>
+              <a 
+                href="#pricing" 
+                onClick={(e) => handleSmoothScroll(e, "pricing")}
+                className={`text-sm font-medium transition-all duration-300 ${
+                  activeNav === "Questions" 
+                    ? "text-[#A37BFF] border-b-2 border-[#A37BFF]" 
+                    : "text-foreground/80 hover:text-[#A37BFF]"
+                }`}
+              >
+                Questions
+              </a>
               <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">About</a>
               <a href="#contact" className="text-sm font-medium text-foreground/80 hover:text-[#A37BFF] transition-colors">Contact</a>
             </div>
