@@ -24,7 +24,7 @@ export const CustomerSatisfactionCard = () => {
     <Card 
       className="chart-card-glow border-0 rounded-3xl animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
       style={{
-        backgroundColor: 'hsl(var(--chart-container-bg))',
+        backgroundColor: 'hsl(var(--chart-card-bg))',
         border: '1px solid hsl(var(--chart-container-border))',
         boxShadow: 'var(--chart-container-shadow)',
         backdropFilter: 'blur(18px)',
