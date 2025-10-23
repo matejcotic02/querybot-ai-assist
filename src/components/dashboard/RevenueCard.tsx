@@ -18,7 +18,16 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px] bg-[hsl(var(--chart-card-bg))]">
+    <Card 
+      className="border-0 rounded-3xl overflow-hidden flex flex-col h-[600px] animate-fade-in transition-all duration-[400ms] ease-in-out hover:scale-[1.02]"
+      style={{
+        backgroundColor: 'hsl(var(--chart-container-bg))',
+        border: '1px solid hsl(var(--chart-container-border))',
+        boxShadow: 'var(--chart-container-shadow)',
+        backdropFilter: 'blur(18px)',
+        animation: 'fade-in 800ms ease-in-out'
+      }}
+    >
       <CardHeader className="border-b">
         <CardTitle className="flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
