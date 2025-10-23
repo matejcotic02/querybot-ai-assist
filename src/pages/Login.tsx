@@ -119,14 +119,28 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-cover bg-center bg-fixed bg-no-repeat bg-[url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop')] dark:bg-[url('https://images.unsplash.com/photo-1600334129128-8c6f3cfcfbde?q=80&w=2000&auto=format&fit=crop')] transition-[background-image] duration-400">
+    <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
       {/* Theme Toggle */}
       <div className="absolute top-8 right-8 z-20">
         <ThemeToggle />
       </div>
       
-      {/* Mist Overlay */}
-      <div className="absolute inset-0 bg-white/40 dark:bg-[rgb(15,10,25)]/70 bg-blend-overlay transition-colors duration-400" />
+      {/* Animated Background */}
+      <div className="absolute inset-0 gradient-hero opacity-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(var(--primary)/0.15),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,hsl(var(--accent)/0.1),transparent_60%)]" />
+      
+      {/* Floating Animated Blobs */}
+      <div className="blob blob-primary w-96 h-96 top-10 -left-48 animate-float" />
+      <div className="blob blob-accent w-80 h-80 top-1/3 right-0 animate-float-alt" style={{ animationDelay: '2s' }} />
+      <div className="blob blob-primary w-72 h-72 bottom-20 right-1/4 animate-float" style={{ animationDelay: '4s' }} />
+      <div className="blob blob-accent w-64 h-64 bottom-10 left-10 animate-float-alt" style={{ animationDelay: '6s' }} />
+      
+      {/* Subtle Particles */}
+      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full animate-pulse-glow" />
+      <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-accent/40 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-1/3 left-1/2 w-2.5 h-2.5 bg-primary/30 rounded-full animate-pulse-glow" style={{ animationDelay: '3s' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse-glow" style={{ animationDelay: '5s' }} />
       
       <div className="w-full max-w-md relative z-10">
         {/* Back Button */}
@@ -139,7 +153,7 @@ const Login = () => {
           Back to home
         </Button>
         
-        <Card className="border-2 rounded-2xl shadow-[0_4px_40px_rgba(163,123,255,0.25)] backdrop-blur-lg bg-white/75 dark:bg-[rgb(20,10,40)]/75 transition-colors duration-400">
+        <Card className="border-2 rounded-3xl shadow-elevated glass">
           <CardHeader className="space-y-3 pb-8">
             <div className="flex items-center gap-2 mb-2">
               <img src={logo} alt="QueryBot Logo" className="w-10 h-10 rounded-xl" />
@@ -191,7 +205,7 @@ const Login = () => {
                   
                   <Button 
                     type="submit"
-                    className="w-full h-[50px] text-base rounded-xl font-semibold bg-gradient-to-br from-[#A37BFF] to-[#7D5CFF] text-white shadow-[0_4px_16px_rgba(163,123,255,0.4)] hover:shadow-[0_6px_20px_rgba(163,123,255,0.5)] hover:-translate-y-0.5 active:scale-[0.98] active:shadow-[0_2px_8px_rgba(125,92,255,0.4)] transition-all duration-250"
+                    className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow"
                     size="lg"
                     disabled={isLoading}
                   >
@@ -260,7 +274,7 @@ const Login = () => {
                   
                   <Button 
                     type="submit"
-                    className="w-full h-[50px] text-base rounded-xl font-semibold bg-gradient-to-br from-[#A37BFF] to-[#7D5CFF] text-white shadow-[0_4px_16px_rgba(163,123,255,0.4)] hover:shadow-[0_6px_20px_rgba(163,123,255,0.5)] hover:-translate-y-0.5 active:scale-[0.98] active:shadow-[0_2px_8px_rgba(125,92,255,0.4)] transition-all duration-250"
+                    className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow"
                     size="lg"
                     disabled={isLoading}
                   >
