@@ -134,7 +134,7 @@ export const SystemHealth = () => {
                   {label}
                 </div>
 
-                <div className="text-2xl font-bold text-primary mb-2">
+                <div className="text-xl font-bold text-primary mb-2">
                   {component.uptime_percentage.toFixed(1)}%
                 </div>
                 <div className="text-xs opacity-60 mb-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
