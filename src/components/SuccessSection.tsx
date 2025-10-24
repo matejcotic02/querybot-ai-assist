@@ -18,7 +18,7 @@ export const SuccessSection = () => {
           {/* Left Column - Text Content (3/5 width) */}
           <div className="lg:col-span-3 space-y-6 animate-fade-in-up">
             {/* Label */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-border shadow-sm">
               <span className="text-xl">🚀</span>
               <span className="text-sm font-medium text-foreground">Automation Made Simple</span>
             </div>
