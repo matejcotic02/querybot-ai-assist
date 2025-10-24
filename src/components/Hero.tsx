@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroTempleBg from "@/assets/hero-temple-bg.jpg";
+import heroTempleBg from "@/assets/hero-extended-bg.jpg";
 import logo from "@/assets/logo-purple.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";

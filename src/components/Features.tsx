@@ -1,7 +1,7 @@
 import { Bot, BarChart3, Settings, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import heroTempleBg from "@/assets/hero-temple-bg.jpg";
+import heroTempleBg from "@/assets/hero-extended-bg.jpg";
 
 const features = [
   {
