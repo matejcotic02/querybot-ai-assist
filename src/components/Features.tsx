@@ -36,20 +36,20 @@ export const Features = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-background/30 dark:via-transparent dark:to-background/30" />
       </div>
       
-      <div className="container max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16 space-y-4 animate-fade-in-up">
+      <div className="relative z-10 w-full px-4 md:px-8">
+        <div className="text-center mb-16 space-y-4 animate-fade-in-up max-w-4xl mx-auto">
           <h2 className="text-h2">
             Everything you need to{" "}
             <span className="text-purple-400 font-semibold">
               automate support
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground">
             Powerful features that help your team resolve tickets faster and smarter
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
