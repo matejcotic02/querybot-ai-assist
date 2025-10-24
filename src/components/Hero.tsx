@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 import logo from "@/assets/logo-purple.png";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";
 import { useState, useEffect } from "react";
@@ -137,8 +138,15 @@ export const Hero = () => {
               Get Started
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            
-            
+          </div>
+          
+          {/* Dashboard Preview Image */}
+          <div className="mt-16 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
+            <img 
+              src={dashboardPreview} 
+              alt="QueryBot Dashboard Preview" 
+              className="w-full max-w-5xl mx-auto rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+            />
           </div>
         </div>
       </div>
