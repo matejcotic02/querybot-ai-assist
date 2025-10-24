@@ -1,7 +1,6 @@
 import { Bot, BarChart3, Settings, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import heroTempleBg from "@/assets/hero-extended-bg.jpg";
 
 const features = [
   {
@@ -23,19 +22,7 @@ const features = [
 
 export const Features = () => {
   return (
-    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden">
-      {/* Japanese Temple Background */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={heroTempleBg} 
-          alt="Misty Japanese temple background" 
-          className="w-full h-full object-cover"
-        />
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-[#A37BFF]/10 to-white/60 dark:from-background/40 dark:via-[#A37BFF]/10 dark:to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-background/30 dark:via-transparent dark:to-background/30" />
-      </div>
-      
+    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative">
       <div className="relative z-10 w-full px-4 md:px-8">
         <div className="text-center mb-16 space-y-4 animate-fade-in-up max-w-4xl mx-auto">
           <h2 className="text-h2">

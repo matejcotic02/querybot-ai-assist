@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroTempleBg from "@/assets/hero-extended-bg.jpg";
 import logo from "@/assets/logo-purple.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";
@@ -103,14 +102,6 @@ export const Hero = () => {
           </div>
         </div>
       </nav>
-
-      {/* Hero Background */}
-      <div className="absolute inset-0 z-0">
-        <img src={heroTempleBg} alt="Misty Japanese temple background" className="w-full h-full object-cover" />
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-[#A37BFF]/10 to-white/60 dark:from-background/40 dark:via-[#A37BFF]/10 dark:to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-background/30 dark:via-transparent dark:to-background/30" />
-      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-32 md:pt-40 pb-12">
