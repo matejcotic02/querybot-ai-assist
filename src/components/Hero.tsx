@@ -145,8 +145,7 @@ export const Hero = () => {
             <img 
               src={dashboardPreview} 
               alt="QueryBot Dashboard Preview" 
-              className="w-full max-w-3xl mx-auto rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500 bg-transparent"
-              style={{ mixBlendMode: 'multiply' }}
+              className="w-full max-w-3xl mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500"
             />
           </div>
         </div>
