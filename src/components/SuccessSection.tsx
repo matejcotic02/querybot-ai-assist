@@ -5,7 +5,7 @@ import successHeroImage from "@/assets/success-hero.png";
 
 export const SuccessSection = () => {
   return (
-    <section className="bg-background py-20 md:py-24">
+    <section className="bg-white dark:bg-white py-20 md:py-24">
       <div className="container max-w-7xl mx-auto px-4 md:px-8">
         {/* Logo Carousel */}
         <LogoCarousel />
