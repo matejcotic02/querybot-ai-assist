@@ -141,11 +141,12 @@ export const Hero = () => {
           </div>
           
           {/* Dashboard Preview Image */}
-          <div className="mt-16 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
+          <div className="mt-12 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
             <img 
               src={dashboardPreview} 
               alt="QueryBot Dashboard Preview" 
-              className="w-full max-w-5xl mx-auto rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+              className="w-full max-w-3xl mx-auto rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500 bg-transparent"
+              style={{ mixBlendMode: 'multiply' }}
             />
           </div>
         </div>
