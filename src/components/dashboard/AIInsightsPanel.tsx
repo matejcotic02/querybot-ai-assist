@@ -1,77 +1,104 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { TrendingUp, Sparkles } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { TrendingUp, Target, Clock, Zap } from "lucide-react";
+import { LineChart, Line, ResponsiveContainer } from "recharts";
 
-const insights = [
+const kpiData = {
+  response_accuracy: "94%",
+  automated_resolutions: 128,
+  time_saved: "560 min",
+  trend: [
+    { value: 70 },
+    { value: 75 },
+    { value: 80 },
+    { value: 88 },
+    { value: 90 },
+    { value: 92 },
+    { value: 94 }
+  ]
+};
+
+const kpiCards = [
   {
-    label: "Ticket resolution rate",
-    value: "94%",
-    detail: "vs last week",
-    progress: 94,
-    color: "hsl(142, 76%, 58%)",
-    pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(142, 76%, 58%, 0.1) 10px, hsl(142, 76%, 58%, 0.1) 20px)"
+    label: "Average Response Accuracy",
+    value: kpiData.response_accuracy,
+    icon: Target,
+    color: "hsl(249, 95%, 69%)"
   },
   {
-    label: "Avg response time",
-    value: "2.5 min",
-    detail: "15% faster",
-    progress: 85,
-    color: "hsl(249, 95%, 69%)",
-    pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(249, 95%, 69%, 0.1) 10px, hsl(249, 95%, 69%, 0.1) 20px)"
+    label: "Total Automated Resolutions",
+    value: kpiData.automated_resolutions,
+    icon: Zap,
+    color: "hsl(142, 76%, 58%)"
   },
   {
-    label: "System uptime",
-    value: "99.8%",
-    detail: "this month",
-    progress: 99,
-    color: "hsl(45, 97%, 69%)",
-    pattern: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(45, 97%, 69%, 0.1) 10px, hsl(45, 97%, 69%, 0.1) 20px)"
+    label: "Time Saved",
+    value: kpiData.time_saved,
+    icon: Clock,
+    color: "hsl(45, 97%, 69%)"
   }
 ];
 
 export const AIInsightsPanel = () => {
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px] flex flex-col bg-[hsl(var(--chart-card-bg))]">
+    <Card 
+      className="border-border rounded-2xl overflow-hidden bg-[var(--card-bg)] lg:col-span-2"
+      style={{
+        boxShadow: "0 0 14px rgba(163, 123, 255, 0.15), inset 0 0 8px rgba(125, 92, 255, 0.08)"
+      }}
+    >
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
             <TrendingUp className="h-5 w-5 text-primary" />
           </div>
-          <CardTitle className="text-lg font-semibold">AI Insight</CardTitle>
+          <div>
+            <CardTitle className="text-lg font-semibold">AI Insights</CardTitle>
+            <CardDescription className="text-sm">Real-time performance and prediction overview</CardDescription>
+          </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-6 flex-1 flex flex-col">
-        {/* Insight Bars */}
-        <div className="space-y-5 flex-1">
-          {insights.map((insight, index) => (
-            <div key={index} className="space-y-3">
-              <div 
-                className="h-16 rounded-2xl p-4 flex items-center justify-between"
-                style={{ background: insight.pattern }}
-              >
-                <div className="flex items-center gap-2">
-                  <div 
-                    className="h-3 w-3 rounded-full" 
-                    style={{ backgroundColor: insight.color }}
-                  />
-                  <span className="text-sm font-medium">{insight.label}</span>
-                </div>
-                <div className="text-right">
-                  <p className="text-lg font-bold">{insight.value}</p>
-                  {insight.detail && (
-                    <p className="text-xs text-muted-foreground">{insight.detail}</p>
-                  )}
+      <CardContent className="space-y-6">
+        {/* KPI Cards Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {kpiCards.map((kpi, index) => (
+            <div
+              key={index}
+              className="p-4 rounded-xl border border-border bg-background/50"
+              style={{
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)"
+              }}
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div 
+                  className="p-2 rounded-lg"
+                  style={{ backgroundColor: `${kpi.color}20` }}
+                >
+                  <kpi.icon className="h-4 w-4" style={{ color: kpi.color }} />
                 </div>
               </div>
+              <p className="text-2xl font-bold mb-1">{kpi.value}</p>
+              <p className="text-xs text-muted-foreground">{kpi.label}</p>
             </div>
           ))}
         </div>
-        
-        {/* Try AI Insight Button */}
-        <Button className="w-full rounded-2xl h-12 bg-primary hover:bg-primary/90 shadow-md gap-2 mt-auto">
-          <Sparkles className="h-4 w-4" />
-          Try AI Insight
-        </Button>
+
+        {/* Trend Chart */}
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">AI Improvement Trend</h4>
+          <div className="h-32 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={kpiData.trend}>
+                <Line 
+                  type="monotone" 
+                  dataKey="value" 
+                  stroke="hsl(249, 95%, 69%)" 
+                  strokeWidth={2}
+                  dot={{ fill: "hsl(249, 95%, 69%)", r: 3 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

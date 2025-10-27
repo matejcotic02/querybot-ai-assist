@@ -67,7 +67,13 @@ export const RecentChatPanel = () => {
   const [selectedChat, setSelectedChat] = useState(conversations[0]);
   
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden h-[500px] bg-[hsl(var(--chart-card-bg))]">
+    <Card 
+      className="border-border rounded-2xl overflow-hidden h-[500px] bg-[var(--card-bg)]"
+      style={{
+        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
+        backdropFilter: "blur(14px)"
+      }}
+    >
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
@@ -76,7 +82,7 @@ export const RecentChatPanel = () => {
           <CardTitle className="text-lg font-semibold">Recent Chat AI Assistant</CardTitle>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="gap-2 rounded-xl h-9">
+          <Button variant="ghost" size="sm" className="gap-2 rounded-xl h-9 text-sm">
             See all
             <ExternalLink className="h-3.5 w-3.5" />
           </Button>

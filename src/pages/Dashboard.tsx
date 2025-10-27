@@ -62,12 +62,11 @@ const Dashboard = () => {
             {activeView === "dashboard" ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <RevenueCard />
-                <AIInsightsPanel />
+                <RecentChatPanel />
               </div>
             ) : activeView === "statistics" ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <CustomerSatisfactionCard />
-                <RecentChatPanel />
+              <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+                <AIInsightsPanel />
                 <IncidentMonitor />
                 <AIDiagnostics />
                 <TechnicianPerformance />
