@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Bell, MessageSquare, User, Sparkles, LogOut } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Bell, Sparkles, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProfileDialog } from "./ProfileDialog";
 import { AICommandCenterPanel } from "./AICommandCenterPanel";
+import { SmartSearch } from "./SmartSearch";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo-purple.png";
 export const DashboardHeader = () => {
@@ -47,12 +47,9 @@ export const DashboardHeader = () => {
             <span className="text-xl font-bold text-foreground">QueryBot</span>
           </div>
           
-          {/* Center Search Bar */}
-          <div className="flex-1 flex items-center justify-center max-w-2xl mx-auto">
-            <div className="relative w-full">
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search for a message, contact, or task" className="pl-11 h-11 bg-muted/30 border-border rounded-xl" />
-            </div>
+          {/* Center Smart Search Bar */}
+          <div className="flex-1 flex items-center justify-center mx-auto">
+            <SmartSearch />
           </div>
 
           {/* Right Side Icons */}
