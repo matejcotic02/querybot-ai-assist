@@ -14,7 +14,7 @@ import { AIDiagnostics } from "@/components/dashboard/AIDiagnostics";
 import { TechnicianPerformance } from "@/components/dashboard/TechnicianPerformance";
 import { SystemHealth } from "@/components/dashboard/SystemHealth";
 import { DashboardFilters } from "@/components/dashboard/DashboardFilters";
-type DashboardView = "dashboard" | "settings" | "help-center";
+type DashboardView = "dashboard" | "statistics" | "settings" | "help-center";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
@@ -58,38 +58,26 @@ const Dashboard = () => {
       <div className="flex-1 flex flex-col min-h-screen ml-16">
         <DashboardHeader />
           
-          <main className="flex-1 p-8 space-y-6">
-            {activeView === "dashboard" ? <>
-                {/* Filters */}
-                
-                
-                {/* Top Cards Row */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in">
-                  <RevenueCard />
-                  <CustomerSatisfactionCard />
-                </div>
-                
-                {/* Bottom Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in">
-                  <div className="lg:col-span-2">
-                    <RecentChatPanel />
-                  </div>
-                  <div className="lg:col-span-1">
-                    <AIInsightsPanel />
-                  </div>
-                </div>
-
-                {/* New Advanced Dashboard Sections */}
-                <div className="space-y-6 mt-8">
-                  <IncidentMonitor />
-                  <AIDiagnostics />
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <TechnicianPerformance />
-                    <SystemHealth />
-                  </div>
-                </div>
-              </> : activeView === "settings" ? <SettingsSection /> : <HelpCenter />}
+          <main className="flex-1 p-6" style={{ background: "var(--page-bg, hsl(var(--background)))" }}>
+            {activeView === "dashboard" ? (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <RevenueCard />
+                <AIInsightsPanel />
+              </div>
+            ) : activeView === "statistics" ? (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <CustomerSatisfactionCard />
+                <RecentChatPanel />
+                <IncidentMonitor />
+                <AIDiagnostics />
+                <TechnicianPerformance />
+                <SystemHealth />
+              </div>
+            ) : activeView === "settings" ? (
+              <SettingsSection />
+            ) : (
+              <HelpCenter />
+            )}
           </main>
         </div>
       </div>;
