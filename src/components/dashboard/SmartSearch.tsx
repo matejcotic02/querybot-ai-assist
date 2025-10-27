@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, FileText, User, MessageSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
@@ -13,6 +14,7 @@ interface SearchResult {
 }
 
 export const SmartSearch = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -105,6 +107,23 @@ export const SmartSearch = () => {
     return () => clearTimeout(debounce);
   }, [query]);
 
+  const handleResultClick = (result: SearchResult) => {
+    setQuery("");
+    setIsOpen(false);
+
+    switch (result.type) {
+      case "ticket":
+        navigate(`/tickets/${result.id}`);
+        break;
+      case "user":
+        navigate(`/users/${result.id}`);
+        break;
+      case "chat":
+        navigate(`/chats/${result.id}`);
+        break;
+    }
+  };
+
   return (
     <div ref={containerRef} className="relative w-full max-w-[480px]">
       <div
@@ -134,11 +153,8 @@ export const SmartSearch = () => {
             return (
               <button
                 key={`${result.type}-${result.id}`}
-                onClick={() => {
-                  setQuery("");
-                  setIsOpen(false);
-                }}
-                className="w-full flex items-start gap-3 p-3 hover:bg-primary/8 transition-colors text-left"
+                onClick={() => handleResultClick(result)}
+                className="w-full flex items-start gap-3 p-3 hover:bg-primary/8 transition-all duration-200 hover:scale-[1.01] text-left"
               >
                 <Icon className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
