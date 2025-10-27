@@ -18,23 +18,16 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card className="shadow-elegant border-border rounded-2xl overflow-hidden flex flex-col h-full min-h-[600px] bg-[var(--card-bg)]"
-      style={{
-        boxShadow: "var(--shadow-sm), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
-        backdropFilter: "blur(14px)"
-      }}
-    >
-      <CardHeader className="border-b border-[var(--border-color)] px-6 py-5">
-        <CardTitle className="flex items-center justify-between text-lg font-semibold">
-          <div className="flex items-center gap-2">
-            <Bot className="h-5 w-5 text-primary" />
-            IT Support Assistant
-          </div>
+    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px] bg-[hsl(var(--chart-card-bg))]">
+      <CardHeader className="border-b">
+        <CardTitle className="flex items-center gap-2">
+          <Bot className="h-5 w-5 text-primary" />
+          IT Support Assistant
         </CardTitle>
       </CardHeader>
       
-      <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
-        <ScrollArea className="flex-1 px-6 py-5" style={{ maxHeight: "calc(85vh - 160px)" }}>
+      <CardContent className="flex-1 flex flex-col p-0">
+        <ScrollArea className="flex-1 p-4">
           <div className="space-y-4">
             {messages.length === 0 && (
               <div className="text-center text-muted-foreground py-8">
@@ -80,8 +73,8 @@ export const RevenueCard = () => {
           </div>
         </ScrollArea>
         
-        <div className="px-4 py-4 border-t border-[var(--border-color)] bg-[var(--card-bg)]">
-          <div className="flex items-center gap-3">
+        <div className="p-4 border-t">
+          <div className="flex gap-2">
             <Input
               placeholder="Ask about IT support..."
               value={input}
@@ -93,13 +86,13 @@ export const RevenueCard = () => {
                 }
               }}
               disabled={isLoading}
-              className="rounded-xl flex-1"
+              className="rounded-2xl"
             />
             <Button
               size="icon"
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="rounded-xl shrink-0 h-10 w-10"
+              className="rounded-2xl shrink-0"
             >
               <Send className="h-4 w-4" />
             </Button>
