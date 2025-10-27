@@ -68,13 +68,13 @@ export const RecentChatPanel = () => {
   
   return (
     <Card 
-      className="border-border rounded-2xl overflow-hidden h-[500px] bg-[var(--card-bg)]"
+      className="border-border rounded-2xl overflow-hidden flex flex-col h-full min-h-[600px] bg-[var(--card-bg)]"
       style={{
-        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
+        boxShadow: "var(--shadow-sm), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
         backdropFilter: "blur(14px)"
       }}
     >
-      <CardHeader className="flex flex-row items-center justify-between pb-4">
+      <CardHeader className="flex flex-row items-center justify-between px-6 py-5 border-b border-[var(--border-color)]">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
             <MessageSquare className="h-5 w-5 text-primary" />
@@ -91,10 +91,10 @@ export const RecentChatPanel = () => {
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="grid grid-cols-5 h-[400px]">
+      <CardContent className="p-0 flex-1 flex flex-col overflow-hidden">
+        <div className="grid grid-cols-5 flex-1 overflow-hidden">
           {/* Chat List */}
-          <div className="col-span-2 border-r border-border overflow-y-auto">
+          <div className="col-span-2 border-r border-border overflow-y-auto" style={{ maxHeight: "calc(85vh - 160px)" }}>
             {conversations.map((conv) => (
               <button
                 key={conv.id}
@@ -129,8 +129,8 @@ export const RecentChatPanel = () => {
           </div>
           
           {/* Chat Window */}
-          <div className="col-span-3 flex flex-col bg-muted/20">
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          <div className="col-span-3 flex flex-col bg-muted/20 overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4" style={{ maxHeight: "calc(85vh - 160px)", scrollBehavior: "smooth" }}>
               {selectedChat.userMessage && (
                 <>
                   {/* User Message */}
