@@ -68,13 +68,13 @@ export const RecentChatPanel = () => {
   
   return (
     <Card 
-      className="border-border rounded-2xl overflow-hidden h-[500px] bg-[var(--card-bg)]"
+      className="border-border rounded-2xl overflow-hidden flex flex-col justify-between h-full bg-[var(--card-bg)]"
       style={{
         boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
         backdropFilter: "blur(14px)"
       }}
     >
-      <CardHeader className="flex flex-row items-center justify-between pb-4">
+      <CardHeader className="flex flex-row items-center justify-between p-6 pb-4">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/10 rounded-xl">
             <MessageSquare className="h-5 w-5 text-primary" />

@@ -18,8 +18,8 @@ export const RevenueCard = () => {
   };
 
   return (
-    <Card className="shadow-elegant border-border rounded-3xl overflow-hidden flex flex-col h-[600px] bg-[hsl(var(--chart-card-bg))]">
-      <CardHeader className="border-b">
+    <Card className="shadow-elegant border-border rounded-2xl overflow-hidden flex flex-col justify-between h-full bg-[var(--card-bg)]">
+      <CardHeader className="border-b p-6">
         <CardTitle className="flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
           IT Support Assistant

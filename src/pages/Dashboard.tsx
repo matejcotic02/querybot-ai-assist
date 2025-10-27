@@ -60,7 +60,7 @@ const Dashboard = () => {
           
           <main className="flex-1 p-6" style={{ background: "var(--page-bg, hsl(var(--background)))" }}>
             {activeView === "dashboard" ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch min-h-[80vh]">
                 <RevenueCard />
                 <RecentChatPanel />
               </div>
