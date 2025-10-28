@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -120,11 +119,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
-      {/* Theme Toggle */}
-      <div className="absolute top-8 right-8 z-20">
-        <ThemeToggle />
-      </div>
-      
       {/* Animated Background */}
       <div className="absolute inset-0 gradient-hero opacity-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,hsl(var(--primary)/0.15),transparent_60%)]" />
