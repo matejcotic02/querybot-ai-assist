@@ -129,13 +129,18 @@ export const Hero = () => {
             </Button>
           </div>
 
-          {/* Dashboard Image */}
-          <div className="flex justify-center items-center mt-12 animate-fade-in-up opacity-0 [animation-delay:300ms] [animation-fill-mode:forwards]">
-            <img 
-              src={heroDashboard} 
-              alt="QueryBot App Dashboard" 
-              className="max-w-[960px] w-full h-auto rounded-[20px] shadow-[0_8px_40px_rgba(163,123,255,0.15),0_4px_16px_rgba(0,0,0,0.08)] transition-transform duration-400 hover:scale-[1.02]"
-            />
+          {/* Dashboard Preview Card */}
+          <div className="flex flex-col items-center mt-12 animate-fade-in-up opacity-0 [animation-delay:300ms] [animation-fill-mode:forwards]">
+            <div className="bg-white rounded-[20px] shadow-[0_8px_40px_rgba(163,123,255,0.15),0_2px_12px_rgba(0,0,0,0.05)] p-6 max-w-[1100px] w-full transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(163,123,255,0.25),0_4px_16px_rgba(0,0,0,0.08)]">
+              <img 
+                src={heroDashboard} 
+                alt="QueryBot App Dashboard" 
+                className="w-full h-auto rounded-2xl"
+              />
+            </div>
+            <p className="mt-4 text-base font-medium text-[#8B7FCC] tracking-wide">
+              Dashboard preview
+            </p>
           </div>
         </div>
       </div>
