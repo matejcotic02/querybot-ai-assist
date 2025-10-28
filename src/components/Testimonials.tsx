@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
-import heroTempleBg from "@/assets/hero-temple-bg.jpg";
 
 const testimonials = [
   {
@@ -83,10 +82,10 @@ const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; 
 
   return (
     <div ref={ref} className="text-center space-y-4">
-      <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground">
+      <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white">
         {count}{suffix}
       </div>
-      <p className="text-base md:text-lg text-foreground/80 max-w-xs mx-auto">
+      <p className="text-base md:text-lg text-white/90 max-w-xs mx-auto">
         {label}
       </p>
     </div>
@@ -101,26 +100,22 @@ export const Testimonials = () => {
   return (
     <section 
       id="testimonials"
-      className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroTempleBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-gradient-to-b from-[#A37BFF] to-[#7D5CFF]"
     >
-      {/* Purple Mist Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-300/60 via-purple-200/50 to-purple-300/60 z-0" />
+      {/* Soft Glow Effect */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_60%,rgba(255,255,255,0.08),transparent_70%)]" />
+      </div>
       
       <div className="container max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm mb-4">
             <span className="text-xl">💬</span>
-            <span className="text-sm font-medium text-foreground">QueryBot Users</span>
+            <span className="text-sm font-medium text-[#7D5CFF]">QueryBot Users</span>
           </div>
           
-          <h2 className="text-h2 text-foreground">
+          <h2 className="text-h2 text-white">
             What Our Customers Are Saying
           </h2>
         </div>
@@ -176,7 +171,7 @@ export const Testimonials = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 animate-fade-in-up text-white" style={{ animationDelay: "200ms" }}>
           {stats.map((stat, index) => (
             <AnimatedStat 
               key={index}
