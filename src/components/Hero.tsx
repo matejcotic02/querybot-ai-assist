@@ -138,7 +138,7 @@ export const Hero = () => {
                 className="w-full h-auto rounded-2xl"
               />
             </div>
-            <p className="mt-4 text-base font-medium text-[#8B7FCC] tracking-wide">
+            <p className="mt-4 text-base font-medium text-white tracking-wide">
               Dashboard preview
             </p>
           </div>
