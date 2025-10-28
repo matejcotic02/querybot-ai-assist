@@ -22,6 +22,9 @@ const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // Enable dark mode for /app page
+    document.documentElement.classList.add("dark");
+    
     // Check authentication on mount
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -43,7 +46,11 @@ const Dashboard = () => {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      // Remove dark mode when leaving /app page
+      document.documentElement.classList.remove("dark");
+      subscription.unsubscribe();
+    };
   }, [navigate]);
 
   if (isAuthenticated === null) {
