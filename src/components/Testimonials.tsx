@@ -82,10 +82,10 @@ const AnimatedStat = ({ value, label, suffix }: { value: number; label: string; 
 
   return (
     <div ref={ref} className="text-center space-y-4">
-      <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-white">
+      <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#2D215C]">
         {count}{suffix}
       </div>
-      <p className="text-base md:text-lg text-white/90 max-w-xs mx-auto">
+      <p className="text-base md:text-lg text-[#2D215C]/80 max-w-xs mx-auto">
         {label}
       </p>
     </div>
@@ -100,22 +100,22 @@ export const Testimonials = () => {
   return (
     <section 
       id="testimonials"
-      className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-gradient-to-b from-[#A37BFF] to-[#7D5CFF]"
+      className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-gradient-to-b from-[#F6F3FF] via-[#EDE6FF] to-[#D8C8FF]"
     >
       {/* Soft Glow Effect */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_60%,rgba(255,255,255,0.08),transparent_70%)]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_60%,rgba(163,123,255,0.15),transparent_70%)]" />
       </div>
       
       <div className="container max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-white/20 shadow-sm mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white backdrop-blur-sm border border-purple-200 shadow-sm mb-4">
             <span className="text-xl">💬</span>
             <span className="text-sm font-medium text-[#7D5CFF]">QueryBot Users</span>
           </div>
           
-          <h2 className="text-h2 text-white">
+          <h2 className="text-h2 text-[#2D215C]">
             What Our Customers Are Saying
           </h2>
         </div>
@@ -171,7 +171,7 @@ export const Testimonials = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 animate-fade-in-up text-white" style={{ animationDelay: "200ms" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 animate-fade-in-up" style={{ animationDelay: "200ms" }}>
           {stats.map((stat, index) => (
             <AnimatedStat 
               key={index}
