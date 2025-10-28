@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import logo from "@/assets/logo-purple.png";
+import querybotMockup from "@/assets/querybot-mockup.png";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";
 import { useState, useEffect } from "react";
 export const Hero = () => {
