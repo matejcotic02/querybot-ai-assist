@@ -117,7 +117,7 @@ export const Testimonials = () => {
         <div className="text-center mb-16 space-y-4 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm mb-4">
             <span className="text-xl">💬</span>
-            <span className="text-sm font-medium text-foreground dark:text-gray-900">QueryBot Users</span>
+            <span className="text-sm font-medium text-foreground">QueryBot Users</span>
           </div>
           
           <h2 className="text-h2 text-foreground">
@@ -136,10 +136,10 @@ export const Testimonials = () => {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index}>
-                  <Card className="bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm border-0 dark:border dark:border-slate-700/50 rounded-3xl shadow-2xl mx-4 md:mx-8">
+                  <Card className="bg-white/95 backdrop-blur-sm border-0 rounded-3xl shadow-2xl mx-4 md:mx-8">
                     <CardContent className="p-8 md:p-12 space-y-8">
                       {/* Quote */}
-                      <p className="text-lg md:text-xl text-gray-800 dark:text-slate-200 leading-relaxed text-center">
+                      <p className="text-lg md:text-xl text-gray-800 leading-relaxed text-center">
                         "{testimonial.quote}"
                       </p>
                       
@@ -154,9 +154,9 @@ export const Testimonials = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div className="text-left">
-                          <p className="font-semibold text-gray-900 dark:text-white/90 text-lg">{testimonial.name}</p>
-                          <p className="text-sm text-gray-600 dark:text-slate-300">{testimonial.role}</p>
-                          <p className="text-sm text-primary dark:text-primary/90 font-medium">{testimonial.company}</p>
+                          <p className="font-semibold text-gray-900 text-lg">{testimonial.name}</p>
+                          <p className="text-sm text-gray-600">{testimonial.role}</p>
+                          <p className="text-sm text-primary font-medium">{testimonial.company}</p>
                         </div>
                       </div>
                     </CardContent>

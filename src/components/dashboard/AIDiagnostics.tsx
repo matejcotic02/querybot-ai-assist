@@ -67,8 +67,8 @@ export const AIDiagnostics = () => {
   return (
     <Card 
       className={`rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out ${
-        diagnostics.length > 0 ? "ring-2 ring-primary dark:shadow-[0_0_20px_rgba(163,123,255,0.3)]" : ""
-      }`} 
+        diagnostics.length > 0 ? "ring-2 ring-primary shadow-[0_0_20px_rgba(163,123,255,0.3)]" : ""
+      }`}
       style={{ 
         animationDelay: "0.2s",
         backgroundColor: "hsl(var(--dashboard-card-bg))",

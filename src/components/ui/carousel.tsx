@@ -175,7 +175,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-8 w-8 rounded-full bg-white/90 dark:bg-white/20 backdrop-blur-sm border-border/50 hover:bg-white dark:hover:bg-white/30 hover:ring-2 hover:ring-purple-500/40 transition-all",
+          "absolute h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm border-border/50 hover:bg-white hover:ring-2 hover:ring-purple-500/40 transition-all",
           orientation === "horizontal"
             ? "-left-12 top-1/2 -translate-y-1/2"
             : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -185,7 +185,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         onClick={scrollPrev}
         {...props}
       >
-        <ArrowLeft className="h-4 w-4 text-foreground dark:text-white" />
+        <ArrowLeft className="h-4 w-4 text-foreground" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -203,7 +203,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         variant={variant}
         size={size}
         className={cn(
-          "absolute h-8 w-8 rounded-full bg-white/90 dark:bg-white/20 backdrop-blur-sm border-border/50 hover:bg-white dark:hover:bg-white/30 hover:ring-2 hover:ring-purple-500/40 transition-all",
+          "absolute h-8 w-8 rounded-full bg-white/90 backdrop-blur-sm border-border/50 hover:bg-white hover:ring-2 hover:ring-purple-500/40 transition-all",
           orientation === "horizontal"
             ? "-right-12 top-1/2 -translate-y-1/2"
             : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -213,7 +213,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         onClick={scrollNext}
         {...props}
       >
-        <ArrowRight className="h-4 w-4 text-foreground dark:text-white" />
+        <ArrowRight className="h-4 w-4 text-foreground" />
         <span className="sr-only">Next slide</span>
       </Button>
     );

@@ -13,8 +13,8 @@ export const FinalCTA = () => {
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-[#A37BFF]/10 to-white/60 dark:from-background/40 dark:via-[#A37BFF]/10 dark:to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30 dark:from-background/30 dark:via-transparent dark:to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-[#A37BFF]/10 to-white/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-white/30" />
       </div>
       
       <div className="container max-w-4xl mx-auto text-center relative z-10 space-y-8 animate-fade-in-up">

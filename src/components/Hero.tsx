@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import logo from "@/assets/logo-purple.png";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedHeadline } from "@/components/AnimatedHeadline";
 import { useState, useEffect } from "react";
 export const Hero = () => {
@@ -65,7 +64,7 @@ export const Hero = () => {
   return <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 w-full px-4 md:px-8 py-4">
-        <div className="container max-w-7xl mx-auto px-4 md:px-8 py-4 bg-white/80 dark:bg-background/80 backdrop-blur-md border border-border/50 rounded-2xl">
+        <div className="container max-w-7xl mx-auto px-4 md:px-8 py-4 bg-white/80 backdrop-blur-md border border-border/50 rounded-2xl">
           <div className="flex items-center justify-between w-full">
             {/* Logo - Left */}
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.location.href = '/'}>
@@ -94,7 +93,6 @@ export const Hero = () => {
               <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => window.location.href = '/login'}>
                 Log in
               </Button>
-              <ThemeToggle />
               <Button className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white" onClick={() => window.location.href = '/login'}>
                 Sign Up
               </Button>
@@ -107,7 +105,7 @@ export const Hero = () => {
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-32 md:pt-40 pb-12">
         <div className="container max-w-5xl mx-auto text-center space-y-8">
           {/* NEW Label */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-background/80 backdrop-blur-sm border border-border/50 shadow-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-border/50 shadow-sm">
             <div className="w-2 h-2 rounded-full bg-[#A37BFF] animate-pulse" />
             <span className="text-sm font-medium">NEW! QueryBot v4 released</span>
           </div>

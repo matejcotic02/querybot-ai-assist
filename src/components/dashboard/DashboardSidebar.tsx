@@ -1,5 +1,4 @@
 import { Home, BarChart, Settings, BookOpen } from "lucide-react";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 type DashboardView = "dashboard" | "statistics" | "settings" | "help-center";
 
@@ -50,11 +49,6 @@ export const DashboardSidebar = ({ activeView, onViewChange }: DashboardSidebarP
             </button>
           );
         })}
-      </div>
-      
-      {/* Theme Toggle at Bottom */}
-      <div className="mt-auto">
-        <ThemeToggle />
       </div>
     </div>
   );

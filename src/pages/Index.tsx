@@ -15,12 +15,12 @@ const Index = () => {
       {/* Combined Hero + Features with shared background */}
       <div className="relative">
         {/* Modern AI-Inspired Background */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#F5F3FF] via-[#ECE8FF] to-[#DCD6FF] dark:from-background dark:via-background/95 dark:to-background/90">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#F5F3FF] via-[#ECE8FF] to-[#DCD6FF]">
           {/* Soft Purple Glow Effect */}
           <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(163,123,255,0.25),transparent_70%)] pointer-events-none" />
           
           {/* Bottom fade to white */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-background dark:via-background/80 dark:to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent" />
         </div>
         <Hero />
         <Features />
