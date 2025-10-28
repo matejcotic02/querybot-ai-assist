@@ -8,12 +8,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ProfileDialog } from "./ProfileDialog";
 import { AICommandCenterPanel } from "./AICommandCenterPanel";
 import { SmartSearch } from "./SmartSearch";
+import { NotificationPanel } from "./NotificationPanel";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo-purple.png";
+
 export const DashboardHeader = () => {
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
   const [aiPanelOpen, setAiPanelOpen] = useState(false);
+  const [notificationPanelOpen, setNotificationPanelOpen] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(4);
   const [profile, setProfile] = useState<any>(null);
   useEffect(() => {
     fetchProfile();
@@ -38,6 +42,14 @@ export const DashboardHeader = () => {
     await supabase.auth.signOut();
     navigate("/");
   };
+
+  const handleNotificationClick = () => {
+    setNotificationPanelOpen(!notificationPanelOpen);
+    if (!notificationPanelOpen) {
+      setNotificationCount(0);
+    }
+  };
+
   return <>
       <header className="sticky top-0 z-50 border-b bg-card shadow-sm">
         <div className="flex h-16 items-center gap-6 px-8">
@@ -53,7 +65,7 @@ export const DashboardHeader = () => {
           </div>
 
           {/* Right Side Icons */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 relative">
             <Button 
               variant="default" 
               size="sm" 
@@ -64,12 +76,24 @@ export const DashboardHeader = () => {
               AI Agent
             </Button>
             
-            <Button variant="ghost" size="icon" className="relative rounded-xl hover:bg-muted/50">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative rounded-xl hover:bg-muted/50"
+              onClick={handleNotificationClick}
+            >
               <Bell className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-destructive text-[10px]">
-                4
-              </Badge>
+              {notificationCount > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-destructive text-[10px]">
+                  {notificationCount}
+                </Badge>
+              )}
             </Button>
+
+            <NotificationPanel 
+              isOpen={notificationPanelOpen} 
+              onClose={() => setNotificationPanelOpen(false)} 
+            />
 
             
             
