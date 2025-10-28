@@ -9,12 +9,13 @@ import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
 import { AIInsightsPanel } from "@/components/dashboard/AIInsightsPanel";
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
 import { HelpCenter } from "@/components/dashboard/HelpCenter";
+import { AIReports } from "@/components/dashboard/AIReports";
 import { IncidentMonitor } from "@/components/dashboard/IncidentMonitor";
 import { AIDiagnostics } from "@/components/dashboard/AIDiagnostics";
 import { TechnicianPerformance } from "@/components/dashboard/TechnicianPerformance";
 import { SystemHealth } from "@/components/dashboard/SystemHealth";
 import { DashboardFilters } from "@/components/dashboard/DashboardFilters";
-type DashboardView = "dashboard" | "statistics" | "settings" | "help-center";
+type DashboardView = "dashboard" | "statistics" | "ai-reports" | "settings" | "help-center";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeView, setActiveView] = useState<DashboardView>("dashboard");
@@ -82,6 +83,8 @@ const Dashboard = () => {
                 <TechnicianPerformance />
                 <SystemHealth />
               </div>
+            ) : activeView === "ai-reports" ? (
+              <AIReports />
             ) : activeView === "settings" ? (
               <SettingsSection />
             ) : (

@@ -1,6 +1,6 @@
-import { Home, BarChart, Settings, BookOpen } from "lucide-react";
+import { Home, BarChart, Settings, BookOpen, TrendingUp } from "lucide-react";
 
-type DashboardView = "dashboard" | "statistics" | "settings" | "help-center";
+type DashboardView = "dashboard" | "statistics" | "ai-reports" | "settings" | "help-center";
 
 const menuItems = [{
   title: "Dashboard",
@@ -10,6 +10,10 @@ const menuItems = [{
   title: "Statistics",
   view: "statistics" as DashboardView,
   icon: BarChart
+}, {
+  title: "AI Reports",
+  view: "ai-reports" as DashboardView,
+  icon: TrendingUp
 }, {
   title: "Settings",
   view: "settings" as DashboardView,
