@@ -3,10 +3,10 @@ import { ArrowRight } from "lucide-react";
 
 export const FinalCTA = () => {
   return (
-    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-gradient-to-b from-[#F6F3FF] via-[#EDE6FF] to-[#D8C8FF]">
+    <section className="py-24 md:py-32 px-4 md:px-8 lg:px-16 relative overflow-hidden bg-gradient-to-b from-[#F6F3FF] via-[#EDE6FF] via-[#D8C8FF] to-white transition-all duration-500">
       {/* Soft Glow Effect */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_60%,rgba(163,123,255,0.15),transparent_70%)]" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_80%,rgba(163,123,255,0.15),transparent_80%)]" />
       </div>
       
       <div className="container max-w-4xl mx-auto text-center relative z-10 space-y-8 animate-fade-in-up">
