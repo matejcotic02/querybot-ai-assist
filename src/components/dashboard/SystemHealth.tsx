@@ -99,8 +99,8 @@ export const SystemHealth = () => {
       <CardHeader>
         <CardTitle className="text-xl font-semibold" style={{ color: "hsl(var(--dashboard-card-text))" }}>System Health Overview</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <CardContent className="p-6">
+        <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))' }}>
           {components.map((component, index) => {
             const Icon = componentIcons[component.component as keyof typeof componentIcons];
             const label = componentLabels[component.component as keyof typeof componentLabels];
@@ -109,14 +109,49 @@ export const SystemHealth = () => {
             return (
               <div
                 key={component.component}
-                className="bg-gradient-to-br from-muted/30 to-muted/50 p-4 rounded-2xl border border-border hover:from-muted/50 hover:to-muted/70 hover:scale-105 transition-all duration-[600ms] ease-in-out animate-fade-in"
+                className="bg-gradient-to-br from-muted/30 to-muted/50 p-4 rounded-2xl border border-border hover:from-muted/50 hover:to-muted/70 hover:scale-105 transition-all duration-300 ease-in-out animate-fade-in flex flex-col"
                 style={{ 
                   animationDelay: `${0.5 + index * 0.1}s`,
                   animation: "fade-in 600ms ease-in-out forwards"
                 }}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <Icon className="w-6 h-6 text-primary" />
+                {/* Chart First */}
+                <div 
+                  className="rounded-lg p-2 mb-3 transition-all duration-300 ease-in-out"
+                  style={{
+                    backgroundColor: 'hsl(var(--card))',
+                    border: '1px solid hsl(var(--border))',
+                    maxHeight: '120px',
+                    objectFit: 'contain'
+                  }}
+                >
+                  <ResponsiveContainer width="100%" height={80}>
+                    <LineChart data={sparklineData}>
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        stroke="hsl(var(--primary))"
+                        strokeWidth={2}
+                        dot={false}
+                        animationDuration={800}
+                        animationEasing="ease-in-out"
+                        style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))' }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Value */}
+                <div className="text-2xl font-bold text-primary mb-1">
+                  {component.uptime_percentage.toFixed(1)}%
+                </div>
+
+                {/* Label */}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm font-semibold text-foreground flex items-center gap-2">
+                    <Icon className="w-4 h-4 text-primary" />
+                    {label}
+                  </div>
                   <Badge 
                     variant={getStatusBadgeVariant(component.status)}
                     className="text-xs"
@@ -130,43 +165,9 @@ export const SystemHealth = () => {
                   </Badge>
                 </div>
 
-                <div className="text-lg font-semibold mb-1" style={{ color: "hsl(var(--dashboard-card-text))" }}>
-                  {label}
-                </div>
-
-                <div className="text-xl font-bold text-primary mb-2">
-                  {component.uptime_percentage.toFixed(1)}%
-                </div>
-                <div className="text-xs opacity-60 mb-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
-                  Uptime
-                </div>
-
-                {/* Mini Line Chart */}
-                <div 
-                  className="rounded-lg p-2 transition-all duration-[400ms] ease-in-out"
-                  style={{
-                    backgroundColor: 'hsl(var(--chart-container-bg))',
-                    border: '1px solid hsl(var(--chart-container-border))',
-                  }}
-                >
-                  <ResponsiveContainer width="100%" height={60}>
-                    <LineChart data={sparklineData}>
-                      <Line
-                        type="monotone"
-                        dataKey="value"
-                        stroke="hsl(var(--chart-line-stroke))"
-                        strokeWidth={2}
-                        dot={false}
-                        animationDuration={800}
-                        animationEasing="ease-in-out"
-                        style={{ filter: 'drop-shadow(0 0 8px hsl(var(--chart-line-stroke) / 0.5))' }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-
-                <div className="text-xs opacity-50 mt-2" style={{ color: "hsl(var(--dashboard-card-text))" }}>
-                  {component.response_time_ms}ms response
+                {/* Subtitle */}
+                <div className="text-xs text-muted-foreground">
+                  Uptime · {component.response_time_ms}ms response
                 </div>
               </div>
             );
