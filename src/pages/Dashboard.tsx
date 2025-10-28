@@ -22,8 +22,9 @@ const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Enable dark mode for /app page
-    document.documentElement.classList.add("dark");
+    // Load saved theme for /app page or default to dark
+    const savedTheme = localStorage.getItem("app-theme") || "dark";
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
     
     // Check authentication on mount
     const checkAuth = async () => {

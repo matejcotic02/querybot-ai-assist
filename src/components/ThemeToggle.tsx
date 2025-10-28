@@ -7,14 +7,12 @@ export const ThemeToggle = () => {
 
   useEffect(() => {
     const root = window.document.documentElement;
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const savedTheme = localStorage.getItem("app-theme") as "light" | "dark" | null;
     
     if (savedTheme) {
       setTheme(savedTheme);
-      root.classList.toggle("dark", savedTheme === "dark");
     } else {
-      // Default to dark mode
-      root.classList.add("dark");
+      setTheme("dark");
     }
   }, []);
 
@@ -24,7 +22,7 @@ export const ThemeToggle = () => {
     
     setTheme(newTheme);
     root.classList.toggle("dark", newTheme === "dark");
-    localStorage.setItem("theme", newTheme);
+    localStorage.setItem("app-theme", newTheme);
   };
 
   return (

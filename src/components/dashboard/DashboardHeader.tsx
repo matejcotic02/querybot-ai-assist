@@ -9,6 +9,7 @@ import { ProfileDialog } from "./ProfileDialog";
 import { AICommandCenterPanel } from "./AICommandCenterPanel";
 import { SmartSearch } from "./SmartSearch";
 import { NotificationPanel } from "./NotificationPanel";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo-purple.png";
 
@@ -66,6 +67,8 @@ export const DashboardHeader = () => {
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-3 relative">
+            <ThemeToggle />
+            
             <Button 
               variant="default" 
               size="sm" 
