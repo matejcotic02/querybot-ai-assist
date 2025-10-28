@@ -60,13 +60,15 @@ const Dashboard = () => {
           
           <main className="flex-1 p-6" style={{ background: "var(--page-bg, hsl(var(--background)))" }}>
             {activeView === "dashboard" ? (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch min-h-[80vh]">
-                <RevenueCard />
-                <RecentChatPanel />
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <RevenueCard />
+                  <RecentChatPanel />
+                </div>
+                <AIInsightsPanel />
               </div>
             ) : activeView === "statistics" ? (
               <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
-                <AIInsightsPanel />
                 <IncidentMonitor />
                 <AIDiagnostics />
                 <TechnicianPerformance />
