@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const words = ["Tickets", "Requests", "Incidents", "Automations"];
+const words = ["Tickets", "Requests", "Incidents"];
 
 export const AnimatedHeadline = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
