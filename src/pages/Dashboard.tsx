@@ -10,10 +10,6 @@ import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
 import { HelpCenter } from "@/components/dashboard/HelpCenter";
 import { AIReports } from "@/components/dashboard/AIReports";
-import { IncidentMonitor } from "@/components/dashboard/IncidentMonitor";
-import { AIDiagnostics } from "@/components/dashboard/AIDiagnostics";
-import { TechnicianPerformance } from "@/components/dashboard/TechnicianPerformance";
-import { SystemHealth } from "@/components/dashboard/SystemHealth";
 import { DashboardKPICards } from "@/components/dashboard/DashboardKPICards";
 import { AIPerformanceChart } from "@/components/dashboard/AIPerformanceChart";
 import { AIResponseSpeed } from "@/components/dashboard/AIResponseSpeed";
@@ -94,10 +90,6 @@ const Dashboard = () => {
               <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
                 <RevenueCard />
                 <RecentChatPanel />
-                <IncidentMonitor />
-                <AIDiagnostics />
-                <TechnicianPerformance />
-                <SystemHealth />
               </div>
             ) : activeView === "ai-reports" ? (
               <AIReports />
