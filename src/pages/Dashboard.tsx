@@ -88,15 +88,11 @@ const Dashboard = () => {
                 <ActivityTable />
               </div>
             ) : activeView === "statistics" ? (
-              <div className="flex flex-col lg:flex-row gap-6 items-start justify-center">
-                {/* Primary: IT Support Assistant */}
-                <div className="w-full lg:flex-1 lg:max-w-[720px] min-h-[600px]">
+              <div className="grid gap-6">
+                <PendingTicketsCard />
+                <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
                   <RevenueCard />
-                </div>
-                
-                {/* Secondary: Pending Tickets Card */}
-                <div className="w-full lg:w-[480px] lg:max-w-[480px]">
-                  <PendingTicketsCard />
+                  <RecentChatPanel />
                 </div>
               </div>
             ) : activeView === "ai-reports" ? (
