@@ -1,7 +1,30 @@
 import { Progress } from "@/components/ui/progress";
 import { Brain } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 export const AIAnalyticsHeaderCard = () => {
+  const [userName, setUserName] = useState<string>("User");
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("id", user.id)
+          .single();
+        
+        if (profile?.full_name) {
+          setUserName(profile.full_name);
+        }
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
   return (
     <div className="col-span-2 h-[140px] rounded-[20px] flex items-center justify-between p-6 md:p-8 shadow-[0_0_24px_rgba(163,123,255,0.15)]"
          style={{
@@ -11,7 +34,7 @@ export const AIAnalyticsHeaderCard = () => {
       <div className="flex flex-col gap-3">
         <div>
           <h2 className="text-2xl font-semibold text-foreground mb-1">
-            Hello, QueryBot User 👋
+            Hello, {userName} 👋
           </h2>
           <p className="text-sm text-muted-foreground">
             Your AI system processed 326 requests today
