@@ -66,5 +66,50 @@ export const TechnicianPerformance = () => {
   }));
   const topPerformer = chartData[0];
   const colors = chartData.map((_, index) => index === 0 ? "url(#gradient)" : "#00D1FF");
-  return;
+  return (
+    <Card className="bg-card border-border">
+      <CardHeader>
+        <CardTitle>Technician Performance</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.8} />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
+                <YAxis stroke="hsl(var(--muted-foreground))" />
+                <Tooltip />
+                <Bar dataKey="resolved" radius={[8, 8, 0, 0]}>
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={colors[index]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="space-y-2">
+            {chartData.slice(0, 3).map((tech) => (
+              <div key={tech.fullName} className="flex items-center gap-3 p-2 rounded-lg bg-background/50">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={tech.avatar || undefined} />
+                  <AvatarFallback>{tech.name[0]}</AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <div className="font-medium text-sm">{tech.fullName}</div>
+                  <div className="text-xs text-muted-foreground">{tech.resolved} resolved</div>
+                </div>
+                <div className="text-sm text-primary font-medium">⭐ {tech.rating}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 };

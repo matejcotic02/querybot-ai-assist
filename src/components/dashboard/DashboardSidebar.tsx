@@ -7,7 +7,7 @@ const menuItems = [{
   view: "dashboard" as DashboardView,
   icon: Home
 }, {
-  title: "Statistics",
+  title: "Support Chat",
   view: "statistics" as DashboardView,
   icon: BarChart
 }, {

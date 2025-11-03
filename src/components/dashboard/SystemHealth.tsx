@@ -73,5 +73,48 @@ export const SystemHealth = () => {
         return "default";
     }
   };
-  return;
+  return (
+    <Card className="bg-card border-border">
+      <CardHeader>
+        <CardTitle>System Health</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          {components.map((comp) => {
+            const Icon = componentIcons[comp.component as keyof typeof componentIcons];
+            return (
+              <div key={comp.component} className="flex items-center gap-4 p-3 rounded-lg bg-background/50">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Icon className="h-5 w-5 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium">{componentLabels[comp.component as keyof typeof componentLabels]}</span>
+                    <Badge variant={getStatusBadgeVariant(comp.status)}>{comp.status}</Badge>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span>{comp.uptime_percentage}% uptime</span>
+                    <span>{comp.response_time_ms}ms response</span>
+                  </div>
+                </div>
+                <div className="w-24 h-12">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={comp.trend.map((val, i) => ({ value: val }))}>
+                      <Line 
+                        type="monotone" 
+                        dataKey="value" 
+                        stroke={getStatusColor(comp.status)} 
+                        strokeWidth={2}
+                        dot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </CardContent>
+    </Card>
+  );
 };

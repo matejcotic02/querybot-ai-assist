@@ -144,5 +144,52 @@ export const IncidentMonitor = () => {
     if (resolvedPercentage >= 50) return "🟡";
     return "🔴";
   };
-  return;
+  return (
+    <Card className="bg-card border-border">
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
+          <span className="flex items-center gap-2">
+            <Activity className="h-5 w-5 text-primary" />
+            Incident Monitor
+          </span>
+          <span className="text-2xl">{getStatusIcon()}</span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        {loading ? (
+          <div className="space-y-4">
+            <Skeleton className="h-32 w-full" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <div className="h-32">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" />
+                  <YAxis stroke="hsl(var(--muted-foreground))" />
+                  <Tooltip />
+                  <Bar dataKey="value" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="space-y-2">
+              {incidents.map((incident) => (
+                <div key={incident.id} className="flex items-center justify-between p-2 rounded-lg bg-background/50">
+                  <div className="flex-1">
+                    <div className="font-medium text-sm">{incident.title}</div>
+                    <div className="text-xs text-muted-foreground">{incident.id}</div>
+                  </div>
+                  <div className="flex gap-2">
+                    <Badge className={getPriorityColor(incident.priority)}>{incident.priority}</Badge>
+                    <Badge className={getStatusColor(incident.status)}>{incident.status}</Badge>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
 };
