@@ -6,7 +6,7 @@ import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { RevenueCard } from "@/components/dashboard/RevenueCard";
 import { CustomerSatisfactionCard } from "@/components/dashboard/CustomerSatisfactionCard";
 import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
-import { AIInsightsPanel } from "@/components/dashboard/AIInsightsPanel";
+
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
 import { HelpCenter } from "@/components/dashboard/HelpCenter";
 import { AIReports } from "@/components/dashboard/AIReports";
@@ -69,12 +69,9 @@ const Dashboard = () => {
           
           <main className="flex-1 p-6" style={{ background: "var(--page-bg, hsl(var(--background)))" }}>
             {activeView === "dashboard" ? (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <RevenueCard />
-                  <RecentChatPanel />
-                </div>
-                <AIInsightsPanel />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <RevenueCard />
+                <RecentChatPanel />
               </div>
             ) : activeView === "statistics" ? (
               <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
