@@ -51,5 +51,59 @@ export const AIDiagnostics = () => {
     });
   };
   const avgConfidence = diagnostics.length > 0 ? Math.round(diagnostics.reduce((acc, d) => acc + (d.confidence_score || 0), 0) / diagnostics.length) : 0;
-  return;
+  return (
+    <Card className="border-border rounded-2xl overflow-hidden bg-[var(--card-bg)]"
+      style={{
+        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
+        backdropFilter: "blur(14px)"
+      }}>
+      <CardHeader className="border-b p-6">
+        <CardTitle className="flex items-center gap-2">
+          <Sparkles className="h-5 w-5 text-primary" />
+          AI Diagnostics
+          <span className="ml-auto text-sm font-normal text-muted-foreground">
+            {avgConfidence}% avg confidence
+          </span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-6">
+        <ScrollArea className="h-[400px]">
+          <div className="space-y-4">
+            {diagnostics.map((diagnostic) => (
+              <div key={diagnostic.id} className="p-4 rounded-lg bg-muted/50 border border-border">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-sm mb-1">{diagnostic.summary}</h4>
+                    <p className="text-xs text-muted-foreground">{diagnostic.category}</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-primary">
+                      {diagnostic.confidence_score}%
+                    </div>
+                    <Progress 
+                      key={`${diagnostic.id}-${progressKey}`}
+                      value={diagnostic.confidence_score} 
+                      className="w-20 h-1 mt-1"
+                    />
+                  </div>
+                </div>
+                <div className="mb-3 p-3 rounded bg-primary/10 text-sm">
+                  💡 {diagnostic.ai_suggestion}
+                </div>
+                <Button 
+                  size="sm" 
+                  onClick={() => applyFix(diagnostic.id)}
+                  className="w-full"
+                  disabled={diagnostic.applied}
+                >
+                  {diagnostic.applied ? "Applied" : "Apply Fix"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </CardContent>
+    </Card>
+  );
 };
