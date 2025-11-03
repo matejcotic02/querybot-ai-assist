@@ -88,17 +88,14 @@ const Dashboard = () => {
                 <ActivityTable />
               </div>
             ) : activeView === "statistics" ? (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
-                {/* Left Column - IT Support Assistant (2fr) */}
-                <div className="lg:col-span-2">
+              <div className="flex flex-col lg:flex-row gap-6 items-start justify-center">
+                {/* Primary: IT Support Assistant */}
+                <div className="w-full lg:flex-1 lg:max-w-[720px] min-h-[600px]">
                   <RevenueCard />
                 </div>
                 
-                {/* Right Column - Recent Chat + Pending Tickets (1fr) */}
-                <div className="lg:col-span-1 flex flex-col gap-5">
-                  <div className="max-h-[480px]">
-                    <RecentChatPanel />
-                  </div>
+                {/* Secondary: Pending Tickets Card */}
+                <div className="w-full lg:w-[480px] lg:max-w-[480px]">
                   <PendingTicketsCard />
                 </div>
               </div>
