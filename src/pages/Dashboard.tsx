@@ -6,6 +6,7 @@ import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { RevenueCard } from "@/components/dashboard/RevenueCard";
 import { CustomerSatisfactionCard } from "@/components/dashboard/CustomerSatisfactionCard";
 import { RecentChatPanel } from "@/components/dashboard/RecentChatPanel";
+import { PendingTicketsCard } from "@/components/dashboard/PendingTicketsCard";
 
 import { SettingsSection } from "@/components/dashboard/SettingsSection";
 import { HelpCenter } from "@/components/dashboard/HelpCenter";
@@ -87,9 +88,12 @@ const Dashboard = () => {
                 <ActivityTable />
               </div>
             ) : activeView === "statistics" ? (
-              <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
-                <RevenueCard />
-                <RecentChatPanel />
+              <div className="grid gap-6">
+                <PendingTicketsCard />
+                <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
+                  <RevenueCard />
+                  <RecentChatPanel />
+                </div>
               </div>
             ) : activeView === "ai-reports" ? (
               <AIReports />
