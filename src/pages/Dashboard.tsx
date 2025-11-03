@@ -18,7 +18,7 @@ import { DashboardKPICards } from "@/components/dashboard/DashboardKPICards";
 import { AIPerformanceChart } from "@/components/dashboard/AIPerformanceChart";
 import { AIResponseSpeed } from "@/components/dashboard/AIResponseSpeed";
 import { ActivityTable } from "@/components/dashboard/ActivityTable";
-import { AIInsights } from "@/components/dashboard/AIInsights";
+
 type DashboardView = "dashboard" | "statistics" | "ai-reports" | "settings" | "help-center";
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -87,15 +87,8 @@ const Dashboard = () => {
                   </div>
                 </div>
                 
-                {/* Bottom Row - Tables and Insights */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                  <div className="lg:col-span-2">
-                    <ActivityTable />
-                  </div>
-                  <div className="lg:col-span-1">
-                    <AIInsights />
-                  </div>
-                </div>
+                {/* Bottom Row - Activity Table */}
+                <ActivityTable />
               </div>
             ) : activeView === "statistics" ? (
               <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
