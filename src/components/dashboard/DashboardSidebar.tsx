@@ -1,4 +1,4 @@
-import { Home, BarChart, Settings, BookOpen, TrendingUp } from "lucide-react";
+import { Home, MessageSquare, Settings, BookOpen, TrendingUp } from "lucide-react";
 
 type DashboardView = "dashboard" | "statistics" | "ai-reports" | "settings" | "help-center";
 
@@ -9,7 +9,7 @@ const menuItems = [{
 }, {
   title: "Support Chat",
   view: "statistics" as DashboardView,
-  icon: BarChart
+  icon: MessageSquare
 }, {
   title: "AI Analytics",
   view: "ai-reports" as DashboardView,
