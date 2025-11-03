@@ -17,38 +17,19 @@ export const RevenueCard = () => {
     }
   };
 
-  const quickActions = [
-    "Check Network",
-    "Create Support Ticket",
-    "Run Diagnostics",
-    "Reset Credentials",
-    "Escalate Issue"
-  ];
-
-  const handleQuickAction = (action: string) => {
-    setInput(action);
-  };
-
   return (
     <Card 
-      className="border rounded-3xl overflow-hidden flex flex-col h-full"
+      className="border-border rounded-2xl overflow-hidden flex flex-col justify-between h-full bg-[var(--card-bg)]"
       style={{
-        background: "linear-gradient(135deg, rgba(20, 10, 40, 0.95), rgba(40, 20, 70, 0.9))",
-        border: "1px solid rgba(163, 123, 255, 0.25)",
-        backdropFilter: "blur(16px)",
-        boxShadow: "0 0 20px rgba(163, 123, 255, 0.15), inset 0 0 10px rgba(125, 92, 255, 0.08)"
+        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
+        backdropFilter: "blur(14px)"
       }}
     >
-      <CardHeader className="border-b border-border/20 p-8">
-        <div className="flex items-center gap-3 mb-3">
-          <Bot className="h-7 w-7 text-primary" />
-          <CardTitle className="text-2xl font-bold text-white">
-            IT Support Assistant
-          </CardTitle>
-        </div>
-        <p className="text-base text-white/80">
-          Ask me anything about IT support, troubleshooting, or system performance.
-        </p>
+      <CardHeader className="border-b p-6">
+        <CardTitle className="flex items-center gap-2">
+          <Bot className="h-5 w-5 text-primary" />
+          IT Support Assistant
+        </CardTitle>
       </CardHeader>
       
       <CardContent className="flex-1 flex flex-col p-0">
@@ -98,32 +79,10 @@ export const RevenueCard = () => {
           </div>
         </ScrollArea>
         
-        <div className="p-6 border-t border-border/20 space-y-4">
-          <div>
-            <p className="text-sm font-semibold text-white/90 mb-3">Quick Actions</p>
-            <div className="flex flex-wrap gap-3">
-              {quickActions.map((action) => (
-                <Button
-                  key={action}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleQuickAction(action)}
-                  className="rounded-xl text-sm font-medium"
-                  style={{
-                    background: "rgba(163, 123, 255, 0.08)",
-                    border: "1px solid rgba(163, 123, 255, 0.25)",
-                    color: "#A37BFF"
-                  }}
-                >
-                  {action}
-                </Button>
-              ))}
-            </div>
-          </div>
-          
+        <div className="p-4 border-t">
           <div className="flex gap-2">
             <Input
-              placeholder="Describe your issue..."
+              placeholder="Ask about IT support..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => {
@@ -133,25 +92,15 @@ export const RevenueCard = () => {
                 }
               }}
               disabled={isLoading}
-              className="rounded-xl text-white placeholder:text-white/50"
-              style={{
-                background: "rgba(255, 255, 255, 0.08)",
-                border: "1px solid rgba(163, 123, 255, 0.2)",
-                height: "52px"
-              }}
+              className="rounded-2xl"
             />
             <Button
               size="icon"
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="rounded-xl shrink-0"
-              style={{
-                background: "linear-gradient(135deg, #A37BFF, #7D5CFF)",
-                width: "52px",
-                height: "52px"
-              }}
+              className="rounded-2xl shrink-0"
             >
-              <Send className="h-5 w-5" />
+              <Send className="h-4 w-4" />
             </Button>
           </div>
         </div>

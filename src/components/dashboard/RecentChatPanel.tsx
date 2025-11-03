@@ -68,68 +68,109 @@ export const RecentChatPanel = () => {
   
   return (
     <Card 
-      className="rounded-3xl overflow-hidden flex flex-col h-full"
+      className="border-border rounded-2xl overflow-hidden flex flex-col justify-between h-full bg-[var(--card-bg)]"
       style={{
-        background: "var(--card-bg)",
-        border: "1px solid rgba(163, 123, 255, 0.2)",
-        boxShadow: "0 0 16px rgba(163, 123, 255, 0.1)"
+        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
+        backdropFilter: "blur(14px)"
       }}
     >
-      <CardHeader className="p-6 pb-4 border-b border-border/50">
-        <div className="space-y-1">
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-semibold">Recent Chat Activity</CardTitle>
-            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
+      <CardHeader className="flex flex-row items-center justify-between p-6 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-primary/10 rounded-xl">
+            <MessageSquare className="h-5 w-5 text-primary" />
           </div>
-          <p className="text-sm text-muted-foreground">See your latest IT conversations</p>
+          <CardTitle className="text-lg font-semibold">Recent Chat AI Assistant</CardTitle>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm" className="gap-2 rounded-xl h-9 text-sm">
+            See all
+            <ExternalLink className="h-3.5 w-3.5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="h-9 w-9 rounded-xl">
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
         </div>
       </CardHeader>
-      <CardContent className="p-4">
-        <div className="space-y-2">
-          {conversations.slice(0, 5).map((conv) => (
-            <button
-              key={conv.id}
-              onClick={() => setSelectedChat(conv)}
-              className={`w-full p-3 flex items-start gap-3 rounded-xl transition-all ${
-                selectedChat.id === conv.id 
-                  ? "bg-primary/10" 
-                  : "bg-white/5 hover:bg-primary/5"
-              }`}
-            >
-              <div className="relative">
-                <Avatar className="h-9 w-9">
-                  <AvatarImage src={conv.avatar} />
-                  <AvatarFallback>{conv.name[0]}</AvatarFallback>
-                </Avatar>
-                {conv.status === "online" && (
-                  <div 
-                    className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-card" 
-                    style={{ 
-                      background: "#A37BFF",
-                      boxShadow: "0 0 6px rgba(163, 123, 255, 0.4)"
-                    }}
-                  />
-                )}
-              </div>
-              <div className="flex-1 text-left min-w-0">
-                <div className="flex items-center justify-between mb-0.5">
-                  <p className="text-sm font-medium truncate">{conv.name}</p>
-                  <span className="text-xs text-primary/80 ml-2">{conv.time}</span>
+      <CardContent className="p-0">
+        <div className="grid grid-cols-5 h-[400px]">
+          {/* Chat List */}
+          <div className="col-span-2 border-r border-border overflow-y-auto">
+            {conversations.map((conv) => (
+              <button
+                key={conv.id}
+                onClick={() => setSelectedChat(conv)}
+                className={`w-full p-4 flex items-start gap-3 hover:bg-muted/50 transition-colors border-b border-border ${
+                  selectedChat.id === conv.id ? "bg-muted/50" : ""
+                }`}
+              >
+                <div className="relative">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage src={conv.avatar} />
+                    <AvatarFallback>{conv.name[0]}</AvatarFallback>
+                  </Avatar>
+                  {conv.status === "online" && (
+                    <div className="absolute bottom-0 right-0 h-3 w-3 bg-success rounded-full border-2 border-card" />
+                  )}
                 </div>
-                <p className="text-xs text-muted-foreground line-clamp-1">{conv.message}</p>
-              </div>
-              {conv.unread > 0 && (
-                <Badge 
-                  className="h-5 min-w-[20px] px-1.5 flex items-center justify-center bg-primary text-white text-[10px] font-semibold"
-                  style={{ boxShadow: "0 0 8px rgba(163, 123, 255, 0.4)" }}
-                >
-                  {conv.unread}
-                </Badge>
+                <div className="flex-1 text-left">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-sm font-medium">{conv.name}</p>
+                    <span className="text-xs text-muted-foreground">{conv.time}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground line-clamp-1">{conv.message}</p>
+                </div>
+                {conv.unread > 0 && (
+                  <Badge className="h-5 w-5 flex items-center justify-center p-0 bg-primary text-[10px]">
+                    {conv.unread}
+                  </Badge>
+                )}
+              </button>
+            ))}
+          </div>
+          
+          {/* Chat Window */}
+          <div className="col-span-3 flex flex-col bg-muted/20">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {selectedChat.userMessage && (
+                <>
+                  {/* User Message */}
+                  <div className="flex items-start gap-3 justify-end">
+                    <div className="max-w-[70%] bg-card border border-border rounded-2xl rounded-tr-sm p-4">
+                      <p className="text-sm">{selectedChat.userMessage}</p>
+                      <div className="flex items-center justify-end gap-1 mt-2">
+                        <span className="text-xs text-muted-foreground">07:00 AM</span>
+                        <CheckCheck className="h-3.5 w-3.5 text-muted-foreground" />
+                      </div>
+                    </div>
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={selectedChat.avatar} />
+                      <AvatarFallback>{selectedChat.name[0]}</AvatarFallback>
+                    </Avatar>
+                  </div>
+                  
+                  {/* Bot Response */}
+                  <div className="flex items-start gap-3">
+                    <div className="h-8 w-8 bg-primary rounded-full flex items-center justify-center">
+                      <MessageSquare className="h-4 w-4 text-primary-foreground" />
+                    </div>
+                    <div className="max-w-[70%] bg-primary text-primary-foreground rounded-2xl rounded-tl-sm p-4">
+                      <p className="text-sm whitespace-pre-line">{selectedChat.botResponse}</p>
+                      <div className="flex items-center gap-2 mt-3">
+                        <Button size="sm" variant="secondary" className="h-7 rounded-lg text-xs">
+                          <Lock className="h-3 w-3 mr-1" />
+                          Option 1
+                        </Button>
+                      </div>
+                      <div className="flex items-center justify-end gap-1 mt-2">
+                        <span className="text-xs text-primary-foreground/80">07:10 AM</span>
+                        <CheckCheck className="h-3.5 w-3.5 text-primary-foreground/80" />
+                      </div>
+                    </div>
+                  </div>
+                </>
               )}
-            </button>
-          ))}
+            </div>
+          </div>
         </div>
       </CardContent>
     </Card>
