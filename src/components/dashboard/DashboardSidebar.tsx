@@ -11,7 +11,7 @@ const menuItems = [{
   view: "statistics" as DashboardView,
   icon: BarChart
 }, {
-  title: "AI Reports",
+  title: "AI Analytics",
   view: "ai-reports" as DashboardView,
   icon: TrendingUp
 }, {
