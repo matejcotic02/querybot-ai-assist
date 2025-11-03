@@ -3,8 +3,9 @@ import { Brain, CheckCircle, Clock } from "lucide-react";
 
 const kpis = [
   {
-    label: "AI Diagnosed Issues",
+    label: "System Incidents",
     value: "247",
+    subtext: "Logged in the last 24 h",
     icon: Brain,
     trend: "+12%",
     trendUp: true
@@ -12,6 +13,7 @@ const kpis = [
   {
     label: "Tickets Resolved",
     value: "1,842",
+    subtext: "Resolved by team",
     icon: CheckCircle,
     trend: "+8%",
     trendUp: true
@@ -19,6 +21,7 @@ const kpis = [
   {
     label: "Avg Response Time",
     value: "2.4 min",
+    subtext: "Mean technician reply time",
     icon: Clock,
     trend: "-15%",
     trendUp: true
@@ -51,6 +54,9 @@ export const DashboardKPICards = () => {
             <div>
               <p className="text-sm text-muted-foreground mb-1">{kpi.label}</p>
               <p className="text-3xl font-bold text-foreground">{kpi.value}</p>
+              {kpi.subtext && (
+                <p className="text-xs text-muted-foreground mt-1">{kpi.subtext}</p>
+              )}
             </div>
           </Card>
         );

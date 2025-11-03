@@ -3,20 +3,20 @@ import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 import { useState } from "react";
 
 const weeklyData = [
-  { day: "Mon", performance: 85, prediction: 82 },
-  { day: "Tue", performance: 88, prediction: 86 },
-  { day: "Wed", performance: 92, prediction: 90 },
-  { day: "Thu", performance: 89, prediction: 91 },
-  { day: "Fri", performance: 94, prediction: 93 },
-  { day: "Sat", performance: 91, prediction: 92 },
-  { day: "Sun", performance: 96, prediction: 94 }
+  { day: "Mon", created: 120, resolved: 95 },
+  { day: "Tue", created: 138, resolved: 132 },
+  { day: "Wed", created: 156, resolved: 151 },
+  { day: "Thu", created: 142, resolved: 147 },
+  { day: "Fri", created: 135, resolved: 128 },
+  { day: "Sat", created: 98, resolved: 102 },
+  { day: "Sun", created: 87, resolved: 90 }
 ];
 
 const monthlyData = [
-  { day: "Week 1", performance: 87, prediction: 85 },
-  { day: "Week 2", performance: 90, prediction: 88 },
-  { day: "Week 3", performance: 92, prediction: 91 },
-  { day: "Week 4", performance: 95, prediction: 93 }
+  { day: "Week 1", created: 520, resolved: 495 },
+  { day: "Week 2", created: 538, resolved: 532 },
+  { day: "Week 3", created: 556, resolved: 551 },
+  { day: "Week 4", created: 542, resolved: 547 }
 ];
 
 export const AIPerformanceChart = () => {
@@ -32,8 +32,8 @@ export const AIPerformanceChart = () => {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle className="text-xl">AI Performance Trends</CardTitle>
-            <CardDescription>Real-time system metrics overview</CardDescription>
+            <CardTitle className="text-xl">Support Ticket Volume Trends</CardTitle>
+            <CardDescription>Tickets created vs resolved over time</CardDescription>
           </div>
           <div className="flex gap-2">
             <button
@@ -63,9 +63,13 @@ export const AIPerformanceChart = () => {
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <defs>
-              <linearGradient id="colorPerformance" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="colorCreated" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#A37BFF" stopOpacity={0.3}/>
                 <stop offset="95%" stopColor="#A37BFF" stopOpacity={0}/>
+              </linearGradient>
+              <linearGradient id="colorResolved" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#14B8A6" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="#14B8A6" stopOpacity={0}/>
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(163,123,255,0.1)" />
@@ -81,21 +85,21 @@ export const AIPerformanceChart = () => {
             <Legend />
             <Area
               type="monotone"
-              dataKey="performance"
+              dataKey="created"
               stroke="#A37BFF"
               strokeWidth={2}
               fillOpacity={1}
-              fill="url(#colorPerformance)"
-              name="Performance"
+              fill="url(#colorCreated)"
+              name="Created"
             />
             <Area
               type="monotone"
-              dataKey="prediction"
-              stroke="#7D5CFF"
+              dataKey="resolved"
+              stroke="#14B8A6"
               strokeWidth={2}
-              strokeDasharray="5 5"
-              fillOpacity={0}
-              name="Prediction"
+              fillOpacity={1}
+              fill="url(#colorResolved)"
+              name="Resolved"
             />
           </AreaChart>
         </ResponsiveContainer>

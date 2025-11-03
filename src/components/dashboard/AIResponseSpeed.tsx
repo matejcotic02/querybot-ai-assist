@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export const AIResponseSpeed = () => {
   const [progress, setProgress] = useState(0);
-  const targetValue = 94;
+  const targetValue = 92;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,13 +54,13 @@ export const AIResponseSpeed = () => {
             </defs>
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-4xl font-bold text-foreground">{progress}%</span>
-            <span className="text-sm text-muted-foreground mt-1">Accuracy</span>
+            <span className="text-4xl font-bold text-foreground">{(progress / 10).toFixed(1)}</span>
+            <span className="text-sm text-muted-foreground mt-1">/ 10</span>
           </div>
         </div>
         <div className="mt-4 text-center">
-          <p className="text-sm text-muted-foreground">Response Accuracy</p>
-          <p className="text-xs text-green-500 mt-1">+3% since yesterday</p>
+          <p className="text-sm text-muted-foreground">Customer Satisfaction</p>
+          <p className="text-xs text-green-500 mt-1">Average user rating this week</p>
         </div>
       </CardContent>
     </Card>
