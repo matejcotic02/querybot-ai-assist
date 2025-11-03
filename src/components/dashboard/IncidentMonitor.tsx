@@ -144,58 +144,5 @@ export const IncidentMonitor = () => {
     if (resolvedPercentage >= 50) return "🟡";
     return "🔴";
   };
-  return (
-    <Card className="border-border rounded-2xl overflow-hidden bg-[var(--card-bg)]"
-      style={{
-        boxShadow: "var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)), 0 0 16px rgba(163, 123, 255, 0.12), inset 0 0 8px rgba(125, 92, 255, 0.08)",
-        backdropFilter: "blur(14px)"
-      }}>
-      <CardHeader className="border-b p-6">
-        <CardTitle className="flex items-center gap-2">
-          <Activity className="h-5 w-5 text-primary" />
-          Incident Monitor {getStatusIcon()}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        {loading ? (
-          <div className="space-y-4">
-            <Skeleton className="h-32 w-full" />
-            <Skeleton className="h-20 w-full" />
-          </div>
-        ) : (
-          <div className="space-y-6">
-            <div className="h-40">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
-                  <XAxis dataKey="name" stroke="#888" />
-                  <YAxis stroke="#888" />
-                  <Tooltip />
-                  <Bar dataKey="value" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            
-            <div className="space-y-3">
-              {incidents.map((incident) => (
-                <div key={incident.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">{incident.title}</p>
-                    <p className="text-xs text-muted-foreground">{incident.id}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Badge className={getPriorityColor(incident.priority)} variant="outline">
-                      {incident.priority}
-                    </Badge>
-                    <Badge className={getStatusColor(incident.status)} variant="outline">
-                      {incident.status.replace('_', ' ')}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </CardContent>
-    </Card>
-  );
+  return;
 };

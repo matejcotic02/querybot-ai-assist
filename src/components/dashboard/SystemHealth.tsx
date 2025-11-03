@@ -73,13 +73,5 @@ export const SystemHealth = () => {
         return "default";
     }
   };
-  return <Card className="rounded-[16px] border-border animate-fade-in-up transition-all duration-[600ms] ease-in-out" style={{
-    animationDelay: "0.4s",
-    backgroundColor: "hsl(var(--dashboard-card-bg))",
-    color: "hsl(var(--dashboard-card-text))",
-    boxShadow: "var(--dashboard-card-shadow)"
-  }}>
-      
-      
-    </Card>;
+  return;
 };
