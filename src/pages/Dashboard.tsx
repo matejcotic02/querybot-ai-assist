@@ -88,9 +88,13 @@ const Dashboard = () => {
                 <ActivityTable />
               </div>
             ) : activeView === "statistics" ? (
-              <div className="grid gap-6" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))" }}>
-                <RevenueCard />
-                <RecentChatPanel />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div className="lg:col-span-2">
+                  <RevenueCard />
+                </div>
+                <div className="lg:col-span-1">
+                  <RecentChatPanel />
+                </div>
               </div>
             ) : activeView === "ai-reports" ? (
               <AIReports />
