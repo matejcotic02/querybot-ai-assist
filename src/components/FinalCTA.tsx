@@ -18,15 +18,17 @@ export const FinalCTA = () => {
           Join thousands of IT teams using QueryBot to resolve tickets faster and delight customers
         </p>
         
-        <ShimmerButton 
-          className="text-lg px-10 py-5 shadow-elevated font-semibold"
-          onClick={() => window.location.href = '/login'}
-        >
-          <span className="flex items-center">
-            Try QueryBot Free
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </span>
-        </ShimmerButton>
+        <div className="flex justify-center">
+          <ShimmerButton 
+            className="text-lg px-10 py-5 shadow-elevated font-semibold"
+            onClick={() => window.location.href = '/login'}
+          >
+            <span className="flex items-center">
+              Try QueryBot Free
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </ShimmerButton>
+        </div>
       </div>
     </section>
   );

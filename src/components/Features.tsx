@@ -61,8 +61,7 @@ export const Features = () => {
           })}
         </div>
         
-        {/* CTA Button */}
-        <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
+        <div className="flex justify-center mt-12 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
           <ShimmerButton 
             className="text-base shadow-lg"
             onClick={() => window.location.href = '/login'}
