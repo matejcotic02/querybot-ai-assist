@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ArrowRight } from "lucide-react";
 
 export const FinalCTA = () => {
@@ -18,14 +18,15 @@ export const FinalCTA = () => {
           Join thousands of IT teams using QueryBot to resolve tickets faster and delight customers
         </p>
         
-        <Button 
-          size="lg"
-          className="text-lg px-10 py-7 rounded-3xl group hover-glow shadow-elevated bg-gradient-to-r from-[#A37BFF] to-[#7D5CFF] text-white hover:opacity-90 font-semibold"
+        <ShimmerButton 
+          className="text-lg px-10 py-5 shadow-elevated font-semibold"
           onClick={() => window.location.href = '/login'}
         >
-          Try QueryBot Free
-          <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-        </Button>
+          <span className="flex items-center">
+            Try QueryBot Free
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </ShimmerButton>
       </div>
     </section>
   );
