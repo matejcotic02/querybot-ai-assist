@@ -1,6 +1,6 @@
 import { Bot, BarChart3, Settings, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 const features = [
   {
@@ -63,14 +63,15 @@ export const Features = () => {
         
         {/* CTA Button */}
         <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
-          <Button 
-            size="lg"
-            className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white text-base px-8 py-6 rounded-lg shadow-lg group"
+          <ShimmerButton 
+            className="text-base shadow-lg"
             onClick={() => window.location.href = '/login'}
           >
-            Get Started
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+            <span className="flex items-center">
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </ShimmerButton>
         </div>
       </div>
     </section>
