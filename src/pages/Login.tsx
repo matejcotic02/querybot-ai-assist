@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -138,14 +138,17 @@ const Login = () => {
       
       <div className="w-full max-w-md relative z-10">
         {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          className="mb-8 group rounded-2xl hover-glow"
+        <ShimmerButton 
+          className="mb-8 px-4 py-2 text-sm"
+          shimmerColor="#A37BFF"
+          background="rgba(255, 255, 255, 0.1)"
           onClick={() => navigate('/')}
         >
-          <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-          Back to home
-        </Button>
+          <span className="flex items-center">
+            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+            Back to home
+          </span>
+        </ShimmerButton>
         
         <Card className="border-2 rounded-3xl shadow-elevated glass">
           <CardHeader className="space-y-3 pb-8">
@@ -197,14 +200,13 @@ const Login = () => {
                     {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
                   </div>
                   
-                  <Button 
+                  <ShimmerButton 
                     type="submit"
-                    className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow"
-                    size="lg"
+                    className="w-full h-12 text-base"
                     disabled={isLoading}
                   >
                     {isLoading ? "Signing in..." : "Sign In to QueryBot"}
-                  </Button>
+                  </ShimmerButton>
                 </form>
               </TabsContent>
               
@@ -266,14 +268,13 @@ const Login = () => {
                     {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
                   </div>
                   
-                  <Button 
+                  <ShimmerButton 
                     type="submit"
-                    className="w-full h-12 text-base rounded-2xl shadow-elevated hover-glow"
-                    size="lg"
+                    className="w-full h-12 text-base"
                     disabled={isLoading}
                   >
                     {isLoading ? "Creating account..." : "Start Free Trial"}
-                  </Button>
+                  </ShimmerButton>
                   
                   <p className="text-sm text-muted-foreground text-center">
                     By signing up, you agree to our{" "}
