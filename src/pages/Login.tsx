@@ -140,14 +140,10 @@ const Login = () => {
         {/* Back Button */}
         <ShimmerButton 
           className="mb-8 px-4 py-2 text-sm"
-          shimmerColor="#8E60F7"
-          background="#8E60F7"
           onClick={() => navigate('/')}
         >
-          <span className="flex items-center">
-            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-            Back to home
-          </span>
+          <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+          Back to home
         </ShimmerButton>
         
         <Card className="border-2 rounded-3xl shadow-elevated glass">
