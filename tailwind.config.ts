@@ -119,10 +119,6 @@ export default {
           "65%, 85%": { transform: "translateZ(0) rotate(270deg)" },
           "100%": { transform: "translateZ(0) rotate(360deg)" },
         },
-        "shimmer-sweep": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -133,7 +129,6 @@ export default {
         "scroll-left": "scroll-left 25s linear infinite",
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
-        "shimmer-sweep": "shimmer-sweep var(--shimmer-duration, 2.5s) ease-in-out infinite",
       },
     },
   },
