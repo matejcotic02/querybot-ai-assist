@@ -140,7 +140,7 @@ const Login = () => {
         {/* Back Button */}
         <ShimmerButton 
           className="mb-8 px-4 py-2 text-sm"
-          shimmerColor="#A37BFF"
+          shimmerColor="#8E60F7"
           background="rgba(255, 255, 255, 0.1)"
           onClick={() => navigate('/')}
         >
