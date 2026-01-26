@@ -25,7 +25,7 @@ const signUpSchema = z.object({
 
 const Login = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
+  const [activeTab, setActiveTab] = useState<"signin" | "signup">("signup");
   const [isLoading, setIsLoading] = useState(false);
   
   const [signInData, setSignInData] = useState({
