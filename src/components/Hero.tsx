@@ -92,7 +92,7 @@ export const Hero = () => {
             
             {/* Auth Buttons - Right */}
             <div className="flex items-center gap-3">
-              <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => window.location.href = '/login'}>
+              <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => window.location.href = '/login?tab=signin'}>
                 Log in
               </Button>
               <Button className="bg-gradient-to-r from-[#A37BFF] to-[#8B5CF6] hover:opacity-90 text-white" onClick={() => window.location.href = '/login'}>
