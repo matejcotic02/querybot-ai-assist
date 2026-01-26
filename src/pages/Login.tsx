@@ -141,7 +141,7 @@ const Login = () => {
         <ShimmerButton 
           className="mb-8 px-4 py-2 text-sm"
           shimmerColor="#8E60F7"
-          background="rgba(255, 255, 255, 0.1)"
+          background="#8e60f7"
           onClick={() => navigate('/')}
         >
           <span className="flex items-center">
