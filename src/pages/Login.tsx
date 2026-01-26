@@ -8,7 +8,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import logo from "@/assets/logo-purple.png";
 
 const signInSchema = z.object({
@@ -25,7 +25,9 @@ const signUpSchema = z.object({
 
 const Login = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<"signin" | "signup">("signup");
+  const [searchParams] = useSearchParams();
+  const initialTab = searchParams.get("tab") === "signin" ? "signin" : "signup";
+  const [activeTab, setActiveTab] = useState<"signin" | "signup">(initialTab);
   const [isLoading, setIsLoading] = useState(false);
   
   const [signInData, setSignInData] = useState({
